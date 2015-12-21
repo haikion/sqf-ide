@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Sample XML Editor"
+            extensions="xml"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="sqfide.editors.XMLEditor"
+            id="sqfide.editors.XMLEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="sqfide.wizards.newWizards"
+            name="SQF-IDE">
+      </category>
+      <wizard
+            category="sqfide.wizards.newWizards"
+            class="sqfide.wizards.NewMissionWizard"
+            icon="icons/sample.gif"
+            id="sqfide.wizards.NewMissionWizard"
+            name="New ArmA 3 Mission">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="sqfide.wizards.importWizards"
+            name="SQF-IDE">
+      </category>
+      <wizard
+            category="sqfide.wizards.importWizards"
+            class="sqfide.wizards.ImportMissionWizard"
+            icon="icons/sample.gif"
+            id="sqfide.wizards.ImportMissionWizard"
+            name="Import ArmA 3 Mission">
+         <description>
+            Import a file from the local file system into the workspace.
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>

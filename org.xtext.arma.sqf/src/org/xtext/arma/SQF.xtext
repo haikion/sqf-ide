@@ -1,0 +1,525 @@
+/*
+ * TODO: Config  grammar
+ * TODO: Funktioden esittely
+ * TODO: Koodinsijoitus ilman {} 
+ */
+grammar org.xtext.arma.SQF 
+	//with org.xtext.arma.SQFTerminals
+	hidden(WS, SL_COMMENT, ML_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.xtext.org/arma/Config" as Config
+
+generate sQF "http://www.xtext.org/arma/SQF"
+
+//SQF consists of lines of code. Each line of code
+//is separated by semicolumn. Trailing semicolumn is optional
+//Allow empty code eg. {}
+Model: {Model}
+	lines+=LineOfCode? (';' lines+=LineOfCode)* ';'?
+;
+
+//Do not validate this
+LineMiddleSpecial:
+	COMMAND_MIDDLE_SPECIAL parameters=VariableValue
+;
+
+//Validate this
+LineMiddle:
+	name=UNRECOGNIZED_STRING parameters=VariableValue
+;
+
+//Return value of this code line can be assigned to a variable
+//eg. _var = [1,2,3,4] select 2 select 3;
+AssignableLineOfCode:
+	frontParameter=VariableValue middles+=(LineMiddle|LineMiddleSpecial)*
+;
+
+LineOfCode:
+	AssignableLineOfCode
+	|LocalVariableDefinition
+	|GlobalVariableDefinition
+	|If|While|For|ForVariable|Switch
+;
+
+
+//Command definitions (terminal cannot be used as case-insensitivity doesn't work with it).
+
+//Contains both CommandLeft and Variable definition
+//Look-a-head to counter LL. Might cause performance issues because LineOfCode
+//can be huge... 
+CommandLeft:
+	=>(name=UNRECOGNIZED_STRING parameter=LineOfCode)
+	| var=[GlobalVariableDefinition|UNRECOGNIZED_STRING]
+;
+
+CommandLeftSpecial:
+	COMMAND_LEFT_SPECIAL parameter=LineOfCode
+;
+
+CommandLeftGeneral:
+	CommandLeftSpecial//|CommandLeft
+;
+
+//Variable parser rules
+Code: 
+	'{'Model'}'
+;
+
+Countable: {Countable}
+	INT
+	|FLOAT
+	|SPECIAL_VARIABLE
+	|LocalVariableReference
+	|CommandLeft
+	//CommandLeftGeneral always contains command and its parameter
+	//separated by a white space
+	|CommandLeftSpecial
+	|'(' Model ')'
+	|CommandParameterless
+;
+Comparable: {Comparable}
+	STRING|Countable
+;
+
+NonArray: Comparable|Code;
+
+//Contains whatever can be assigned to the variable.
+VariableValue: NonArray|Array|GLOBAL_FUNCTION; 
+
+Array:
+	{Array} '['(member += VariableValue (',' member += VariableValue)*)?']'
+;
+
+ForVariable: 
+	'for "' LOCAL_VARIABLE 
+	'" from' from=Countable 'to' to=Countable ('step' step=Countable)
+	'do' loopCode=Code
+;
+
+//Special case of CommandMiddle
+LocalVariableDefinition:
+	name=LOCAL_VARIABLE ASSIGMENT_OPERATOR value=LineOfCode
+;
+
+GlobalVariableDefinition: //FIXME: Name gets recognized as CommandLeft..
+	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR value=LineOfCode
+;
+
+//TODO: 
+//1) Separate so that global applies to whole project
+//   and local applies to open file
+//2) Figure out how to handle blocks so that local only effects
+//   current code block
+LocalVariableReference:
+	name=[LocalVariableDefinition|LOCAL_VARIABLE]
+;
+
+For:
+	'for' Array
+	'do' loopCode=Code
+;
+
+If:
+	'if' '(' condition=LineOfCode ')' ('then'|'exitWith') thenCode=Code 
+	('else' elseCode=Code)?
+;
+
+While:
+	'while' condition=Code 'do' 
+	loopCode=Code
+;
+//"switch (playerSide) do { case west: {}; }", "Switch"
+SwitchBlock: {SwitchBlock}
+	'{' ('case' cases+=LineOfCode ':' blocks+=Code ';')* ('default' blocks+=Code ';')? '}'
+;
+
+Switch:
+	'switch' '(' name=LineOfCode ')' 'do' block=SwitchBlock
+;
+//FIXME: Splitting results in the compilation errors in regard of validation Java classes.
+
+terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
+	('a'..'z'|'A'..'Z'|'0'..'9')+'_fnc_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
+;
+terminal SPECIAL_VARIABLE: '_this'|'_x';
+terminal LOCAL_VARIABLE : '_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+;
+
+//Non character cases of command middle
+terminal COMMAND_MIDDLE_SPECIAL: '>>'|'=='|'!='|'<'|'>'|'>='|'<='|'+'|'-'
+	|'*'|'/'|'^'|'||'|'&&'
+;
+//Non character cases of command left
+terminal COMMAND_LEFT_SPECIAL: '!';
+
+//Variable definitons
+terminal FLOAT: INT '.' INT;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal DOUBLE_QUETO: '""';
+//terminal SINGLE_QUETO: '"';
+terminal STRING	: 
+			'"' ( '\\' . | DOUBLE_QUETO | !('\\'|'"'))* '"' 
+			| "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;
+
+//Ignore
+//terminal BRACKET_CONTENT: '(' -> ')'; //No syntax checking inside brackets
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+terminal WS	: (' '|'\t'|'\r'|'\n')+;
+
+//terminal ASSIGMENT_OPERATOR: !('='|'!'|'>'|'<')'='!('='); //Single =, rules out: ==,!=,>=,<=
+terminal ASSIGMENT_OPERATOR: '='; //Single =, rules out: ==,!=,>=,<=
+//Confusing name. Generally means a sequence of chars that can be: command, global variable or 
+//public variable. More specific checking is done at validation. 
+terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
+
+/*
+ * Contains automatically generated list of commands without parameters.
+ * Checking is difficult to do at validation time as global 
+ * variable reference (Requires Xtext cross reference)
+ * is syntactically identical with parameterless command
+ * 
+ * Generating such a list for all commands would mean that lexer
+ * static initializer size would be over 64k and hence fail to execute.
+ * 
+ * CommandLeft and CommandMiddle variants are both checked at the validation
+ * time.
+ */
+ 
+CommandParameterless: 
+    'accTime'
+    |'activatedAddons'
+    |'addEditorObject'
+    |'addTeamMember'
+    |'agent'
+    |'agents'
+    |'allControls'
+    |'allCurators'
+    |'allDead'
+    |'allDeadMen'
+    |'allDisplays'
+    |'allGroups'
+    |'allMapMarkers'
+    |'allMines'
+    |'allSites'
+    |'allUnits'
+    |'allUnitsUAV'
+    |'armoryPoints'
+    |'ASLToATL'
+    |'ATLToASL'
+    |'attachedObject'
+    |'batteryChargeRTD'
+    |'benchmark'
+    |'blufor'
+    |'briefingName'
+    |'buldozer_reloadOperMap'
+    |'cadetMode'
+    |'cameraOn'
+    |'cameraView'
+    |'campaignConfigFile'
+    |'cancelSimpleTaskDestination'
+    |'case'
+    |'cbChecked'
+    |'cheatsEnabled'
+    |'civilian'
+    |'className'
+    |'clearMagazinePool'
+    |'clearOverlay'
+    |'clearRadio'
+    |'clearWeaponPool'
+    |'closeOverlay'
+    |'collapseObjectTree'
+    |'collectiveRTD'
+    |'commandingMenu'
+    |'commitOverlay'
+    |'configFile'
+    |'configName'
+    |'controlNull'
+    |'copyFromClipboard'
+    |'createDiaryLink'
+    |'ctrlActivate'
+    |'ctrlAutoScrollDelay'
+    |'ctrlAutoScrollRewind'
+    |'ctrlAutoScrollSpeed'
+    |'ctrlChecked'
+    |'ctrlClassName'
+    |'ctrlCommitted'
+    |'ctrlDelete'
+    |'ctrlFade'
+    |'ctrlHTMLLoaded'
+    |'ctrlIDC'
+    |'ctrlIDD'
+    |'ctrlMapAnimClear'
+    |'ctrlMapAnimCommit'
+    |'ctrlMapAnimDone'
+    |'ctrlMapMouseOver'
+    |'ctrlMapScale'
+    |'ctrlMapWorldToScreen'
+    |'ctrlModel'
+    |'ctrlModelDirAndUp'
+    |'ctrlModelScale'
+    |'ctrlParent'
+    |'ctrlPosition'
+    |'ctrlScale'
+    |'ctrlSetFocus'
+    |'ctrlSetStructuredText'
+    |'ctrlShown'
+    |'ctrlTextHeight'
+    |'ctrlType'
+    |'curatorCamera'
+    |'curatorMouseOver'
+    |'curatorSelected'
+    |'currentTasks'
+    |'cursorTarget'
+    |'date'
+    |'daytime'
+    |'debugLog'
+    |'deleteLocation'
+    |'deleteTarget'
+    |'deleteTeam'
+    |'detectedMines'
+    |'diag_fps'
+    |'diag_fpsmin'
+    |'diag_frameno'
+    |'diag_tickTime'
+    |'dialog'
+    |'difficulty'
+    |'difficultyEnabledRTD'
+    |'disableDebriefingStats'
+    |'disableSerialization'
+    |'displayNull'
+    |'distributionRegion'
+    |'drawLocation'
+    |'east'
+    |'enableEndDialog'
+    |'endLoadingScreen'
+    |'enemy'
+    |'estimatedEndServerTime'
+    |'exit'
+    |'false'
+    |'findEditorObject'
+    |'finishMissionInit'
+    |'fog'
+    |'fogForecast'
+    |'fogParams'
+    |'forceEnd'
+    |'forceWeatherChange'
+    |'freeLook'
+    |'friendly'
+    |'fromEditor'
+    |'gearSlotAmmoCount'
+    |'gearSlotData'
+    |'getArray'
+    |'getArtilleryComputerSettings'
+    |'getClientState'
+    |'getEditorCamera'
+    |'getEditorMode'
+    |'getElevationOffset'
+    |'getResolution'
+    |'getShadowDistance'
+    |'getTerrainHeightASL'
+    |'getText'
+    |'getWorld'
+    |'groupIconSelectable'
+    |'groupIconsVisible'
+    |'grpNull'
+    |'gusts'
+    |'halt'
+    |'hasInterface'
+    |'hcShownBar'
+    |'hierarchyObjectsCount'
+    |'HUDMovementLevels'
+    |'humidity'
+    |'importAllGroups'
+    |'importance'
+    |'independent'
+    |'inheritsFrom'
+    |'initAmbientLife'
+    |'isAgent'
+    |'isArray'
+    |'isAutotest'
+    |'isClass'
+    |'isDedicated'
+    |'isEqualTo'
+    |'isInstructorFigureEnabled'
+    |'isMultiplayer'
+    |'isNumber'
+    |'isPiPEnabled'
+    |'isRealTime'
+    |'isServer'
+    |'isShowing3DIcons'
+    |'isSteamMission'
+    |'isStreamFriendlyUIEnabled'
+    |'isText'
+    |'isTutHintsEnabled'
+    |'language'
+    |'lbSelection'
+    |'lbSort'
+    |'lbSortByValue'
+    |'libraryCredits'
+    |'libraryDisclaimers'
+    |'lightnings'
+    |'lineBreak'
+    |'lnbGetColumnsPosition'
+    |'lnbSize'
+    |'loadGame'
+    |'loadOverlay'
+    |'locationNull'
+    |'locationPosition'
+    |'logEntities'
+    |'mapAnimClear'
+    |'mapAnimCommit'
+    |'mapAnimDone'
+    |'markAsFinishedOnSteam'
+    |'members'
+    |'missionConfigFile'
+    |'missionName'
+    |'missionNamespace'
+    |'missionStart'
+    |'moonIntensity'
+    |'musicVolume'
+    |'name location'
+    |'newOverlay'
+    |'nextMenuItemIndex'
+    |'nextWeatherChange'
+    |'nil'
+    |'numberOfEnginesRTD'
+    |'objNull'
+    |'onGroupIconOverEnter'
+    |'onGroupIconOverLeave'
+    |'openCuratorInterface'
+    |'openDSInterface'
+    |'opfor'
+    |'overcast'
+    |'overcastForecast'
+    |'parsingNamespace'
+    |'particlesQuality'
+    |'pi'
+    |'playableUnits'
+    |'player'
+    |'playerRespawnTime'
+    |'playerSide'
+    |'position location'
+    |'priority'
+    |'processDiaryLink'
+    |'processInitCommands'
+    |'productVersion'
+    |'profileName'
+    |'profileNamespace'
+    |'progressPosition'
+    |'radioVolume'
+    |'rain'
+    |'rainbow'
+    |'rectangular'
+    |'registeredTasks'
+    |'removeTeamMember'
+    |'resetCamShake'
+    |'resistance'
+    |'resources'
+    |'restartEditorCamera'
+    |'reversedMouseY'
+    |'runInitScript'
+    |'safeZoneH'
+    |'safeZoneW'
+    |'safeZoneWAbs'
+    |'safeZoneX'
+    |'safeZoneXAbs'
+    |'safeZoneY'
+    |'saveGame'
+    |'saveJoysticks'
+    |'saveOverlay'
+    |'saveProfileNamespace'
+    |'savingEnabled'
+    |'scriptDone'
+    |'scriptNull'
+    |'selectBestPlaces'
+    |'selectedEditorObjects'
+    |'selectNoPlayer'
+    |'sendTask'
+    |'serverTime'
+    |'setDefaultCamera'
+    |'setLeader'
+    |'setObjectArguments'
+    |'shownArtilleryComputer'
+    |'shownChat'
+    |'shownCompass'
+    |'shownCuratorCompass'
+    |'shownGPS'
+    |'shownMap'
+    |'shownPad'
+    |'shownRadio'
+    |'shownUAVFeed'
+    |'shownWarrant'
+    |'shownWatch'
+    |'side location'
+    |'sideEnemy'
+    |'sideFriendly'
+    |'sideLogic'
+    |'sideUnknown'
+    |'simulCloudDensity'
+    |'simulInClouds'
+    |'simulWeatherSync'
+    |'size'
+    |'slingLoadAssistantShown'
+    |'soundVolume'
+    |'str'
+    |'sunOrMoon'
+    |'switchableUnits'
+    |'synchronizedTriggers'
+    |'systemOfUnits'
+    |'taskChildren'
+    |'taskCompleted'
+    |'taskDescription'
+    |'taskDestination'
+    |'taskNull'
+    |'taskParent'
+    |'taskResult'
+    |'taskState'
+    |'teamMemberNull'
+    |'teamName'
+    |'teams'
+    |'teamSwitch'
+    |'teamSwitchEnabled'
+    |'teamType'
+    |'terminate'
+    |'terrainIntersect'
+    |'terrainIntersectASL'
+    |'text location'
+    |'textLog'
+    |'textLogFormat'
+    |'throttleRTD'
+    |'throw'
+    |'time'
+    |'timeMultiplier'
+    |'true'
+    |'type'
+    |'typeName'
+    |'uiNamespace'
+    |'updateObjectTree'
+    |'vehicles'
+    |'viewDistance'
+    |'visibleCompass'
+    |'visibleGPS'
+    |'visibleMap'
+    |'visibleWatch'
+    |'waves'
+    |'waypointAttachedObject'
+    |'waypointBehaviour'
+    |'waypointCombatMode'
+    |'waypointDescription'
+    |'waypointFormation'
+    |'waypointHousePosition'
+    |'waypointLoiterRadius'
+    |'waypointLoiterType'
+    |'waypointName'
+    |'waypointScript'
+    |'waypointStatements'
+    |'waypointTimeout'
+    |'waypointType'
+    |'west'
+    |'wind'
+    |'windDir'
+    |'windStr'
+    |'worldName'
+;

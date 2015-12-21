@@ -1,0 +1,16 @@
+grammar org.xtext.arma.Config with org.eclipse.xtext.common.Terminals
+
+generate config "http://www.xtext.org/arma/Config"
+
+Model:
+	Classes+=Class*;
+	
+Class:
+	'class' name=ID '{'
+	(classes+=Class|parameters+=ParameterDefinition)* 
+	'};'
+;
+
+ParameterDefinition:
+	{Parameter} ( name=ID '=' (STRING|INT) ';')
+;
