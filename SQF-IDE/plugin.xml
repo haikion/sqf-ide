@@ -44,5 +44,34 @@
          </description>
       </wizard>
    </extension>
+   <extension
+         id="org.eclipse.jdt.launching.arma3Launcher"
+         name="ArmA 3 Launcher"
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="sqf_ide.Arma3LaunchConfigurationDelegate"
+            id="SQF-IDE.launchConfigurationType1"
+            modes="run"
+            name="name">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         id="org.eclipse.jdt.debug.ui.launchConfigurationTypeImage.arma3"
+         name="ArmA 3 icon"
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="SQF-IDE.launchConfigurationTypeImage1"
+            icon="icons/Arma3Logo.gif"
+            id="SQF-IDE.launchConfigurationTypeImage1">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="abstractlaunchconfigurationtabgroup.AbstractLaunchConfigurationTabGroup1"
+            id="SQF-IDE.launchConfigurationTabGroup1"
+            type="org.eclipse.jdt.launching.javaApplet">
+      </launchConfigurationTabGroup>
+   </extension>
 
 </plugin>

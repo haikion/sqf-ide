@@ -102,7 +102,7 @@ LocalVariableDefinition:
 	name=LOCAL_VARIABLE ASSIGMENT_OPERATOR value=LineOfCode
 ;
 
-GlobalVariableDefinition: //FIXME: Name gets recognized as CommandLeft..
+GlobalVariableDefinition:
 	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR value=LineOfCode
 ;
 
