@@ -8,7 +8,7 @@ var grammarURI = "classpath:/org/xtext/arma/Config.xtext"
 var fileExtensions = "ext, hpp, h, cpp"
 var projectName = "org.xtext.arma.Config"
 var runtimeProject = "../${projectName}"
-var generateXtendStub = true
+var generateXtendStub = false
 var encoding = "UTF-8"
 
 Workflow {
