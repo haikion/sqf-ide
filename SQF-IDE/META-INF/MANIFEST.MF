@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: SQF-IDE
 Bundle-SymbolicName: SQF-IDE;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: sqf_ide.Activator
+Bundle-Activator: sqfide.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
