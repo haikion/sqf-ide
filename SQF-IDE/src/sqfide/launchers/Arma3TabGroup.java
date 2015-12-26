@@ -1,4 +1,4 @@
-package sqf_ide;
+package sqfide.launchers;
 
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;

@@ -1,5 +1,5 @@
-package sqf_ide;
-
+//TODO: Right click run as
+package sqfide.launchers;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -12,7 +12,6 @@ import org.eclipse.jdt.internal.debug.ui.IJavaDebugHelpContextIds;
 import org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin;
 import org.eclipse.jdt.internal.debug.ui.JavaDebugImages;
 import org.eclipse.jdt.internal.debug.ui.actions.ControlAccessibleListener;
-import org.eclipse.jdt.internal.debug.ui.launcher.JavaWorkingDirectoryBlock;
 import org.eclipse.jdt.internal.debug.ui.launcher.LauncherMessages;
 import org.eclipse.jdt.internal.debug.ui.launcher.VMArgumentsBlock;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
@@ -36,21 +35,23 @@ import org.eclipse.ui.PlatformUI;
 
 public class Arma3ArgumentsTab extends JavaLaunchTab
 {
-        
     // Program arguments widgets
+    private static final String ARMA3_PARAMETERS_LABEL = "ArmA 3 launch parameters";
+    private static final String DEFAULT_ARMA3_PARAMETERS = "-window -";
     protected Label fPrgmArgumentsLabel;
     protected Text fPrgmArgumentsText;
     
     // VM arguments widgets
-    protected VMArgumentsBlock fVMArgumentsBlock;
+    private static final String STEAM_PARAMETERS_LABEL = "Steam launch parameters";
+    //protected VMArgumentsBlock fVMArgumentsBlock;
     
     // Working directory
-    protected WorkingDirectoryBlock fWorkingDirectoryBlock;
+    protected Arma3WorkingDirectoryBlock fWorkingDirectoryBlock;
         
     protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
         
     public Arma3ArgumentsTab() {
-        fVMArgumentsBlock = createVMArgsBlock();
+        //fVMArgumentsBlock = createVMArgsBlock();
         fWorkingDirectoryBlock = createWorkingDirBlock();
     }
     
@@ -64,8 +65,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @return the new {@link WorkingDirectoryBlock}
      * @since 3.4
      */
-    protected WorkingDirectoryBlock createWorkingDirBlock() {
-        return new JavaWorkingDirectoryBlock();
+    protected Arma3WorkingDirectoryBlock createWorkingDirBlock() {
+        return new Arma3WorkingDirectoryBlock();
     }
     
     /**
@@ -89,7 +90,7 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
         group.setLayout(layout);
         group.setLayoutData(new GridData(GridData.FILL_BOTH));
         
-        String controlName = (LauncherMessages.JavaArgumentsTab__Program_arguments__5); 
+        String controlName = (ARMA3_PARAMETERS_LABEL); 
         group.setText(controlName);
         
         fPrgmArgumentsText = new Text(group, SWT.MULTI | SWT.WRAP | SWT.BORDER | SWT.V_SCROLL);
@@ -127,22 +128,27 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
         });
         ControlAccessibleListener.addListener(fPrgmArgumentsText, group.getText());
         
-        String buttonLabel = LauncherMessages.JavaArgumentsTab_5;  
+        String buttonLabel = "Parameters...";  
+
         Button pgrmArgVariableButton = createPushButton(group, buttonLabel, null); 
         pgrmArgVariableButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
-        pgrmArgVariableButton.addSelectionListener(new SelectionAdapter() {
+        pgrmArgVariableButton.addSelectionListener(new SelectionAdapter() 
+        {
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void widgetSelected(SelectionEvent e)
+            {
+                //TODO: Implement parameter menu
                 StringVariableSelectionDialog dialog = new StringVariableSelectionDialog(getShell());
                 dialog.open();
                 String variable = dialog.getVariableExpression();
-                if (variable != null) {
+                if (variable != null) 
+                {
                     fPrgmArgumentsText.insert(variable);
                 }
             }
         });
         
-        fVMArgumentsBlock.createControl(comp);
+        //fVMArgumentsBlock.createControl(comp);
         
         fWorkingDirectoryBlock.createControl(comp);     
     }
@@ -177,7 +183,7 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      */
     public void setDefaults(ILaunchConfigurationWorkingCopy config) {
         config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, (String)null);
-        fVMArgumentsBlock.setDefaults(config);
+        //fVMArgumentsBlock.setDefaults(config);
         fWorkingDirectoryBlock.setDefaults(config);
     }
     
@@ -186,14 +192,15 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      */
     @Override
     public void initializeFrom(ILaunchConfiguration configuration) {
-        try {
-            fPrgmArgumentsText.setText(configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, "")); //$NON-NLS-1$
-            fVMArgumentsBlock.initializeFrom(configuration);
+        //try {
+            fPrgmArgumentsText.setText(DEFAULT_ARMA3_PARAMETERS);
+            //fPrgmArgumentsText.setText(configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, "")); //$NON-NLS-1$
+            //fVMArgumentsBlock.initializeFrom(configuration);
             fWorkingDirectoryBlock.initializeFrom(configuration);
-        } catch (CoreException e) {
-            setErrorMessage(LauncherMessages.JavaArgumentsTab_Exception_occurred_reading_configuration___15 + e.getStatus().getMessage()); 
-            JDIDebugUIPlugin.log(e);
-        }
+        //} catch (CoreException e) {
+        //    setErrorMessage(LauncherMessages.JavaArgumentsTab_Exception_occurred_reading_configuration___15 + e.getStatus().getMessage()); 
+        //    JDIDebugUIPlugin.log(e);
+        //}
     }
     
     /**
@@ -201,7 +208,7 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      */
     public void performApply(ILaunchConfigurationWorkingCopy configuration) {
         configuration.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, getAttributeValueFrom(fPrgmArgumentsText));
-        fVMArgumentsBlock.performApply(configuration);
+        //fVMArgumentsBlock.performApply(configuration);
         fWorkingDirectoryBlock.performApply(configuration);
     }
     
@@ -233,7 +240,7 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
     public void setLaunchConfigurationDialog(ILaunchConfigurationDialog dialog) {
         super.setLaunchConfigurationDialog(dialog);
         fWorkingDirectoryBlock.setLaunchConfigurationDialog(dialog);
-        fVMArgumentsBlock.setLaunchConfigurationDialog(dialog);
+        //fVMArgumentsBlock.setLaunchConfigurationDialog(dialog);
     }   
     /**
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getErrorMessage()

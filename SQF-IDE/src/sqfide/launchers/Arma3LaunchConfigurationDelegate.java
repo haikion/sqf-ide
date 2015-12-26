@@ -1,15 +1,20 @@
-package sqf_ide;
+package sqfide.launchers;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
@@ -26,6 +31,7 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.jdt.internal.launching.LaunchingMessages;
 import org.eclipse.jdt.internal.launching.LaunchingPlugin;
@@ -40,7 +46,7 @@ import org.eclipse.jdt.launching.VMRunnerConfiguration;
 
 public class Arma3LaunchConfigurationDelegate
         extends AbstractJavaLaunchConfigurationDelegate
-        implements IDebugEventSetListener
+        implements ILaunchConfigurationDelegate
 {
     /**
      * Mapping of ILaunch objects to File objects that represent the .html file
@@ -49,10 +55,56 @@ public class Arma3LaunchConfigurationDelegate
      */
     private static Map fgLaunchToFileMap = new HashMap();
     
+    public void launch(ILaunchConfiguration configuration, String mode, 
+            ILaunch launch, IProgressMonitor monitor) throws CoreException 
+    {
+        if (configuration == null) {
+            abort("JavaAppletLaunchConfigurationDelegate.No_launch_configuration_specified_1",
+                    null, IJavaLaunchConfigurationConstants.ERR_UNSPECIFIED_LAUNCH_CONFIG); //$NON-NLS-1$
+        }
+        
+        monitor.beginTask("JavaAppletLaunchConfigurationDelegate.Starting_Applet_{0}..._1", 3); //$NON-NLS-1$
+        monitor.subTask("JavaAppletLaunchConfigurationDelegate.Verifying_launch_attributes..._1"); //$NON-NLS-1$
+        
+        File workingDir = verifyWorkingDirectory(configuration);
+        String workingDirName = workingDir.getAbsolutePath();
+        
+        monitor.worked(1);      
+
+        Process process;
+        String line;
+        String arma3Exe = workingDirName + "/arma3.exe";
+        String parameters = 
+                configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, (String) null);
+        List<String> cmdList = new ArrayList<String>();
+        cmdList.add(arma3Exe);
+        cmdList.addAll(Arrays.asList(parameters.split(" ")));
+        System.out.println("Running: " + arma3Exe + " " + parameters); //TODO: Print in runtime eclipse...
+        try
+        {
+            process = new ProcessBuilder(cmdList).start();
+            InputStream is = process.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+
+            while ((line = br.readLine()) != null)
+            {
+                System.out.println(line);
+            }
+
+        } catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        monitor.done();
+        
+    }
     /* (non-Javadoc)
      * @see org.eclipse.debug.core.model.ILaunchConfigurationDelegate#launch(org.eclipse.debug.core.ILaunchConfiguration, java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipse.core.runtime.IProgressMonitor)
      */
-    public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
+    public void launch2(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
             
         if (configuration == null) {
             abort("JavaAppletLaunchConfigurationDelegate.No_launch_configuration_specified_1", null, IJavaLaunchConfigurationConstants.ERR_UNSPECIFIED_LAUNCH_CONFIG); //$NON-NLS-1$
@@ -68,9 +120,13 @@ public class Arma3LaunchConfigurationDelegate
         IVMRunner runner = vm.getVMRunner(mode);
         if (runner == null) {
             if (mode == ILaunchManager.DEBUG_MODE) {
-                abort(MessageFormat.format("JavaLocalApplicationLaunchConfigurationDelegate.0", new String[]{vm.getName()}), null, IJavaLaunchConfigurationConstants.ERR_VM_RUNNER_DOES_NOT_EXIST);  //$NON-NLS-1$
+                abort(MessageFormat.format("JavaLocalApplicationLaunchConfigurationDelegate.0", 
+                        new String[]{vm.getName()}), null, IJavaLaunchConfigurationConstants.ERR_VM_RUNNER_DOES_NOT_EXIST); 
+                //$NON-NLS-1$
             } else {
-                abort(MessageFormat.format("JavaLocalApplicationLaunchConfigurationDelegate.1", new String[]{vm.getName()}), null, IJavaLaunchConfigurationConstants.ERR_VM_RUNNER_DOES_NOT_EXIST);  //$NON-NLS-1$
+                abort(MessageFormat.format("JavaLocalApplicationLaunchConfigurationDelegate.1",
+                        new String[]{vm.getName()}), null, IJavaLaunchConfigurationConstants.ERR_VM_RUNNER_DOES_NOT_EXIST);
+                //$NON-NLS-1$
             }
         }
 
@@ -84,7 +140,8 @@ public class Arma3LaunchConfigurationDelegate
         String[] classpath = getClasspath(configuration);
         
         // Create VM config
-        String appletViewerClassName = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_APPLET_APPLETVIEWER_CLASS, IJavaLaunchConfigurationConstants.DEFAULT_APPLETVIEWER_CLASS);
+        String appletViewerClassName = configuration.getAttribute(IJavaLaunchConfigurationConstants.
+                ATTR_APPLET_APPLETVIEWER_CLASS, IJavaLaunchConfigurationConstants.DEFAULT_APPLETVIEWER_CLASS);
         VMRunnerConfiguration runConfig = new VMRunnerConfiguration(appletViewerClassName, classpath);
         
         // Construct the HTML file and set its name as a program argument
@@ -375,5 +432,4 @@ public class Arma3LaunchConfigurationDelegate
         // cannot return null - an exception will be thrown
         return null;        
     }
-
 }

@@ -45,19 +45,15 @@
       </wizard>
    </extension>
    <extension
-         id="org.eclipse.jdt.launching.arma3Launcher"
-         name="ArmA 3 Launcher"
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
-            delegate="sqf_ide.Arma3LaunchConfigurationDelegate"
+            delegate="sqfide.launchers.Arma3LaunchConfigurationDelegate"
             id="SQF-IDE.launchConfigurationType1"
             modes="run"
-            name="name">
+            name="ArmA 3">
       </launchConfigurationType>
    </extension>
    <extension
-         id="org.eclipse.jdt.debug.ui.launchConfigurationTypeImage.arma3"
-         name="ArmA 3 icon"
          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
       <launchConfigurationTypeImage
             configTypeID="SQF-IDE.launchConfigurationTypeImage1"
@@ -68,10 +64,43 @@
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
-            class="abstractlaunchconfigurationtabgroup.AbstractLaunchConfigurationTabGroup1"
+            class="sqfide.launchers.Arma3TabGroup"
             id="SQF-IDE.launchConfigurationTabGroup1"
-            type="org.eclipse.jdt.launching.javaApplet">
+            type="SQF-IDE.launchConfigurationType1">
       </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="sqfide.launchers.Arma3LaunchShortcut"
+            icon="icons/Arma3Logo.gif"
+            id="SQF-IDE.shortcut1"
+            label="Arma3"
+            modes="run">
+         <contextualLaunch>
+            <enablement>
+       			<with variable="selection">
+            		<count value="1"/>
+            		<iterate>
+                		<adapt type="org.eclipse.core.resources.IResource">
+                       		<test property="org.sqfide.isArmaMission"  
+                        		forcePluginActivation="true"/> 
+             	 		</adapt> 
+          			 </iterate>
+       			</with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="sqfide.launchers.SQFIDETester"
+            id="org.sqfide.propertyTester1"
+            namespace="org.sqfide"
+            properties="isArmaMission"
+            type="org.eclipse.core.resources.IResource">
+      </propertyTester>
    </extension>
 
 </plugin>
