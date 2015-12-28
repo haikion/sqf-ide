@@ -37,13 +37,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
 {
     // Program arguments widgets
     private static final String ARMA3_PARAMETERS_LABEL = "ArmA 3 launch parameters";
-    private static final String DEFAULT_ARMA3_PARAMETERS = "-window -";
     protected Label fPrgmArgumentsLabel;
     protected Text fPrgmArgumentsText;
-    
-    // VM arguments widgets
-    private static final String STEAM_PARAMETERS_LABEL = "Steam launch parameters";
-    //protected VMArgumentsBlock fVMArgumentsBlock;
     
     // Working directory
     protected Arma3WorkingDirectoryBlock fWorkingDirectoryBlock;
@@ -191,22 +186,17 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#initializeFrom(ILaunchConfiguration)
      */
     @Override
-    public void initializeFrom(ILaunchConfiguration configuration) {
-        //try {
-            fPrgmArgumentsText.setText(DEFAULT_ARMA3_PARAMETERS);
-            //fPrgmArgumentsText.setText(configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, "")); //$NON-NLS-1$
-            //fVMArgumentsBlock.initializeFrom(configuration);
-            fWorkingDirectoryBlock.initializeFrom(configuration);
-        //} catch (CoreException e) {
-        //    setErrorMessage(LauncherMessages.JavaArgumentsTab_Exception_occurred_reading_configuration___15 + e.getStatus().getMessage()); 
-        //    JDIDebugUIPlugin.log(e);
-        //}
+    public void initializeFrom(ILaunchConfiguration configuration) 
+    {
+        fPrgmArgumentsText.setText(Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
+        fWorkingDirectoryBlock.initializeFrom(configuration);
     }
     
     /**
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#performApply(ILaunchConfigurationWorkingCopy)
      */
-    public void performApply(ILaunchConfigurationWorkingCopy configuration) {
+    public void performApply(ILaunchConfigurationWorkingCopy configuration) 
+    {
         configuration.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, getAttributeValueFrom(fPrgmArgumentsText));
         //fVMArgumentsBlock.performApply(configuration);
         fWorkingDirectoryBlock.performApply(configuration);
@@ -218,7 +208,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @param text the widget to get the value from
      * @return text or <code>null</code>
      */
-    protected String getAttributeValueFrom(Text text) {
+    protected String getAttributeValueFrom(Text text) 
+    {
         String content = text.getText().trim();
         if (content.length() > 0) {
             return content;
@@ -229,7 +220,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
     /**
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getName()
      */
-    public String getName() {
+    public String getName() 
+    {
         return LauncherMessages.JavaArgumentsTab__Arguments_16; 
     }   
     
@@ -237,7 +229,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#setLaunchConfigurationDialog(ILaunchConfigurationDialog)
      */
     @Override
-    public void setLaunchConfigurationDialog(ILaunchConfigurationDialog dialog) {
+    public void setLaunchConfigurationDialog(ILaunchConfigurationDialog dialog) 
+    {
         super.setLaunchConfigurationDialog(dialog);
         fWorkingDirectoryBlock.setLaunchConfigurationDialog(dialog);
         //fVMArgumentsBlock.setLaunchConfigurationDialog(dialog);
@@ -246,7 +239,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getErrorMessage()
      */
     @Override
-    public String getErrorMessage() {
+    public String getErrorMessage() 
+    {
         String m = super.getErrorMessage();
         if (m == null) {
             return fWorkingDirectoryBlock.getErrorMessage();
@@ -270,7 +264,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getImage()
      */
     @Override
-    public Image getImage() {
+    public Image getImage() 
+    {
         return JavaDebugImages.get(JavaDebugImages.IMG_VIEW_ARGUMENTS_TAB);
     }   
     
@@ -280,7 +275,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @since 3.3
      */
     @Override
-    public String getId() {
+    public String getId() 
+    {
         return "org.eclipse.jdt.debug.ui.javaArgumentsTab"; //$NON-NLS-1$
     }
     
@@ -288,7 +284,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#activated(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy)
      */
     @Override
-    public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
+    public void activated(ILaunchConfigurationWorkingCopy workingCopy) 
+    {
         fWorkingDirectoryBlock.initializeFrom(workingCopy);
     }
     
@@ -296,7 +293,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#deactivated(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy)
      */
     @Override
-    public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
+    public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) 
+    {
         // do nothing when deactivated
     }
 

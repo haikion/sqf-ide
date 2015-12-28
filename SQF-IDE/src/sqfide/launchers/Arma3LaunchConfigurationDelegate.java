@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -42,12 +44,13 @@ import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMRunner;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.jdt.launching.VMRunnerConfiguration;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 
 public class Arma3LaunchConfigurationDelegate
         extends AbstractJavaLaunchConfigurationDelegate
         implements ILaunchConfigurationDelegate
-{
+{    
     /**
      * Mapping of ILaunch objects to File objects that represent the .html file
      * used to initiate the applet launch.  This is used to delete the .html
@@ -67,19 +70,40 @@ public class Arma3LaunchConfigurationDelegate
         monitor.subTask("JavaAppletLaunchConfigurationDelegate.Verifying_launch_attributes..._1"); //$NON-NLS-1$
         
         File workingDir = verifyWorkingDirectory(configuration);
-        String workingDirName = workingDir.getAbsolutePath();
+        String parameters = 
+                configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, (String) null);
         
-        monitor.worked(1);      
+        launchArma3(workingDir, null, parameters);
+        monitor.done();
+    }
+    
+    protected void launchArma3(File arma3Dir, IFile missionFile, String startupParameters)
+    {
+        if (arma3Dir == null)
+        {
+            System.out.println("Error: arma3Dir undefined");
+            return;
+        }
+        
+        String arma3DirName = arma3Dir.getAbsolutePath();
 
         Process process;
         String line;
-        String arma3Exe = workingDirName + "/arma3.exe";
-        String parameters = 
-                configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, (String) null);
+        String arma3Exe = arma3DirName + "/arma3.exe";
+        List<String> parametersList = new ArrayList<String>();
+        if (startupParameters != null && !startupParameters.isEmpty())
+        {
+            //Split produces list size 1 even if string is empty...
+            parametersList = Arrays.asList(startupParameters.split(" "));
+        }
         List<String> cmdList = new ArrayList<String>();
         cmdList.add(arma3Exe);
-        cmdList.addAll(Arrays.asList(parameters.split(" ")));
-        System.out.println("Running: " + arma3Exe + " " + parameters); //TODO: Print in runtime eclipse...
+        cmdList.addAll(parametersList);
+        if (missionFile != null)
+        {
+            cmdList.add(missionFile.getLocation().toOSString());            
+        }
+        System.out.println("Running: " + arma3Exe + " " + startupParameters); //TODO: Print in runtime eclipse...
         try
         {
             process = new ProcessBuilder(cmdList).start();
@@ -97,13 +121,12 @@ public class Arma3LaunchConfigurationDelegate
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        monitor.done();
-        
     }
+    
     /* (non-Javadoc)
      * @see org.eclipse.debug.core.model.ILaunchConfigurationDelegate#launch(org.eclipse.debug.core.ILaunchConfiguration, java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipse.core.runtime.IProgressMonitor)
      */
+    /*
     public void launch2(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
             
         if (configuration == null) {
@@ -192,6 +215,7 @@ public class Arma3LaunchConfigurationDelegate
         
         monitor.done();
     }
+    */
 
     /**
      * Returns the system property string for the policy file
@@ -222,6 +246,7 @@ public class Arma3LaunchConfigurationDelegate
      * 
      * @param dir the directoru in which to make the file
      */
+    /*
     private File buildHTMLFile(ILaunchConfiguration configuration, File dir) {
         FileWriter writer = null;
         File tempFile = null;
@@ -273,6 +298,7 @@ public class Arma3LaunchConfigurationDelegate
         }
         return tempFile;
     }
+    */
     
     private String getQuotedString(String string) {
         if (string.indexOf('"') == -1) {

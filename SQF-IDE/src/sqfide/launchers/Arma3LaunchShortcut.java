@@ -52,7 +52,8 @@ import org.eclipse.ui.IEditorPart;
  * </p>
  * @since 3.4
  */
-public class Arma3LaunchShortcut implements ILaunchShortcut {
+public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implements ILaunchShortcut  
+{
     
     /*
     /* (non-Javadoc)
@@ -121,7 +122,6 @@ public class Arma3LaunchShortcut implements ILaunchShortcut {
     public void launch(IEditorPart editor, String mode)
     {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
@@ -129,6 +129,7 @@ public class Arma3LaunchShortcut implements ILaunchShortcut {
     {
         if (!(selection instanceof IStructuredSelection)) 
         {
+            System.out.println("Error: selection is no IStructuredSelection");
             return;
         }
         IStructuredSelection missionSelection = (IStructuredSelection) selection;
@@ -137,39 +138,7 @@ public class Arma3LaunchShortcut implements ILaunchShortcut {
         
         //TODO: Change to ArmA 3 path.
         File workingDir = new File("/home/niko"); 
-        String workingDirName = workingDir.getAbsolutePath();
-
-        Process process;
-        String line;
-        String arma3Exe = workingDirName + "/arma3.exe";
-        String parameters = "";
-        List<String> parametersList = new ArrayList<String>();
-        if (!parameters.isEmpty())
-        {
-            //Split produces list size 1 even if string is empty...
-            parametersList = Arrays.asList(parameters.split(" "));
-        }
-        List<String> cmdList = new ArrayList<String>();
-        cmdList.add(arma3Exe);
-        cmdList.addAll(parametersList);
-        cmdList.add(missionFile.getLocation().toOSString());
-        System.out.println("Running: " + arma3Exe + " " + parameters); //TODO: Print in runtime eclipse...
-        try
-        {
-            process = new ProcessBuilder(cmdList).start();
-            InputStream is = process.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-
-            while ((line = br.readLine()) != null)
-            {
-                System.out.println(line);
-            }
-
-        } catch (IOException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
+        launchArma3(workingDir, missionFile, Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
     }
 }
