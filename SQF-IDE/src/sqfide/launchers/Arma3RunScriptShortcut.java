@@ -24,15 +24,7 @@ public class Arma3RunScriptShortcut extends Arma3LaunchConfigurationDelegate
     @Override
     public void launch(ISelection selection, String mode)
     {
-        RMIServer server;
-        try
-        {
-            server = new RMIServer();
-        } catch (RemoteException e1)
-        {
-            e1.printStackTrace();
-            return;
-        }
+        TCPClient client = new TCPClient();
         
         if (!(selection instanceof IStructuredSelection)) 
         {
@@ -43,34 +35,10 @@ public class Arma3RunScriptShortcut extends Arma3LaunchConfigurationDelegate
         IFile scriptIFile = (IFile) scriptSelection.getFirstElement();
         File scriptFile = new File(scriptIFile.getLocation().toOSString());
         
-        Registry registry;
-        System.out.println("Waiting message from ArmA 3 ...");
         try
         {
-            server.setCode(FileUtils.readFileToString(scriptFile, "UTF-8"));
-
-            registry = LocateRegistry.createRegistry(Constants.RMI_PORT);
-            registry.bind(Constants.RMI_ID, server);
-            while (server.working())
-            {
-                //Wait until code upload finishes or time out happens.
-                Thread.sleep(1000);                
-            }
-            registry.unbind(Constants.RMI_ID); //Stop listening
-            
-            String rVal;
-            String errorMessage;
-            if ((rVal = server.getReturnValue()) != null )
-            {
-                System.out.println("Return Value: " + rVal);
-            }
-            else if ((errorMessage = server.errorMessage()) != null)
-            {
-                System.out.println("Error: " + server.errorMessage());
-            }
-            System.out.println("Script run completed. ");
-        } catch (AlreadyBoundException | IOException | 
-                InterruptedException | NotBoundException  e)
+            client.sendMessage(FileUtils.readFileToString(scriptFile, "UTF-8"));
+        } catch ( IOException e ) 
         {
             e.printStackTrace();
         }

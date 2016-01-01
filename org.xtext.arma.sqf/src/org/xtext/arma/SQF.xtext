@@ -131,7 +131,7 @@ While:
 ;
 //"switch (playerSide) do { case west: {}; }", "Switch"
 SwitchBlock: {SwitchBlock}
-	'{' ('case' cases+=LineOfCode ':' blocks+=Code ';')* ('default' blocks+=Code ';')? '}'
+	'{' ('case' cases+=LineOfCode ':' blocks+=Code ';')* ('case'?'default' blocks+=Code ';')? '}'
 ;
 
 Switch:

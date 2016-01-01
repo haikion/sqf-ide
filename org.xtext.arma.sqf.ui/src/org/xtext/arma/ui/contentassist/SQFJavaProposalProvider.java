@@ -15,9 +15,9 @@ import org.xtext.arma.ui.contentassist.AbstractSQFProposalProvider;
  * on how to customize the content assistant.
  */
 @SuppressWarnings("all")
-public class SQFProposalProvider extends AbstractSQFProposalProvider 
+public class SQFJavaProposalProvider extends AbstractSQFProposalProvider 
 {
-    SQFProposalProvider()
+    SQFJavaProposalProvider()
     {
         super();
         System.out.println("Constructing SQFProposalProvider.");

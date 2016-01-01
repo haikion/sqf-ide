@@ -146,6 +146,18 @@ public class XtextUtilsTests extends XtextTest
     }
     
     @Test
+    public void switchTestDefault()
+    {
+        testParserRule("switch (playerSide) do { case west: {}; default {};}", "Switch");
+    }
+    
+    @Test
+    public void switchTestCaseDefault()
+    {
+        testParserRule("switch (playerSide) do { case west: {};  case default {};}", "Switch");
+    }    
+    
+    @Test
     public void publicFunctionDefinition()
     {
         testParserRule("life_fnc_moveIn = compileFinal \"player moveInCargo (_this select 0);\"", 

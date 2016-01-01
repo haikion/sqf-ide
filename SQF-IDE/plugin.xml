@@ -3,17 +3,6 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            name="Sample XML Editor"
-            extensions="xml"
-            icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="sqfide.editors.XMLEditor"
-            id="sqfide.editors.XMLEditor">
-      </editor>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <category
             id="sqfide.wizards.newWizards"
@@ -75,7 +64,7 @@
             class="sqfide.launchers.Arma3LaunchShortcut"
             icon="icons/Arma3Logo.gif"
             id="SQF-IDE.shortcut1"
-            label="Arma3"
+            label="Open in ArmA 3"
             modes="run">
          <contextualLaunch>
             <enablement>
@@ -91,6 +80,26 @@
             </enablement>
          </contextualLaunch>
       </shortcut>
+      <shortcut
+            class="sqfide.launchers.Arma3RunScriptShortcut"
+            icon="icons/Arma3Logo.gif"
+            id="SQF-IDE.shortcut2"
+            label="Run script in ArmA 3"
+            modes="run">
+         <contextualLaunch>
+            <enablement>
+                <with variable="selection">
+            		<count value="1"/>
+            		<iterate>
+                		<adapt type="org.eclipse.core.resources.IResource">
+                       		<test property="org.sqfide.isSQFFile"  
+                        		forcePluginActivation="true"/> 
+             	 		</adapt> 
+          			 </iterate>
+       			</with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
    </extension>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
@@ -98,7 +107,7 @@
             class="sqfide.launchers.SQFIDETester"
             id="org.sqfide.propertyTester1"
             namespace="org.sqfide"
-            properties="isArmaMission"
+            properties="isArmaMission, isSQFFile"
             type="org.eclipse.core.resources.IResource">
       </propertyTester>
    </extension>

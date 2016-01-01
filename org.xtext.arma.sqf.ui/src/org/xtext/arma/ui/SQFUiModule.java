@@ -36,5 +36,11 @@ public class SQFUiModule extends org.xtext.arma.ui.AbstractSQFUiModule
 	{
 	    return StyleHighlightingCalculator.class;
 	}
+	
+	// contributed by org.eclipse.xtext.ui.generator.contentAssist.ContentAssistFragment
+    @Override
+	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider> bindIContentProposalProvider() {
+        return org.xtext.arma.ui.contentassist.SQFJavaProposalProvider.class;
+    }
 
 }
