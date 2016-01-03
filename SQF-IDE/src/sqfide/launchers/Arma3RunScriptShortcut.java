@@ -2,20 +2,16 @@ package sqfide.launchers;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.rmi.AlreadyBoundException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+
+import javax.xml.rpc.ServiceException;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
+import com.mysite.www.arma3_wsdl.Arma3PortTypeProxy;
 
 public class Arma3RunScriptShortcut extends Arma3LaunchConfigurationDelegate
         implements ILaunchShortcut
@@ -24,7 +20,7 @@ public class Arma3RunScriptShortcut extends Arma3LaunchConfigurationDelegate
     @Override
     public void launch(ISelection selection, String mode)
     {
-        TCPClient client = new TCPClient();
+        //TCPClient client = new TCPClient();
         
         if (!(selection instanceof IStructuredSelection)) 
         {
@@ -35,12 +31,19 @@ public class Arma3RunScriptShortcut extends Arma3LaunchConfigurationDelegate
         IFile scriptIFile = (IFile) scriptSelection.getFirstElement();
         File scriptFile = new File(scriptIFile.getLocation().toOSString());
         
+
         try
         {
-            client.sendMessage(FileUtils.readFileToString(scriptFile, "UTF-8"));
-        } catch ( IOException e ) 
+            System.out.println("Building proxy");
+            Arma3PortTypeProxy proxy = new Arma3PortTypeProxy();
+            System.out.println("Setting end point");
+            proxy.setEndpoint("http://192.168.1.169:8888");
+            System.out.println("Executing runSQFScript");
+            proxy.runSQFScript(FileUtils.readFileToString(scriptFile, "UTF-8"));
+        } catch ( IOException e1)
         {
-            e.printStackTrace();
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         }
     }
 

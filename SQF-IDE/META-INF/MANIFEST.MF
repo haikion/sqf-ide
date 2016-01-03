@@ -15,11 +15,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.debug.ui,
  org.eclipse.jdt.debug.ui;bundle-version="3.7.0",
  org.eclipse.jdt.core;bundle-version="3.11.1",
- org.eclipse.core.expressions,
- org.xtext.arma.sqf.ui;bundle-version="1.0.0"
+ org.eclipse.core.expressions
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/commons-io-2.4-javadoc.jar,
  lib/commons-io-2.4-sources.jar,
  lib/commons-io-2.4.jar,
+ lib/axis.jar,
+ lib/jaxrpc.jar,
+ lib/commons-discovery-0.2.jar,
+ lib/javax.wsdl_1.6.2.v201012040545.jar,
+ lib/org.apache.commons.logging_1.1.1.v201101211721.jar,
+ lib/saaj.jar,
  .
