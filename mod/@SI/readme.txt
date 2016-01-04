@@ -1,0 +1,1 @@
+Handles communication between Arma 3 and SQF-IDE.
