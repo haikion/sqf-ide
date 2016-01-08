@@ -9,6 +9,5 @@ public class Constants
             "-window -nosplash -world=empty -skipintro -noPause -showScriptErrors "
             + "-filePatching";
     
-    public static final String RMI_ID = "SQFIDEInterface";
-    public static final int RMI_PORT = 2222;
+    public static final int PORT = 8888;
 }

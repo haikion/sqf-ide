@@ -11,7 +11,7 @@
       <wizard
             category="sqfide.wizards.newWizards"
             class="sqfide.wizards.NewMissionWizard"
-            icon="icons/sample.gif"
+            icon="icons/Arma3Logo.gif"
             id="sqfide.wizards.NewMissionWizard"
             name="New ArmA 3 Mission">
       </wizard>
@@ -111,5 +111,18 @@
             type="org.eclipse.core.resources.IResource">
       </propertyTester>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="sqfide.preferences.PreferencePage"
+            id="sqfide.preferencePage"
+            name="SQF-IDE">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="sqfide.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>
