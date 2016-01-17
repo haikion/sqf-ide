@@ -31,8 +31,8 @@ public class StyleTokenToAttributeIdMapper extends DefaultAntlrTokenToAttributeI
     @Override
     protected String calculateId(String tokenName, int tokenType) 
     {
-        System.out.println("calculateId called" + " tokenName=" + tokenName
-                + " tokenType=" + tokenType);
+        //System.out.println("calculateId called" + " tokenName=" + tokenName
+        //        + " tokenType=" + tokenType);
         if (layoutStyleDefinition.contains(tokenName)) 
         {
             return DefaultHighlightingConfiguration.KEYWORDSTYLEDEF_ID;
