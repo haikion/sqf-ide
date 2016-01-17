@@ -31,7 +31,6 @@ public class SQFUiModule extends org.xtext.arma.ui.AbstractSQFUiModule
 	    return StyleTokenToAttributeIdMapper.class;
 	}
 	
-	@SuppressWarnings("restriction")
     public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator()
 	{
 	    return StyleHighlightingCalculator.class;
