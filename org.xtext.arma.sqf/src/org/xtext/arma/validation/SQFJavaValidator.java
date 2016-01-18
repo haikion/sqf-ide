@@ -1,26 +1,27 @@
 /*
  * @Author Niko Häikiö
  * SQF syntax validator. Check commands with parameters.
- * Parameterless commands are check the grammar level.
+ * Parameterless commands are checked through grammar definitions.
+ * FIXME: NullPointerException during Eclipse startup due to not being defined. Works never the less.
+ * Could be due to not being injected early enough...
  */
 package org.xtext.arma.validation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
 import org.eclipse.xtext.validation.Check;
 import org.xtext.arma.sQF.CommandLeft;
 import org.xtext.arma.sQF.LineMiddle;
 import org.xtext.arma.sQF.SQFPackage;
+import org.xtext.arma.XMLReader;
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaValidator {
-    final String XML_FILE_PATH = "/home/niko/test.xml";
-    //HashSet<String> validCommands_ = new HashSet<String>();
+public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaValidator
+{
     HashSet<String> validMiddleCommands_ = new HashSet<String>();
     HashSet<String> validLeftCommands_ = new HashSet<String>();
     HashSet<String> validParentlessCommands_ = new HashSet<String>();
@@ -64,9 +65,7 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     
     private void populateValidCommands()
     {
-        //FIXME: Something gets lost. Only Around 900 commands instead 
-        //of 1700
-        XMLReader xmlReader = new XMLReader(XML_FILE_PATH);
+        XMLReader xmlReader = new XMLReader();
         ArrayList<String> validMiddles = xmlReader.getCommandMiddles();
         ArrayList<String> validLefts = xmlReader.getCommandLefts();
         ArrayList<String> validParentlesses = xmlReader.getCommandParentlesses();

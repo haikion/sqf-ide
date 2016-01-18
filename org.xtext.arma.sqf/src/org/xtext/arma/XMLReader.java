@@ -3,7 +3,7 @@
  * @Description 
  * Reads commands.xml and constructs data structures according to it.
  */
-package org.xtext.arma.validation;
+package org.xtext.arma;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,13 +23,26 @@ import org.xml.sax.SAXException;
 
 public class XMLReader
 {
+    static final String XML_FILE_PATH = "commands.xml";
+
     ArrayList<String> commandMiddles_ = new ArrayList<String>();
     ArrayList<String> commandLefts_ = new ArrayList<String>();
     ArrayList<String> commandParentlesses_ = new ArrayList<String>();
     static XPath xpath_ = XPathFactory.newInstance().newXPath();
     static Document document_;
-    
-    XMLReader(String filePath)
+
+
+    public XMLReader(String filePath)
+    {
+        readXML(filePath);
+    }
+
+    public XMLReader()
+    {
+        readXML(XML_FILE_PATH);
+    }
+
+    private void readXML(String filePath)
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
@@ -43,7 +56,6 @@ public class XMLReader
         }
     }
     
-
     private static ArrayList<String> getCommandsByType(String type)
     {
         ArrayList<String> list = new ArrayList<>();
@@ -62,6 +74,17 @@ public class XMLReader
         return list;
     }
 
+    private ArrayList<String> toUpperArray(ArrayList<String> input)
+    {
+        ArrayList<String> output = new ArrayList<String>();
+        
+        for (String value : input)
+        {
+            output.add(value.toUpperCase());
+        }
+        return output;
+    }
+    
     public ArrayList<String> getCommandLefts()
     {
         return getCommandsByType("commandLefts");
@@ -72,8 +95,18 @@ public class XMLReader
         return getCommandsByType("commandMiddles");
     }
     
+    public ArrayList<String> getCommandMiddlesUpper()
+    {
+        return toUpperArray(getCommandsByType("commandMiddles"));
+    }
+    
     public ArrayList<String> getCommandParentlesses()
     {
         return getCommandsByType("commandParentlesses");
+    }
+
+    public ArrayList<String> getCommandLeftsUpper()
+    {
+        return toUpperArray(getCommandLefts());
     }
 }
