@@ -49,16 +49,12 @@ LineOfCode:
 //Look-a-head to counter LL. Might cause performance issues because LineOfCode
 //can be huge... 
 CommandLeft:
-	=>(name=UNRECOGNIZED_STRING parameter=LineOfCode)
+	=>(name=UNRECOGNIZED_STRING parameter=VariableValue)
 	| var=[GlobalVariableDefinition|UNRECOGNIZED_STRING]
 ;
 
 CommandLeftSpecial:
-	COMMAND_LEFT_SPECIAL parameter=LineOfCode
-;
-
-CommandLeftGeneral:
-	CommandLeftSpecial//|CommandLeft
+	COMMAND_LEFT_SPECIAL parameter=VariableValue
 ;
 
 //Variable parser rules
@@ -137,8 +133,6 @@ SwitchBlock: {SwitchBlock}
 Switch:
 	'switch' '(' name=LineOfCode ')' 'do' block=SwitchBlock
 ;
-//FIXME: Splitting results in the compilation errors in regard of validation Java classes.
-
 terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
 	('a'..'z'|'A'..'Z'|'0'..'9')+'_fnc_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
 ;
