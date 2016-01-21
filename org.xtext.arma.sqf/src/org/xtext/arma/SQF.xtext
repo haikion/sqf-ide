@@ -3,6 +3,7 @@
  * TODO: Funktioden esittely
  * TODO: Koodinsijoitus ilman {} 
  */
+ 
 grammar org.xtext.arma.SQF 
 	//with org.xtext.arma.SQFTerminals
 	hidden(WS, SL_COMMENT, ML_COMMENT)
@@ -49,8 +50,7 @@ LineOfCode:
 //Look-a-head to counter LL. Might cause performance issues because LineOfCode
 //can be huge... 
 CommandLeft:
-	=>(name=UNRECOGNIZED_STRING parameter=VariableValue)
-	| var=[GlobalVariableDefinition|UNRECOGNIZED_STRING]
+	name=UNRECOGNIZED_STRING parameter=VariableValue
 ;
 
 CommandLeftSpecial:
@@ -62,33 +62,35 @@ Code:
 	'{'Model'}'
 ;
 
-Countable: {Countable}
-	INT
-	|FLOAT
-	|SPECIAL_VARIABLE
+Countable:
+	IntV
+	|FloatV
+	|SpecialVariable
+	|CommandParameterless
+	|CommandLeftSpecial	
 	|LocalVariableReference
-	|CommandLeft
+	|'(' Model ')'	
 	//CommandLeftGeneral always contains command and its parameter
 	//separated by a white space
-	|CommandLeftSpecial
-	|'(' Model ')'
-	|CommandParameterless
+	|=>CommandLeft
+	|GlobalVariableReference
 ;
-Comparable: {Comparable}
-	STRING|Countable
+
+Comparable:
+	StringV|Countable
 ;
 
 NonArray: Comparable|Code;
 
-//Contains whatever can be assigned to the variable.
-VariableValue: NonArray|Array|GLOBAL_FUNCTION; 
+//Contains whatever can be assigned to a variable.
+VariableValue: NonArray|Array|GlobalFunction; 
 
 Array:
 	{Array} '['(member += VariableValue (',' member += VariableValue)*)?']'
 ;
 
 ForVariable: 
-	'for "' LOCAL_VARIABLE 
+	'for "' LocalVariable 
 	'" from' from=Countable 'to' to=Countable ('step' step=Countable)
 	'do' loopCode=Code
 ;
@@ -109,6 +111,10 @@ GlobalVariableDefinition:
 //   current code block
 LocalVariableReference:
 	name=[LocalVariableDefinition|LOCAL_VARIABLE]
+;
+
+GlobalVariableReference:
+	name=[GlobalVariableDefinition|UNRECOGNIZED_STRING]
 ;
 
 For:
@@ -133,6 +139,34 @@ SwitchBlock: {SwitchBlock}
 Switch:
 	'switch' '(' name=LineOfCode ')' 'do' block=SwitchBlock
 ;
+
+//Dummy rules for terminal->Parser rule conversion.
+//Enables auto complete. Mixing terminal and parser rules
+//is not a good practice?
+SpecialVariable:
+	name=SPECIAL_VARIABLE
+;
+
+GlobalFunction:
+	name=GLOBAL_FUNCTION
+;
+
+LocalVariable:
+	name=LOCAL_VARIABLE
+;
+
+IntV:
+	name=INT
+;
+
+FloatV:
+	name=FLOAT
+;
+
+StringV:
+	name=STRING
+;
+
 terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
 	('a'..'z'|'A'..'Z'|'0'..'9')+'_fnc_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
 ;
@@ -181,7 +215,8 @@ terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_'
  * time.
  */
  
-CommandParameterless: 
+CommandParameterless:
+	name=(
     'accTime'
     |'activatedAddons'
     |'addEditorObject'
@@ -516,4 +551,5 @@ CommandParameterless:
     |'windDir'
     |'windStr'
     |'worldName'
+    )
 ;

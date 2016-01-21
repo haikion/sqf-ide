@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.xtext.arma.ui.contentassist.AbstractSQFProposalProvider;
@@ -23,41 +24,25 @@ import org.xtext.arma.sQF.*;
  */
 public class SQFJavaProposalProvider extends AbstractSQFProposalProvider 
 {
-    private PatriciaTrie<String> middles_ = new PatriciaTrie<String>();
-    private PatriciaTrie<String> lefts_ = new PatriciaTrie<String>();
+    private PatriciaTrie<String> middles_ = null;
+    private PatriciaTrie<String> lefts_ = null;
     
     SQFJavaProposalProvider()
     {
         super();
-        populateValidCommands();
         System.out.println("SQFJavaProposalProvider: Constructing SQFProposalProvider.");
-    }
-    
-    //Reads XML file and populates tries
-    private void populateValidCommands()
-    {
         XMLReader xmlReader = new XMLReader();
-        ArrayList<String> proposalMiddles = xmlReader.getCommandMiddles();
-        ArrayList<String> keyMiddles = xmlReader.getCommandMiddlesUpper();
-        for (int i = 0; i < keyMiddles.size(); ++i)
-        {
-            middles_.put(keyMiddles.get(i), proposalMiddles.get(i));
-        }
-        ArrayList<String> proposalLefts = xmlReader.getCommandLefts();
-        ArrayList<String> keyLefts = xmlReader.getCommandLeftsUpper();
-        for (int i = 0; i < keyLefts.size(); ++i)
-        {
-            lefts_.put(keyLefts.get(i), proposalLefts.get(i));
-        }
-        
+        lefts_ = arrayListToTrie(xmlReader.getCommandLefts());
+        middles_ = arrayListToTrie(xmlReader.getCommandMiddles());
     }
     
     //Auto completion for middle commands
     @Override
     public void completeLineMiddle_Name(EObject model, Assignment assignment, ContentAssistContext context, 
             ICompletionProposalAcceptor acceptor)
-    {
-        System.out.println("SQFJavaProposalProvider: Proposing line middle...");
+    {        
+        System.out.println("SQFJavaProposalProvider: Proposing line middle... "
+                + "Model class = " + model.getClass().getName());
         if (!(model instanceof AssignableLineOfCode))
         {
             return;
@@ -68,102 +53,55 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
         {
             return;
         }
-        EObject currentMiddle = middles.get(middles.size() -1);
-        if (! (currentMiddle instanceof LineMiddle))
+        EObject currentMiddle = middles.get(middles.size() - 1);
+        if (!(currentMiddle instanceof LineMiddle))
         {
             return;
         }
         LineMiddle middle = (LineMiddle) currentMiddle;
-        String query = middle.getName().toUpperCase();
-        System.out.println("SQFJavaProposalProvider: Proposing line middle...query=" + query);
-        Collection<String> result = middles_.prefixMap(query).values();
+        trieToProposal(middle.getName(), middles_, context, acceptor);
+    }
+    
+    //Implements left commands auto completion.
+    @Override 
+    public void complete_CommandLeft(EObject model, RuleCall ruleCall, 
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) 
+    {
+        System.out.println("CommandLeft: model=" + model);
+        if (!(model instanceof Model))
+        {
+            //Only model EObject provides correct context
+            return;
+        }
+        Model mdl = (Model) model;
+        LineOfCode lastLine = mdl.getLines().get(mdl.getLines().size() - 1);
+        String query = getEObjectText(lastLine);
+        trieToProposal(query, lefts_, context, acceptor);
+    }
+    
+    private PatriciaTrie<String> arrayListToTrie(final ArrayList<String> arrayList)
+    {
+        PatriciaTrie<String> trie = new PatriciaTrie<String>();
+        for (String value : arrayList)
+        {
+            trie.put(value.toUpperCase(), value);
+        }
+        return trie;
+    }
+    
+    private void trieToProposal(String query, PatriciaTrie<String> trie, 
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor) 
+    {
+        query = query.toUpperCase();
+        Collection<String> result = trie.prefixMap(query).values();
         for (String proposal : result)
         {
             acceptor.accept(createCompletionProposal(proposal, context));            
         }
     }
-
-    public void complete_LocalVariableDefinition(EObject model, RuleCall ruleCall, ContentAssistContext context, 
-            ICompletionProposalAcceptor acceptor) 
-    {
-        System.out.println("SQFJavaProposalProvider: LocalVaribaleDeifnition called. "
-                + "It is: " + model.getClass().getName());    
-    }
     
-    public void complete_GlobalVariableDefinition(EObject model, RuleCall ruleCall,
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) 
+    private String getEObjectText(EObject eobject)
     {
-        if (!(model instanceof GlobalVariableDefinition))
-        {
-            return;
-        }
-        AssignableLineOfCode lineOfCode = (AssignableLineOfCode) model;
-        VariableValue value = lineOfCode.getFrontParameter();
-        if (!(value instanceof CommandLeft))
-        {
-            System.out.println("SQFJavaProposalProvider: value is not CommandLeft. "
-                    + "It is: " + value.getClass().getName());
-            return;
-        }
-        CommandLeft commandLeft = (CommandLeft) value;
-        if (commandLeft.getName() == null)
-        {
-            System.out.println("SQFJavaProposalProvider: name=null");
-            System.out.println("SQFJavaProposalProvider: Var=" + commandLeft.getVar().getName());
-            System.out.println("SQFJavaProposalProvider: Parameter=" + commandLeft.getParameter());
-            return;
-        }
-        String query = commandLeft.getName().toUpperCase();
-        System.out.println("SQFJavaProposalProvider: Proposing command left...query=" + query);
-        Collection<String> result = lefts_.prefixMap(query).values();
-        for (String proposal : result)
-        {
-            acceptor.accept(createCompletionProposal(proposal, context));
-        }
-    }
-    
-    //FIXME: No way to get typed text...
-    //At the moment this function only contains attempts to extract typed text.
-    @Override
-    public void complete_CommandLeft(EObject model, RuleCall ruleCall, 
-            ContentAssistContext context, ICompletionProposalAcceptor acceptor) 
-    {
-        System.out.println("SQFJavaProposalProvider: Proposing commandLeft...");
-        if (model instanceof Model)
-        {
-            Model mo = (Model) model;
-            System.out.println("SQFJavaProposalProvider: Line class: " + mo.getLines().get(0).getClass().getName());
-            System.out.println("SQFJavaProposalProvider: Model is not GlobalVariableDefinition. "
-                    + "It is: " + model.getClass().getName());
-        }
-        if (!(model instanceof AssignableLineOfCode))
-        {
-            System.out.println("SQFJavaProposalProvider: Model is not AssignableLineOfCodeImpl. "
-                    + "It is: " + model.getClass().getName());
-            return;
-        }
-        AssignableLineOfCode lineOfCode = (AssignableLineOfCode) model;
-        VariableValue value = lineOfCode.getFrontParameter();
-        if (!(value instanceof CommandLeft))
-        {
-            System.out.println("SQFJavaProposalProvider: value is not CommandLeft. "
-                    + "It is: " + value.getClass().getName());
-            return;
-        }
-        CommandLeft commandLeft = (CommandLeft) value;
-        if (commandLeft.getName() == null)
-        {
-            System.out.println("SQFJavaProposalProvider: name=null");
-            System.out.println("SQFJavaProposalProvider: Var=" + commandLeft.getVar().getName());
-            System.out.println("SQFJavaProposalProvider: Parameter=" + commandLeft.getParameter());
-            return;
-        }
-        String query = commandLeft.getName().toUpperCase();
-        System.out.println("SQFJavaProposalProvider: Proposing command left...query=" + query);
-        Collection<String> result = lefts_.prefixMap(query).values();
-        for (String proposal : result)
-        {
-            acceptor.accept(createCompletionProposal(proposal, context));
-        }
+        return NodeModelUtils.getTokenText(NodeModelUtils.getNode(eobject));
     }
 }
