@@ -1,20 +1,16 @@
-//TODO: Right click run as
+/*
+ * @author Niko Häikiö
+ * 
+ * Implements run configuration settings for ArmA 3 launch.
+ */
 package sqfide.launchers;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.eclipse.debug.ui.ILaunchConfigurationDialog;
+import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.debug.ui.StringVariableSelectionDialog;
 import org.eclipse.debug.ui.WorkingDirectoryBlock;
-import org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchTab;
-import org.eclipse.jdt.internal.debug.ui.IJavaDebugHelpContextIds;
-import org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin;
-import org.eclipse.jdt.internal.debug.ui.JavaDebugImages;
-import org.eclipse.jdt.internal.debug.ui.actions.ControlAccessibleListener;
-import org.eclipse.jdt.internal.debug.ui.launcher.LauncherMessages;
-import org.eclipse.jdt.internal.debug.ui.launcher.VMArgumentsBlock;
-import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -23,7 +19,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -31,27 +26,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 
-public class Arma3ArgumentsTab extends JavaLaunchTab
+public class Arma3ArgumentsTab extends AbstractLaunchConfigurationTab
 {
     // Program arguments widgets
     private static final String ARMA3_PARAMETERS_LABEL = "ArmA 3 launch parameters";
+    private static final String  ARMA3_OPTION_ID = "Arma3Arguments";
     protected Label fPrgmArgumentsLabel;
     protected Text fPrgmArgumentsText;
-    
     // Working directory
     protected Arma3WorkingDirectoryBlock fWorkingDirectoryBlock;
         
-    protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
-        
-    public Arma3ArgumentsTab() {
-        //fVMArgumentsBlock = createVMArgsBlock();
+    public Arma3ArgumentsTab() 
+    {
         fWorkingDirectoryBlock = createWorkingDirBlock();
-    }
-    
-    protected VMArgumentsBlock createVMArgsBlock() {
-        return new VMArgumentsBlock();
     }
     
     /**
@@ -60,7 +48,8 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * @return the new {@link WorkingDirectoryBlock}
      * @since 3.4
      */
-    protected Arma3WorkingDirectoryBlock createWorkingDirBlock() {
+    protected Arma3WorkingDirectoryBlock createWorkingDirBlock() 
+    {
         return new Arma3WorkingDirectoryBlock();
     }
     
@@ -77,7 +66,6 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
         GridData gd = new GridData(GridData.FILL_BOTH);
         comp.setLayoutData(gd);
         setControl(comp);
-        setHelpContextId();
         
         Group group = new Group(comp, SWT.NONE);
         group.setFont(font);
@@ -121,7 +109,6 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
                 scheduleUpdateJob();
             }
         });
-        ControlAccessibleListener.addListener(fPrgmArgumentsText, group.getText());
         
         String buttonLabel = "Parameters...";  
 
@@ -143,43 +130,23 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
             }
         });
         
-        //fVMArgumentsBlock.createControl(comp);
-        
         fWorkingDirectoryBlock.createControl(comp);     
-    }
-    
-    /**
-     * Set the help context id for this launch config tab.  Subclasses may
-     * override this method.
-     */
-    protected void setHelpContextId() {
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IJavaDebugHelpContextIds.LAUNCH_CONFIGURATION_DIALOG_ARGUMENTS_TAB);        
-    }
-            
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#dispose()
-     */
-    @Override
-    public void dispose() {
     }
         
     /**
      * @see org.eclipse.debug.ui.ILaunchConfigurationTab#isValid(ILaunchConfiguration)
      */
     @Override
-    public boolean isValid(ILaunchConfiguration config) {
+    public boolean isValid(ILaunchConfiguration config) 
+    {
         return fWorkingDirectoryBlock.isValid(config);
     }
     
-    /**
-     * Defaults are empty.
-     * 
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#setDefaults(ILaunchConfigurationWorkingCopy)
-     */
-    public void setDefaults(ILaunchConfigurationWorkingCopy config) {
-        config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, (String)null);
-        //fVMArgumentsBlock.setDefaults(config);
-        fWorkingDirectoryBlock.setDefaults(config);
+    //Set default values
+    public void setDefaults(ILaunchConfigurationWorkingCopy configuration) 
+    {
+        fPrgmArgumentsText.setText(Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
+        fWorkingDirectoryBlock.setDefaults(configuration);
     }
     
     /**
@@ -188,17 +155,24 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
     @Override
     public void initializeFrom(ILaunchConfiguration configuration) 
     {
-        fPrgmArgumentsText.setText(Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
+        String options = Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS;
+        try
+        {
+            options = configuration.getAttribute(ARMA3_OPTION_ID, Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
+        } catch (CoreException e)
+        {
+            e.printStackTrace();
+        }       
+        fPrgmArgumentsText.setText(options);
         fWorkingDirectoryBlock.initializeFrom(configuration);
     }
     
     /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#performApply(ILaunchConfigurationWorkingCopy)
+     * Saves changes to configuration
      */
     public void performApply(ILaunchConfigurationWorkingCopy configuration) 
     {
-        configuration.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, getAttributeValueFrom(fPrgmArgumentsText));
-        //fVMArgumentsBlock.performApply(configuration);
+        configuration.setAttribute(ARMA3_OPTION_ID, getAttributeValueFrom(fPrgmArgumentsText));
         fWorkingDirectoryBlock.performApply(configuration);
     }
     
@@ -206,96 +180,21 @@ public class Arma3ArgumentsTab extends JavaLaunchTab
      * Returns the string in the text widget, or <code>null</code> if empty.
      * 
      * @param text the widget to get the value from
-     * @return text or <code>null</code>
+     * @return text or <code>null</code>k
      */
     protected String getAttributeValueFrom(Text text) 
     {
         String content = text.getText().trim();
-        if (content.length() > 0) {
+        if (content.length() > 0) 
+        {
             return content;
         }
         return null;
     }
     
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getName()
-     */
+    //Tab title
     public String getName() 
     {
-        return LauncherMessages.JavaArgumentsTab__Arguments_16; 
-    }   
-    
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#setLaunchConfigurationDialog(ILaunchConfigurationDialog)
-     */
-    @Override
-    public void setLaunchConfigurationDialog(ILaunchConfigurationDialog dialog) 
-    {
-        super.setLaunchConfigurationDialog(dialog);
-        fWorkingDirectoryBlock.setLaunchConfigurationDialog(dialog);
-        //fVMArgumentsBlock.setLaunchConfigurationDialog(dialog);
-    }   
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getErrorMessage()
-     */
-    @Override
-    public String getErrorMessage() 
-    {
-        String m = super.getErrorMessage();
-        if (m == null) {
-            return fWorkingDirectoryBlock.getErrorMessage();
-        }
-        return m;
+        return "Arma 3 Launch Options";
     }
-    
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getMessage()
-     */
-    @Override
-    public String getMessage() {
-        String m = super.getMessage();
-        if (m == null) {
-            return fWorkingDirectoryBlock.getMessage();
-        }
-        return m;
-    }
-    
-    /**
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#getImage()
-     */
-    @Override
-    public Image getImage() 
-    {
-        return JavaDebugImages.get(JavaDebugImages.IMG_VIEW_ARGUMENTS_TAB);
-    }   
-    
-    /**
-     * @see org.eclipse.debug.ui.AbstractLaunchConfigurationTab#getId()
-     * 
-     * @since 3.3
-     */
-    @Override
-    public String getId() 
-    {
-        return "org.eclipse.jdt.debug.ui.javaArgumentsTab"; //$NON-NLS-1$
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#activated(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy)
-     */
-    @Override
-    public void activated(ILaunchConfigurationWorkingCopy workingCopy) 
-    {
-        fWorkingDirectoryBlock.initializeFrom(workingCopy);
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.debug.ui.ILaunchConfigurationTab#deactivated(org.eclipse.debug.core.ILaunchConfigurationWorkingCopy)
-     */
-    @Override
-    public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) 
-    {
-        // do nothing when deactivated
-    }
-
 }

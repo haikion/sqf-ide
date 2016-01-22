@@ -1,43 +1,41 @@
 package sqfide.launchers;
 
 import java.io.File;
-
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.internal.ui.DebugUIMessages;
 import org.eclipse.debug.ui.WorkingDirectoryBlock;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.internal.debug.ui.IJavaDebugHelpContextIds;
-import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
-import org.eclipse.jdt.launching.JavaRuntime;
 
 public class Arma3WorkingDirectoryBlock extends WorkingDirectoryBlock
-{    
+{   
+    private static String ATTR_WORKING_DIRECTORY = "UNIMPLEMENTED";
+    private static String WORKING_DIRECTORY_BLOCK = "UNIMPLEMENTED";
+    
     /**
      * Constructs a new working directory block.
      */
     public Arma3WorkingDirectoryBlock() {
-        super(IJavaLaunchConfigurationConstants.ATTR_WORKING_DIRECTORY,
-                IJavaDebugHelpContextIds.WORKING_DIRECTORY_BLOCK);
+        super(ATTR_WORKING_DIRECTORY, WORKING_DIRECTORY_BLOCK);
     }
 
     /* (non-Javadoc)
      * @see org.eclipse.debug.ui.WorkingDirectoryBlock#getProject(org.eclipse.debug.core.ILaunchConfiguration)
      */
-    @Override
+    //@Override
     protected IProject getProject(ILaunchConfiguration configuration)
-            throws CoreException {
-        IJavaProject project = JavaRuntime.getJavaProject(configuration);
-        return project == null ? null : project.getProject();
+            throws CoreException 
+    {
+        return null;
+        //IJavaProject project = JavaRuntime.getJavaProject(configuration);
+        //return project == null ? null : project.getProject();
     }
 
     /* (non-Javadoc)
      * @see org.eclipse.debug.ui.WorkingDirectoryBlock#log(org.eclipse.core.runtime.CoreException)
      */
     @Override
-    protected void log(CoreException e) {
+    protected void log(CoreException e) 
+    {
         setErrorMessage(e.getMessage());
     }
     
@@ -72,7 +70,8 @@ public class Arma3WorkingDirectoryBlock extends WorkingDirectoryBlock
                 IProject project = getProject(config);
                 if (project != null) {
                     //TODO: Get steam dir
-                    setDefaultWorkingDirectoryText("${workspace_loc:" + project.getFullPath().makeRelative().toOSString() + "}");  //$NON-NLS-1$//$NON-NLS-2$
+                    setDefaultWorkingDirectoryText("${workspace_loc:" 
+                            + project.getFullPath().makeRelative().toOSString() + "}");  //$NON-NLS-1$//$NON-NLS-2$
                     return;
                 }
             }
