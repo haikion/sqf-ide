@@ -1,9 +1,10 @@
 package sqfide.preferences;
 
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.wb.swt.FieldLayoutPreferencePage;
+//import org.eclipse.wb.swt.FieldLayoutPreferencePage;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -12,7 +13,7 @@ import org.eclipse.swt.widgets.Group;
 import sqfide.Activator;
 
 public class PreferencePage
-  extends FieldLayoutPreferencePage
+  extends FieldEditorPreferencePage
   implements IWorkbenchPreferencePage
 {   
     public PreferencePage()
@@ -37,5 +38,12 @@ public class PreferencePage
         addField(new StringFieldEditor("ipAddress", "Game IP: ", 30, composite));
     
         return container;
+    }
+
+    @Override
+    protected void createFieldEditors()
+    {
+        // TODO Auto-generated method stub
+        
     }
 }
