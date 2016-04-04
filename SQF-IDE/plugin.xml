@@ -25,11 +25,11 @@
       <wizard
             category="sqfide.wizards.importWizards"
             class="sqfide.wizards.ImportMissionWizard"
-            icon="icons/sample.gif"
+            icon="icons/openFolderYellow.png"
             id="sqfide.wizards.ImportMissionWizard"
             name="Import ArmA 3 Mission">
          <description>
-            Import a file from the local file system into the workspace.
+            Import (a.k.a open) an Arma 3 mission folder from the local file system into the workspace.
          </description>
       </wizard>
    </extension>
@@ -124,5 +124,59 @@
       <initializer
             class="sqfide.preferences.PreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="sqfide.SQFPerspective"
+            icon="icons/Arma3Logo.gif"
+            id="sqfide.SQFPerspective"
+            name="SQF">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.workbench.file?after=new.ext">
+            <command
+                  commandId="org.eclipse.ui.file.import"
+                  icon="icons/Arma3Logo.gif"
+                  label="Open Mission"
+                  style="push"
+                  tooltip="Open Arma 3 mission">
+               <parameter
+                     name="importWizardId"
+                     value="sqfide.wizards.ImportMissionWizard">
+               </parameter>
+            </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="sqfide.openMissionHandler"
+            id="sqfide.commands.openMission"
+            name="Open Mission">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="sqfide"
+            name="SQF-IDE">
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="sqfide"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="SQF-IDE">
+      </product>
    </extension>
 </plugin>
