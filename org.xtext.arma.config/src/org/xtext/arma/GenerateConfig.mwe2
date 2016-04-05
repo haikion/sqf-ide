@@ -1,12 +1,12 @@
-module org.xtext.arma.GenerateSQF
+module org.xtext.arma.GenerateConfig
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/xtext/arma/SQF.xtext"
-var fileExtensions = "sqf,sqf2"
-var projectName = "org.xtext.arma.sqf"
+var grammarURI = "classpath:/org/xtext/arma/Config.xtext"
+var fileExtensions = "ext, hpp, h, cpp"
+var projectName = "org.xtext.arma.config"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = false
 var encoding = "UTF-8"
@@ -16,10 +16,8 @@ Workflow {
     	scanClassPath = true
     	platformUri = "${runtimeProject}/.."
     	// The following two lines can be removed, if Xbase is not used.
-    	//registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
-    	//registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
-    	registerGeneratedEPackage = "org.xtext.arma.config.ConfigPackage"
-    	registerGenModelFile = "platform:/resource/org.xtext.arma.config/model/generated/Config.genmodel"
+    	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+    	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
     }
     
     component = DirectoryCleaner {
@@ -66,25 +64,23 @@ Workflow {
     		fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
     
     		// The antlr parser generator fragment.
-    		//fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {}
-            fragment = parser.antlr.ex.rt.AntlrGeneratorFragment auto-inject {
-                options = {
-                    ignoreCase = true
-        	        //backtrack = true                    
-                }
-            }
+    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
+    		//  options = {
+    		//      backtrack = true
+    		//  }
+    		}
     
     		// Xtend-based API for validation
-    	    //fragment = validation.ValidatorFragment auto-inject {
+    		//fragment = validation.ValidatorFragment auto-inject {
     		//    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
     		//    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
     		//}
-    		//Java-validator
+    	    //Java-validator
           	fragment = org.eclipse.xtext.generator.validation.JavaValidatorFragment {}
     
     		// old scoping and exporting API
-    		//fragment = scoping.ImportURIScopingFragment auto-inject {}
-    		//fragment = exporting.SimpleNamesFragment auto-inject {}
+    		// fragment = scoping.ImportURIScopingFragment auto-inject {}
+    		// fragment = exporting.SimpleNamesFragment auto-inject {}
     
     		// scoping and exporting API
     		fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
@@ -111,13 +107,8 @@ Workflow {
     		fragment = contentAssist.ContentAssistFragment auto-inject {}
     
     		// generates a more lightweight Antlr parser and lexer tailored for content assist
-    		//fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
-            // generates a more lightweight ANTLR parser and lexer tailored ...
-            fragment = parser.antlr.ex.ca.ContentAssistParserGeneratorFragment {
-                 options = {
-                    ignoreCase = true
-                }
-            }
+    		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
+    
     		// generates junit test support classes into Generator#pathTestProject
     		fragment = junit.Junit4Fragment auto-inject {}
     

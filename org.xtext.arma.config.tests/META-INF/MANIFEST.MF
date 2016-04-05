@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.xtext.arma.sqf.tests
+Bundle-Name: org.xtext.arma.config.tests
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: org.xtext.arma.sqf.tests; singleton:=true
+Bundle-SymbolicName: org.xtext.arma.config.tests;singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.xtext.arma.sqf,
- org.xtext.arma.sqf.ui,
+Require-Bundle: org.xtext.arma.config,
+ org.xtext.arma.config.ui,
  org.eclipse.core.runtime,
  org.eclipse.xtext.junit4,
  org.eclipse.xtext.xbase.lib,
@@ -15,7 +15,7 @@ Require-Bundle: org.xtext.arma.sqf,
  org.eclipselabs.xtext.utils.unittesting;bundle-version="0.9.3",
  org.antlr.runtime,
  org.eclipselabs.xtext.utils.unittesting.source;bundle-version="0.9.3",
- org.xtext.arma.config
+ org.eclipse.xtext;bundle-version="2.9.2"
 Import-Package: org.apache.log4j,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",
