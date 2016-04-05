@@ -34,4 +34,14 @@ public class XtextUtilsTests extends XtextTest
                 + "tag = \"life\";"
                 + "}", "Class");
     }
+    
+    @Test
+    public void simpleString() {
+        testParserRule("\"Hello\"", "String");
+    }
+    
+    @Test
+    public void slashString() {
+        testParserRule("\"hello/ok\"", "String");
+    }
 }

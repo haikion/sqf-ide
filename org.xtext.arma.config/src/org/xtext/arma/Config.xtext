@@ -17,17 +17,23 @@ Class:
 ;
 
 ParameterDefinition:
-	{Parameter} ( name=UNRECOGNIZED_STRING '=' (String|INT))
+	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=String|INT))
 ;
 
 String: 
-	'"' UNRECOGNIZED_STRING '"'
+	name=STRING_TERMINAL
 ;
 
 terminal INT returns ecore::EInt: ('0'..'9')+;
 terminal ML_COMMENT	: '/*' -> '*/';
 terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
 terminal WS			: (' '|'\t'|'\r'|'\n')+;
+terminal DOUBLE_QUETO: '""';
+//terminal SINGLE_QUETO: '"';
+terminal STRING_TERMINAL	: 
+			'"' ( '\\' . | DOUBLE_QUETO | !('\\'|'"'))* '"' 
+			| "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;
 //Confusing name. Generally means a sequence of chars that can be: command, 
 //global variable or public variable. More specific checking is done at validation. 
 terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
