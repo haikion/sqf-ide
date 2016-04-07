@@ -32,11 +32,6 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.debug.ui.ILaunchShortcut2;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.debug.ui.launchConfigurations.AppletParametersTab;
-import org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut;
-import org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin;
-import org.eclipse.jdt.internal.debug.ui.launcher.AppletLaunchConfigurationUtils;
-import org.eclipse.jdt.internal.debug.ui.launcher.LauncherMessages;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
@@ -84,10 +79,12 @@ public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implem
         ILaunchManager lm = DebugPlugin.getDefault().getLaunchManager();
         return lm.getLaunchConfigurationType(IJavaLaunchConfigurationConstants.ID_JAVA_APPLET);     
     }
-
+    
+    /*
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#findTypes(java.lang.Object[], org.eclipse.jface.operation.IRunnableContext)
      */
+    /*
     protected IType[] findTypes(Object[] elements, IRunnableContext context) 
             throws InterruptedException, CoreException {
         try {
@@ -96,26 +93,26 @@ public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implem
             throw (CoreException)e.getTargetException();
         }
     }   
-
+    */
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#getTypeSelectionTitle()
      */
     protected String getTypeSelectionTitle() {
-        return LauncherMessages.JavaAppletLaunchShortcut_0;
+        return "LauncherMessages.JavaAppletLaunchShortcut_0";
     }
 
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#getEditorEmptyMessage()
      */
     protected String getEditorEmptyMessage() {
-        return LauncherMessages.JavaAppletLaunchShortcut_1;
+        return "LauncherMessages.JavaAppletLaunchShortcut_1";
     }
 
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#getSelectionEmptyMessage()
      */
     protected String getSelectionEmptyMessage() {
-        return LauncherMessages.JavaAppletLaunchShortcut_2;
+        return "LauncherMessages.JavaAppletLaunchShortcut_2";
     }
 
     @Override

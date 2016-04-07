@@ -35,15 +35,9 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.debug.core.model.IProcess;
-import org.eclipse.jdt.internal.launching.LaunchingMessages;
-import org.eclipse.jdt.internal.launching.LaunchingPlugin;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
-import org.eclipse.jdt.launching.ExecutionArguments;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
-import org.eclipse.jdt.launching.IVMInstall;
-import org.eclipse.jdt.launching.IVMRunner;
 import org.eclipse.jdt.launching.JavaRuntime;
-import org.eclipse.jdt.launching.VMRunnerConfiguration;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 
@@ -223,6 +217,7 @@ public class Arma3LaunchConfigurationDelegate
      * @param workingDir the working directory
      * @return system property for the policy file
      */
+    /*
     public String getJavaPolicyFile(File workingDir) {
             File file = new File(workingDir, "java.policy.applet");//$NON-NLS-1$ 
             if (!file.exists()) {
@@ -239,7 +234,7 @@ public class Arma3LaunchConfigurationDelegate
             }
         return "-Djava.security.policy=java.policy.applet";//$NON-NLS-1$
     }
-
+    */
     /**
      * Using the specified launch configuration, build an HTML file that specifies the
      * applet to launch.  Return the name of the HTML file.
@@ -427,10 +422,10 @@ public class Arma3LaunchConfigurationDelegate
      * @see org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate#verifyWorkingDirectory(org.eclipse.debug.core.ILaunchConfiguration)
      */
     public File verifyWorkingDirectory(ILaunchConfiguration configuration) throws CoreException {
-        IPath path = getWorkingDirectoryPath(configuration);
+        IPath path = getWorkingDirectoryPath(configuration); //Copy This
         if (path == null) {
             // default working dir for applets is the project's output directory
-            String outputDir = JavaRuntime.getProjectOutputDirectory(configuration);
+            String outputDir = JavaRuntime.getProjectOutputDirectory(configuration); //Copy this
             if (outputDir == null) {
                 // if no project attribute, default to eclipse directory
                 return new File(System.getProperty("user.dir"));  //$NON-NLS-1$
