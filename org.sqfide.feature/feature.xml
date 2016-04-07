@@ -24,13 +24,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.core.manipulation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.equinox.p2.repository"
          download-size="0"
          install-size="0"
@@ -87,13 +80,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.debug.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="javax.annotation"
          download-size="0"
          install-size="0"
@@ -113,20 +99,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.compiler.apt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.junit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.ui.intro"
@@ -214,13 +186,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.junit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="javax.activation"
          download-size="0"
          install-size="0"
@@ -232,14 +197,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.compiler.tool"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -494,6 +451,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.jdt.launching"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.objectweb.asm"
          download-size="0"
          install-size="0"
@@ -587,13 +551,6 @@
 
    <plugin
          id="org.apache.jasper.glassfish"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.junit.runtime"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -1163,12 +1120,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.sdk"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.eclipse.search"
          download-size="0"
          install-size="0"
@@ -1302,12 +1253,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.debug"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.hamcrest.core"
          download-size="0"
          install-size="0"
@@ -1358,13 +1303,6 @@
 
    <plugin
          id="org.eclipse.equinox.p2.ui.importexport"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.junit.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
