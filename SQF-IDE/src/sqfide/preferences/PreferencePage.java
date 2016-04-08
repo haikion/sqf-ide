@@ -18,32 +18,16 @@ public class PreferencePage
 {   
     public PreferencePage()
     {
+        super(FieldEditorPreferencePage.GRID);
         setPreferenceStore(Activator.getDefault().getPreferenceStore());
         setDescription("General Settings for SQF-IDE.");
     }
   
     public void init(IWorkbench workbench) {}
-    
-    public Control createPageContents(Composite parent)
-    {      
-        Composite container = new Composite(parent, 0);
-        container.setLayout(new GridLayout(1, false));
-
-        Group networkGroup = new Group(container, 0);
-        networkGroup.setText("Game Integration Settings");
-        networkGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        networkGroup.setLayout(new GridLayout(1, false));
-
-        Composite composite = new Composite(networkGroup, 0);
-        addField(new StringFieldEditor("ipAddress", "Game IP: ", 30, composite));
-    
-        return container;
-    }
 
     @Override
     protected void createFieldEditors()
-    {
-        // TODO Auto-generated method stub
-        
+    {        
+        addField(new StringFieldEditor("ipAddress", "Game Address: ", 30, getFieldEditorParent()));        
     }
 }
