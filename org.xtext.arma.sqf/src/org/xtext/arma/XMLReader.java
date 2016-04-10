@@ -7,6 +7,7 @@ package org.xtext.arma;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +19,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -25,48 +27,55 @@ public class XMLReader
 {
     static final String XML_FILE_PATH = "commands.xml";
 
-    ArrayList<String> commandMiddles_ = new ArrayList<String>();
-    ArrayList<String> commandLefts_ = new ArrayList<String>();
-    ArrayList<String> commandParentlesses_ = new ArrayList<String>();
-    static XPath xpath_ = XPathFactory.newInstance().newXPath();
-    static Document document_;
-
-
-    public XMLReader(String filePath)
+    static private ArrayList<String> commandLefts_ = new ArrayList<String>();
+    static private ArrayList<String> commandMiddles_ = new ArrayList<String>();
+    static private ArrayList<String> commandParentlesses_ = new ArrayList<String>();
+    static private XPath xpath_ = XPathFactory.newInstance().newXPath();
+    static private Document document_;
+    static private HashMap<String, String> docs_ = new HashMap<String, String>();
+    
+    static private void readXML()
     {
-        readXML(filePath);
-    }
-
-    public XMLReader()
-    {
-        readXML(XML_FILE_PATH);
-    }
-
-    private void readXML(String filePath)
-    {
+        //Run only once.
+        if (document_ != null)
+        {
+            return;
+        }
+        
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         DocumentBuilder builder;
         try {
             builder = factory.newDocumentBuilder();
-            document_ = builder.parse(filePath);
+            document_ = builder.parse(XML_FILE_PATH);
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+        commandLefts_ = getCommandsByType("commandLefts");
+        commandMiddles_ = getCommandsByType("commandMiddles");
+        commandParentlesses_ = getCommandsByType("commandParentlesses");
     }
     
     private static ArrayList<String> getCommandsByType(String type)
     {
         ArrayList<String> list = new ArrayList<>();
         try {
-            //create XPathExpression object
             XPathExpression expr =
-                xpath_.compile("/commands/" + type + "/command/name/text()");
+                    xpath_.compile("/commands/" + type + "/command");
             //evaluate expression result on XML document
             NodeList nodes = (NodeList) expr.evaluate(document_, XPathConstants.NODESET);
             for (int i = 0; i < nodes.getLength(); i++)
-                list.add(nodes.item(i).getNodeValue());
+            {
+                Node item = nodes.item(i);
+                String name = (String) xpath_.compile("name/text()").evaluate(item, XPathConstants.STRING);
+                String doc = (String) xpath_.compile("doc/text()").evaluate(item, XPathConstants.STRING);
+                list.add(name);
+                if (doc != null)
+                {
+                    docs_.put(name.toUpperCase(), doc);
+                }
+            }
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
@@ -74,7 +83,7 @@ public class XMLReader
         return list;
     }
 
-    private ArrayList<String> toUpperArray(ArrayList<String> input)
+    static private ArrayList<String> toUpperArray(ArrayList<String> input)
     {
         ArrayList<String> output = new ArrayList<String>();
         
@@ -85,27 +94,38 @@ public class XMLReader
         return output;
     }
     
-    public ArrayList<String> getCommandLefts()
+    static public String getCommandDoc(String command)
     {
-        return getCommandsByType("commandLefts");
+        readXML();
+        String key = command.toUpperCase();
+        String doc = docs_.get(key);
+        return doc;
     }
     
-    public ArrayList<String> getCommandMiddles()
+    static public ArrayList<String> getCommandLefts()
     {
-        return getCommandsByType("commandMiddles");
+        readXML();
+        return commandLefts_;
     }
     
-    public ArrayList<String> getCommandMiddlesUpper()
+    static public ArrayList<String> getCommandMiddles()
     {
-        return toUpperArray(getCommandsByType("commandMiddles"));
+        readXML();
+        return commandMiddles_;
     }
     
-    public ArrayList<String> getCommandParentlesses()
+    static public ArrayList<String> getCommandParentlesses()
     {
-        return getCommandsByType("commandParentlesses");
+        readXML();
+        return commandParentlesses_;
+    }
+    
+    static public ArrayList<String> getCommandMiddlesUpper()
+    {
+        return toUpperArray(getCommandMiddles());
     }
 
-    public ArrayList<String> getCommandLeftsUpper()
+    static public ArrayList<String> getCommandLeftsUpper()
     {
         return toUpperArray(getCommandLefts());
     }

@@ -65,10 +65,9 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     
     private void populateValidCommands()
     {
-        XMLReader xmlReader = new XMLReader();
-        ArrayList<String> validMiddles = xmlReader.getCommandMiddles();
-        ArrayList<String> validLefts = xmlReader.getCommandLefts();
-        ArrayList<String> validParentlesses = xmlReader.getCommandParentlesses();
+        ArrayList<String> validMiddles = XMLReader.getCommandMiddles();
+        ArrayList<String> validLefts = XMLReader.getCommandLefts();
+        ArrayList<String> validParentlesses = XMLReader.getCommandParentlesses();
         validMiddles = toUpperArray(validMiddles);
         validLefts = toUpperArray(validLefts);
         validParentlesses = toUpperArray(validParentlesses);

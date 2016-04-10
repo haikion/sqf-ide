@@ -31,9 +31,8 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
     {
         super();
         System.out.println("SQFJavaProposalProvider: Constructing SQFProposalProvider.");
-        XMLReader xmlReader = new XMLReader();
-        lefts_ = arrayListToTrie(xmlReader.getCommandLefts());
-        middles_ = arrayListToTrie(xmlReader.getCommandMiddles());
+        lefts_ = arrayListToTrie(XMLReader.getCommandLefts());
+        middles_ = arrayListToTrie(XMLReader.getCommandMiddles());
     }
     
     //Auto completion for middle commands
