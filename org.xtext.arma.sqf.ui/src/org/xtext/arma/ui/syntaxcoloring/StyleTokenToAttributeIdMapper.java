@@ -37,21 +37,25 @@ public class StyleTokenToAttributeIdMapper extends DefaultAntlrTokenToAttributeI
         {
             return DefaultHighlightingConfiguration.KEYWORDSTYLEDEF_ID;
         }
-        if (layoutStyleAttribKeywords.contains(tokenName)) 
+        else if (layoutStyleAttribKeywords.contains(tokenName)) 
         {
             return DefaultHighlightingConfiguration.KEYWORDATTRIB_ID;
         }
-        if ("RULE_STRING".equals(tokenName))
+        else if ("RULE_STRING_TERMINAL".equals(tokenName))
         {
             return DefaultHighlightingConfiguration.STRING_ID;
         }
-        if ("RULE_LOCAL_VARIABLE".equals(tokenName))
+        else if ("RULE_LOCAL_VARIABLE".equals(tokenName))
         {
             return DefaultHighlightingConfiguration.LOCAL_VARIABLE_ID;
         }
-        if ("RULE_GLOBAL_FUNCTION".equals(tokenName))
+        else if ("RULE_GLOBAL_FUNCTION".equals(tokenName))
         {
             return DefaultHighlightingConfiguration.GLOBAL_FUNCTION_ID;
+        }
+        else if ("RULE_WS_COMMENT".equals(tokenName) || "RULE_SL_COMMENT".equals(tokenName))
+        {
+            return DefaultHighlightingConfiguration.COMMENT_ID;
         }
         return super.calculateId(tokenName, tokenType);
     }

@@ -24,6 +24,7 @@ public class DefaultHighlightingConfiguration implements IHighlightingConfigurat
         acceptor.acceptDefaultHighlighting(STRING_ID, "String", stringStyle());
         acceptor.acceptDefaultHighlighting(LOCAL_VARIABLE_ID, LOCAL_VARIABLE_ID, localVariableStyle());
         acceptor.acceptDefaultHighlighting(GLOBAL_FUNCTION_ID, GLOBAL_FUNCTION_ID, globalFunctionStyle());
+        acceptor.acceptDefaultHighlighting(COMMENT_ID, COMMENT_ID, commentStyle());
     }
     
     private TextStyle stringStyle()
@@ -32,6 +33,7 @@ public class DefaultHighlightingConfiguration implements IHighlightingConfigurat
         textStyle.setColor(new RGB(0, 0, 255));
         return textStyle;
     }
+    
     private TextStyle localVariableStyle()
     {
         TextStyle textStyle = new TextStyle();
@@ -39,11 +41,17 @@ public class DefaultHighlightingConfiguration implements IHighlightingConfigurat
         return textStyle;
     }
     
-    //FIXME: This is so ugly...
+    private TextStyle commentStyle()
+    {
+        TextStyle textStyle = new TextStyle();
+        textStyle.setColor(new RGB(211, 211, 211)); //Grey
+        return textStyle;
+    }
+    
     private TextStyle globalFunctionStyle()
     {
         TextStyle textStyle = new TextStyle();
-        textStyle.setColor(new RGB(255, 204, 255));
+        textStyle.setColor(new RGB(244, 164, 96));
         return textStyle;
     }
     
