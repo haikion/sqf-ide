@@ -70,13 +70,19 @@ public class XtextUtilsTests extends XtextTest
     @Test
     public void doubleQuetoTest()
     {
-        testTerminal("\"testing double \"\"quetos\"\" \"", "STRING");
+        testParserRule("\"testing double \"\"quetos\"\" \"", "StringV");
+    }
+    
+    @Test
+    public void slashString()
+    {
+        testParserRule("\"core\\fsm\\core_time.fsm\"", "StringV");
     }
     
     @Test
     public void string()
     {
-        testTerminal("\"simple String test\"", "STRING");
+        testParserRule("\"simple String test\"", "StringV");
     }
     
     @Test

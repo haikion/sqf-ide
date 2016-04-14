@@ -5,6 +5,7 @@ package org.xtext.arma.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.xtext.arma.ui.syntaxcoloring.DefaultHighlightingConfiguration;
@@ -23,7 +24,7 @@ public class SQFUiModule extends org.xtext.arma.ui.AbstractSQFUiModule
 	
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () 
 	{
-	     return DefaultHighlightingConfiguration.class;
+	    return DefaultHighlightingConfiguration.class;
 	}
 	
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper()
@@ -38,8 +39,13 @@ public class SQFUiModule extends org.xtext.arma.ui.AbstractSQFUiModule
 	
 	// contributed by org.eclipse.xtext.ui.generator.contentAssist.ContentAssistFragment
     @Override
-	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider> bindIContentProposalProvider() {
+	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider> bindIContentProposalProvider()
+    {
         return org.xtext.arma.ui.contentassist.SQFJavaProposalProvider.class;
     }
 
+    public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider()
+    {
+        return org.xtext.arma.ui.SQFEObjectDocumentationProvider.class;
+    }
 }

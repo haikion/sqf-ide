@@ -164,7 +164,7 @@ FloatV:
 ;
 
 StringV:
-	name=STRING
+	name=STRING_TERMINAL
 ;
 
 terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
@@ -184,10 +184,9 @@ terminal COMMAND_LEFT_SPECIAL: '!';
 terminal FLOAT: INT '.' INT;
 terminal INT returns ecore::EInt: ('0'..'9')+;
 terminal DOUBLE_QUETO: '""';
-//terminal SINGLE_QUETO: '"';
-terminal STRING	: 
-			'"' ( '\\' . | DOUBLE_QUETO | !('\\'|'"'))* '"' 
-			| "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+terminal STRING_TERMINAL	: 
+			'"' (DOUBLE_QUETO | !'"')* '"' 
+			| "'" !"'"* "'"
 		;
 
 //Ignore

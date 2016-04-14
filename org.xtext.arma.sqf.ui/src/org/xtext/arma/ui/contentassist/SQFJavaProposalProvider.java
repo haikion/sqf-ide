@@ -24,8 +24,9 @@ import org.xtext.arma.sQF.*;
  */
 public class SQFJavaProposalProvider extends AbstractSQFProposalProvider 
 {
-    private PatriciaTrie<String> middles_ = null;
-    private PatriciaTrie<String> lefts_ = null;
+    private PatriciaTrie<String> middles_;
+    private PatriciaTrie<String> lefts_;
+    private PatriciaTrie<String> functions_;
     
     SQFJavaProposalProvider()
     {
@@ -33,7 +34,27 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
         System.out.println("SQFJavaProposalProvider: Constructing SQFProposalProvider.");
         lefts_ = arrayListToTrie(XMLReader.getCommandLefts());
         middles_ = arrayListToTrie(XMLReader.getCommandMiddles());
+        functions_ = arrayListToTrie(XMLReader.getFunctions());
+        System.out.println("functions_ size: " + functions_.size());
     }
+
+    //BIS Function completion
+    @Override
+    public void completeGlobalFunction_Name(EObject model, Assignment assignment, 
+            ContentAssistContext context, ICompletionProposalAcceptor acceptor)
+    {
+        System.out.println("SQFJavaProposalProvider: Proposing global function. "
+                + "Model class = " + model.getClass().getName());
+        if (!(model instanceof LineMiddle))
+        {
+            return;
+        }
+        LineMiddle middle = (LineMiddle) model;
+        CommandLeft globalFunction = (CommandLeft) middle.getParameters();
+        String name = globalFunction.getName();
+        System.out.println("Middle name: " + name);
+        trieToProposal(name, functions_, context, acceptor);
+    };
     
     //Auto completion for middle commands
     @Override
