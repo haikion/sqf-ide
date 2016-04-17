@@ -1,4 +1,4 @@
-package org.xtext.arma;
+package org.xtext.arma.scoping;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -8,12 +8,12 @@ import org.eclipse.xtext.scoping.IScope;
 
 import com.google.common.base.Predicate;
 
-public class NullGlobalScopeProvider implements IGlobalScopeProvider {
-
+public class NullGlobalScopeProvider implements IGlobalScopeProvider 
+{
     @Override
     public IScope getScope(Resource context, EReference reference,
-            Predicate<IEObjectDescription> filter) {
+            Predicate<IEObjectDescription> filter) 
+    {
         return IScope.NULLSCOPE;
     }
-
 }
