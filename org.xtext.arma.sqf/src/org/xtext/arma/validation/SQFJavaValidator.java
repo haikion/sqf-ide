@@ -9,8 +9,12 @@ package org.xtext.arma.validation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.xtext.validation.Check;
 import org.xtext.arma.sQF.CommandLeft;
+import org.xtext.arma.sQF.GlobalVariableReference;
 import org.xtext.arma.sQF.LineMiddle;
 import org.xtext.arma.sQF.SQFPackage;
 import org.xtext.arma.XMLReader;
@@ -33,6 +37,17 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     }
 
     @Check
+    public void checkGlobalVariableReference(GlobalVariableReference object)
+    {
+        System.out.println("Executing GlobalVarCheck");
+        EList<Diagnostic> errors = object.eResource().getErrors();
+        for (Diagnostic error : errors)
+        {
+            System.out.println("Error: " + error.getMessage());
+        }
+    }
+    
+    @Check
     public void checkLeftName(CommandLeft command) 
     {
         if (!validLeftCommands_.contains(command.getName().toUpperCase())) 
@@ -43,7 +58,7 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     }
     
     @Check
-    public void checMiddleName(LineMiddle line) 
+    public void checkMiddleName(LineMiddle line) 
     {
         if (!validMiddleCommands_.contains(line.getName().toUpperCase())) 
         {
