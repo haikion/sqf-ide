@@ -79,11 +79,9 @@ public class Arma3LaunchConfigurationDelegate
             return;
         }
         
-        String arma3DirName = arma3Dir.getAbsolutePath();
-
         Process process;
         String line;
-        String arma3Exe = arma3DirName + "/arma3.exe";
+        String arma3Exe = arma3Dir.getAbsolutePath();;
         List<String> parametersList = new ArrayList<String>();
         if (startupParameters != null && !startupParameters.isEmpty())
         {
@@ -92,15 +90,18 @@ public class Arma3LaunchConfigurationDelegate
         }
         List<String> cmdList = new ArrayList<String>();
         cmdList.add(arma3Exe);
+        File mod = new File("@SI");
+        cmdList.add("-mod=" + mod.getAbsolutePath());
         cmdList.addAll(parametersList);
         if (missionFile != null)
         {
             cmdList.add(missionFile.getLocation().toOSString());            
         }
-        System.out.println("Running: " + arma3Exe + " " + startupParameters); //TODO: Print in runtime eclipse...
+        System.out.println("Running: " + arma3Exe + " parameters =" + cmdList.toString() ); //TODO: Print in runtime eclipse...
         try
         {
             process = new ProcessBuilder(cmdList).start();
+            /*
             InputStream is = process.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
@@ -109,6 +110,7 @@ public class Arma3LaunchConfigurationDelegate
             {
                 System.out.println(line);
             }
+            */
 
         } catch (IOException e)
         {

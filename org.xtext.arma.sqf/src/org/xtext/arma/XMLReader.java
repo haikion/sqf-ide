@@ -5,7 +5,9 @@
  */
 package org.xtext.arma;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,6 +20,9 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -46,12 +51,20 @@ public class XMLReader
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         DocumentBuilder builder;
-        try {
+        try 
+        {
+        	URL url = FileLocator.find(Platform.getBundle("org.xtext.arma.sqf"), new Path(XML_FILE_PATH), null);
+            String jarPath = FileLocator.resolve(url).getPath();
+            File sourceFile = new File(jarPath);
+        	
             builder = factory.newDocumentBuilder();
-            document_ = builder.parse(XML_FILE_PATH);
+            document_ = builder.parse(sourceFile);
 
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        }
+        catch (ParserConfigurationException | SAXException | IOException e) 
+        {
             e.printStackTrace();
+            return;
         }
         commandLefts_ = getCommandsByType("commandLefts");
         commandMiddles_ = getCommandsByType("commandMiddles");
@@ -62,7 +75,8 @@ public class XMLReader
     private static ArrayList<String> parseFunctions()
     {
         ArrayList<String> list = new ArrayList<>();
-        try {
+        try 
+        {
             XPathExpression expr =
                     xpath_.compile("/commands/functions/command");
             //evaluate expression result on XML document
@@ -78,7 +92,9 @@ public class XMLReader
                     docs_.put(name.toUpperCase(), doc);
                 }
             }
-        } catch (XPathExpressionException e) {
+        } 
+        catch (XPathExpressionException e) 
+        {
             e.printStackTrace();
         }
         return list;        

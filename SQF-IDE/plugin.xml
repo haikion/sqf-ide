@@ -20,7 +20,7 @@
          point="org.eclipse.ui.importWizards">
       <category
             id="sqfide.wizards.importWizards"
-            name="SQF-IDE">
+            name="Side">
       </category>
       <wizard
             category="sqfide.wizards.importWizards"
@@ -31,6 +31,26 @@
          <description>
             Import (a.k.a open) an Arma 3 mission folder from the local file system into the workspace.
          </description>
+      </wizard>
+      <wizard
+            category="sqfide.wizards.importWizards"
+            class="sqfide.wizards.ImportPBOWizard"
+            icon="icons/pbo.gif"
+            id="sqfide.wizards.ImportPBOWizard"
+            name="Import PBO">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="sqfide.wizards.exportwizards"
+            name="Side">
+      </category>
+      <wizard
+            class="sqfide.wizards.ExportPBOWizard"
+            icon="icons/pbo.gif"
+            id="sqfide.wizards.exportpbowizard"
+            name="PBO archive">
       </wizard>
    </extension>
    <extension
@@ -177,6 +197,10 @@
       <product
             application="org.eclipse.ui.ide.workbench"
             name="SQF-IDE">
+         <property
+               name="appName"
+               value="SQF-IDE">
+         </property>
       </product>
    </extension>
    <extension

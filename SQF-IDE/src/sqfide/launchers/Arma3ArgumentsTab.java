@@ -145,6 +145,10 @@ public class Arma3ArgumentsTab extends AbstractLaunchConfigurationTab
     //Set default values
     public void setDefaults(ILaunchConfigurationWorkingCopy configuration) 
     {
+    	if (fPrgmArgumentsText == null)
+    	{
+    		return;
+    	}
         fPrgmArgumentsText.setText(Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
         fWorkingDirectoryBlock.setDefaults(configuration);
     }

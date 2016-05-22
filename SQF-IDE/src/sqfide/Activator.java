@@ -1,8 +1,14 @@
 package sqfide;
 
+import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import com.sun.jna.platform.win32.Advapi32Util;
+
+import sqfide.launchers.Constants;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -18,9 +24,11 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public Activator() 
+	{
+		System.out.println("Activator");
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)

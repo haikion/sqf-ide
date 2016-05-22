@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
@@ -35,9 +36,12 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableContext;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
+
+import sqfide.Activator;
 
 /**
  * 
@@ -133,9 +137,10 @@ public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implem
         IProject missionProject = (IProject) missionSelection.getFirstElement();
         IFile missionFile = missionProject.getFile("mission.sqm");
         
+        IPreferenceStore store = Activator.getDefault().getPreferenceStore();
         //TODO: Change to ArmA 3 path.
-        File workingDir = new File("/home/niko"); 
-        
+        File workingDir = new File(store.getString("arma3exe")); 
+        String startupParameters = store.getString("startupParameters");
         launchArma3(workingDir, missionFile, Constants.DEFAULT_ARMA3_LAUNCH_PARAMETERS);
     }
 }

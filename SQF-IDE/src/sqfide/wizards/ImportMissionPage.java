@@ -32,17 +32,37 @@ public class ImportMissionPage extends WizardPage {
     
     private File missionLocation_;
     private Text missionText_;
-
+    private String pathLabel_ = "&Mission Path:";
+    
     public ImportMissionPage(String pageName, IStructuredSelection selection) {
         super("wizardPage");
         setTitle(pageName);
         setDescription("Open existing ArmA 3 mission.");
         setPageComplete(false);
     }
-
+    
+    protected void setPathLabel(String val)
+    {
+    	pathLabel_ = val;
+    }
+    protected File getMissionLocation()
+    {
+    	return missionLocation_;
+    }
+    
+    protected void setMissionLocation(File val)
+    {
+    	missionLocation_ = val;
+    }
+    
     public String getMissionName() 
     {
         return missionLocation_.getName();
+    }
+    
+    public Text getMissionText()
+    {
+    	return missionText_;
     }
     
     public File getMissionDIR()
@@ -61,7 +81,7 @@ public class ImportMissionPage extends WizardPage {
         container.setLayout(layout);
         
         Label label = new Label(container, SWT.NULL);
-        label.setText("&Mission Path:");
+        label.setText(pathLabel_);
         
         missionText_ = new Text(container, SWT.BORDER | SWT.SINGLE);
         missionText_.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -85,7 +105,7 @@ public class ImportMissionPage extends WizardPage {
         setControl(container);
     }
     
-    private void checkPageComplete()
+    protected void checkPageComplete()
     {
         if (missionLocation_ == null)
         {
@@ -110,7 +130,7 @@ public class ImportMissionPage extends WizardPage {
         setPageComplete(true);
     }
     
-    private void handleBrowse()
+    protected void handleBrowse()
     {
         DirectoryDialog diag = new DirectoryDialog(missionText_.getShell());
         String directory = diag.open();

@@ -8,12 +8,18 @@ Model: {Model}
 	(lines+=LineOfCode ';')*
 ;
 
-LineOfCode: Class|ParameterDefinition;
+LineOfCode: CfgFunctions|Class|ParameterDefinition;
 
 Class:
 	{Class} ('class' name=UNRECOGNIZED_STRING '{'
 		model=Model
 	'}')
+;
+
+CfgFunctions:
+	'class' 'CfgFunctions' '{'
+		model=Model
+	'}'
 ;
 
 ParameterDefinition:
@@ -24,6 +30,7 @@ String:
 	name=STRING_TERMINAL
 ;
 
+//terminal CFG_FUNCTIONS: "CfgFunctions";
 terminal INT returns ecore::EInt: ('0'..'9')+;
 terminal ML_COMMENT	: '/*' -> '*/';
 terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
