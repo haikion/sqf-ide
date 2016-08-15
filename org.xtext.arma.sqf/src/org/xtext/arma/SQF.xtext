@@ -88,9 +88,8 @@ Array:
 	{Array} '['(member += VariableValue (',' member += VariableValue)*)?']'
 ;
 
-ForVariable: 
-	'for "' LocalVariable 
-	'" from' from=Countable 'to' to=Countable ('step' step=Countable)
+ForVariable:
+	'for' StringV 'from' from=Countable 'to' to=Countable ('step' step=Countable)?
 	'do' loopCode=Code
 ;
 

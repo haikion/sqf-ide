@@ -177,6 +177,12 @@ public class XtextUtilsTests extends XtextTest
                 + "[\"marker2\",\"marker3\"], 0, \"NONE\"]", "CommandLeft");
     }
     
+    @Test
+    public void simpleForTest()
+    {
+    	testParserRule("for \"_i\" from 0 to 270 do {hint \"ok\";}", "ForVariable");
+    }
+    
     //@Test
     //public void testTestFile()
     //{

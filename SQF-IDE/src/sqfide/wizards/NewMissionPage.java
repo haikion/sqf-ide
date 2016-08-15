@@ -27,8 +27,8 @@ public class NewMissionPage extends WizardPage {
 	 */
 	public NewMissionPage(ISelection selection) {
 		super("wizardPage");
-		setTitle("Multi-page Editor File");
-		setDescription("This wizard creates a new file with *.mpe extension that can be opened by a multi-page editor.");
+		setTitle("New arma 3 mission");
+		setDescription("This wizard creates a new Arma 3 mission.");
 		this.selection = selection;
 	}
 
@@ -43,6 +43,7 @@ public class NewMissionPage extends WizardPage {
 		layout.verticalSpacing = 9;
 		Label label = new Label(container, SWT.NULL);
 		label.setText("&Mission Name:");
+		nameText = new Text(container, SWT.NULL);
 
 		//containerText = new Text(container, SWT.BORDER | SWT.SINGLE);
 		//GridData gd = new GridData(GridData.FILL_HORIZONTAL);

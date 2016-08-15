@@ -51,13 +51,20 @@ public class XMLReader
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         DocumentBuilder builder;
-        try 
+        try
         {
-        	URL url = FileLocator.find(Platform.getBundle("org.xtext.arma.sqf"), new Path(XML_FILE_PATH), null);
-            String jarPath = FileLocator.resolve(url).getPath();
-            File sourceFile = new File(jarPath);
-        	
+        	//Unit testing path
+            File sourceFile  = new File("..\\org.xtext.arma.sqf\\" + XML_FILE_PATH);
+            System.out.println("sourceFile = " + sourceFile.getAbsolutePath());
             builder = factory.newDocumentBuilder();
+            //Installation path
+            if (!sourceFile.isFile())
+            {
+            	System.out.println("Using installation path");
+            	URL url = FileLocator.find(Platform.getBundle("org.xtext.arma.sqf"), new Path(XML_FILE_PATH), null);
+                String jarPath = FileLocator.resolve(url).getPath();
+                sourceFile = new File(jarPath);
+            }
             document_ = builder.parse(sourceFile);
 
         }

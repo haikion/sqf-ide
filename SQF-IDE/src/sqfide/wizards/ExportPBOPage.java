@@ -19,7 +19,8 @@ public class ExportPBOPage extends ImportMissionPage
 {
 	private Text outputPath_;
 	
-	public ExportPBOPage(String pageName, IStructuredSelection selection) {
+	public ExportPBOPage(String pageName, IStructuredSelection selection) 
+	{
 		super(pageName, selection);
         setDescription("Export ArmA 3 mission as pbo archive.");
         setPathLabel("&Output Directory:");
