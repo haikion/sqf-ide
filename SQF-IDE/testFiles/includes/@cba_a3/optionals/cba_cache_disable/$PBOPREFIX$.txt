@@ -1,0 +1,7 @@
+///'cba_cache_disable.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\cache_disable
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '30318E1A9347E33510F5FF1BFC748E3594EBF741'
+//////</HEADER>//////

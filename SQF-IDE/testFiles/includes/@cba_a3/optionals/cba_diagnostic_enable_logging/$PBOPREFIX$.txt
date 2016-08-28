@@ -1,0 +1,7 @@
+///'cba_diagnostic_enable_logging.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\diagnostic_enable_logging
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '39CB1BAAB714AE2EF4688BE603A271F2E178D602'
+//////</HEADER>//////

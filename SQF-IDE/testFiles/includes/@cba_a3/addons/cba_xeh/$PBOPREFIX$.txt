@@ -1,0 +1,7 @@
+///'cba_xeh.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\xeh
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '24BACC3FE3F8DC7ECFE558444AC40659188A0B0C'
+//////</HEADER>//////

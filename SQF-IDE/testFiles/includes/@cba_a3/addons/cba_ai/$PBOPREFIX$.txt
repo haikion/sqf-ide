@@ -1,0 +1,7 @@
+///'cba_ai.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\ai
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '370B3F6361F4FDA0264B6FEF9E9295A1CBCD28B4'
+//////</HEADER>//////

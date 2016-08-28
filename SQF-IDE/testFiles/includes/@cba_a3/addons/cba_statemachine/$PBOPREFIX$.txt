@@ -1,0 +1,7 @@
+///'cba_statemachine.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\statemachine
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '37533922FA2B8FA03F1BDE3816C3E971A63AA71E'
+//////</HEADER>//////

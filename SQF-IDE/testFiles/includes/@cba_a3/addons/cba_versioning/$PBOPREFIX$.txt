@@ -1,0 +1,7 @@
+///'cba_versioning.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\versioning
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: 'F43B845C6150D2C492ACCDEEB781853E56968285'
+//////</HEADER>//////

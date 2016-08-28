@@ -1,0 +1,7 @@
+///'cba_hashes.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\hashes
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '7C6ECAD6C62E313021851C9B4B721D27C1691E2B'
+//////</HEADER>//////

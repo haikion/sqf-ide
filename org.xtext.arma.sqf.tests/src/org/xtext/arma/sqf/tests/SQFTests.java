@@ -25,6 +25,7 @@ import org.xtext.arma.validation.SQFJavaValidator;
 
 @RunWith(XtextRunner.class)
 @InjectWith(org.xtext.arma.SQFInjectorProvider.class)
+
 public class SQFTests extends AbstractXtextTests
 {
 

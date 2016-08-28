@@ -1,0 +1,7 @@
+///'cba_settings.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\settings
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '0ACAFF109C37981EF3696EF7CD88644687A7CFE3'
+//////</HEADER>//////

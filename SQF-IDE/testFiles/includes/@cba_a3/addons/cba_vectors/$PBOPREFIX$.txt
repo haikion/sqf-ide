@@ -1,0 +1,7 @@
+///'cba_vectors.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\vectors
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: '4546A6446979440B4D55A1B3C9A51232440A8F88'
+//////</HEADER>//////

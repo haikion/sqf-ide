@@ -1,0 +1,7 @@
+///'cba_diagnostic_enable_perf_loop.pbo' from Mikero's dos tools, dll version 5.52///
+prefix=x\cba\addons\diagnostic_enable_perf_loop
+Mikero=DePbo.dll
+version=7b37670b
+Pbo Type is: Arma Addon
+Sha: 'DE58847C7846BF1CD0D2BD07AD653AFA143E1EDB'
+//////</HEADER>//////

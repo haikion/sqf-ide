@@ -1,9 +1,7 @@
 /*
- * TODO: Config  grammar
- * TODO: Funktioden esittely
- * TODO: Koodinsijoitus ilman {} 
+ * SQF programming language syntax model
  */
- 
+
 grammar org.xtext.arma.SQF hidden(WS, SL_COMMENT, ML_COMMENT)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
@@ -41,7 +39,6 @@ LineOfCode:
 	|Include
 	|If|While|For|ForVariable|Switch
 ;
-
 
 //Command definitions (terminal cannot be used as case-insensitivity doesn't work with it).
 
@@ -85,7 +82,7 @@ NonArray: Comparable|Code;
 VariableValue: NonArray|Array|GlobalFunction; 
 
 Array:
-	{Array} '['(member += VariableValue (',' member += VariableValue)*)?']'
+	{Array} '['(member += LineOfCode (',' member += LineOfCode)*)?']'
 ;
 
 ForVariable:
@@ -177,7 +174,7 @@ terminal LOCAL_VARIABLE : '_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+;
 
 //Non character cases of command middle
 terminal COMMAND_MIDDLE_SPECIAL: '>>'|'=='|'!='|'<'|'>'|'>='|'<='|'+'|'-'
-	|'*'|'/'|'^'|'||'|'&&'
+	|'*'|'/'|'^'|'||'|'&&'|'%'
 ;
 //Non character cases of command left
 terminal COMMAND_LEFT_SPECIAL: '!';

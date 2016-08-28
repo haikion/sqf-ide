@@ -9,6 +9,7 @@ package org.xtext.arma.validation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
@@ -80,12 +81,9 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     
     private void populateValidCommands()
     {
-        ArrayList<String> validMiddles = XMLReader.getCommandMiddles();
-        ArrayList<String> validLefts = XMLReader.getCommandLefts();
-        ArrayList<String> validParentlesses = XMLReader.getCommandParentlesses();
-        validMiddles = toUpperArray(validMiddles);
-        validLefts = toUpperArray(validLefts);
-        validParentlesses = toUpperArray(validParentlesses);
+        Set<String> validMiddles = XMLReader.getCommandMiddlesUpper();
+        Set<String> validLefts = XMLReader.getCommandLeftsUpper();
+        Set<String> validParentlesses = XMLReader.getCommandParentlessesUpper();
         
         validMiddleCommands_.addAll(validMiddles);
         validLeftCommands_.addAll(validLefts);

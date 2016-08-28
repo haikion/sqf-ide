@@ -35,7 +35,7 @@
       <wizard
             category="sqfide.wizards.importWizards"
             class="sqfide.wizards.ImportPBOWizard"
-            icon="icons/pbo.gif"
+            icon="icons/openPboYellow.gif"
             id="sqfide.wizards.ImportPBOWizard"
             name="Import PBO">
       </wizard>
@@ -170,6 +170,37 @@
                      value="sqfide.wizards.ImportMissionWizard">
                </parameter>
             </command>
+            <command
+                  commandId="org.eclipse.ui.file.import"
+                  icon="icons/Arma3Logo.gif"
+                  label="Open Mission"
+                  style="push"
+                  tooltip="Open Arma 3 mission">
+               <parameter
+                     name="importWizardId"
+                     value="sqfide.wizards.ImportPBOWizard">
+               </parameter>
+            </command>
+      </menuContribution>
+      <menuContribution
+         locationURI=
+         "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <command
+               commandId="sqfide.commands.includeMod"
+               icon="icons/Arma3Logo.gif"
+               label="Include Functions from Mod"
+               mnemonic="M1+P"
+               tooltip="Introduces Functions from a mod...">
+               <visibleWhen>
+      			    <with variable="selection">
+                        <iterate operator="and" ifEmpty="false">
+                             <instanceof
+                                   value="org.eclipse.core.resources.IProject">
+                             </instanceof>
+        			    </iterate>
+                    </with>
+    			</visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -178,6 +209,12 @@
             defaultHandler="sqfide.openMissionHandler"
             id="sqfide.commands.openMission"
             name="Open Mission">
+      </command>
+      <command
+            defaultHandler="sqfide.includeModHandler"
+            description="Include Functions from Mod"
+            id="sqfide.commands.includeMod"
+            name="Include Functions from Mod">
       </command>
    </extension>
    <extension
@@ -221,5 +258,20 @@
                type="org.eclipse.debug.ui.actions.ILaunchable">
          </adapter>
       </factory>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <scope
+            class="sqfide.preferences.ProjectPreferences"
+            name="project">
+      </scope>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="sqfide.preferences.IncludesPage"
+            id="sqfide.includes"
+            name="includes">
+      </page>
    </extension>
 </plugin>
