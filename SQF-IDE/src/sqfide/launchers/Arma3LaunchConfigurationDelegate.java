@@ -114,7 +114,6 @@ public class Arma3LaunchConfigurationDelegate
 
         } catch (IOException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

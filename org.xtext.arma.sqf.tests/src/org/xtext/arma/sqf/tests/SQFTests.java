@@ -96,6 +96,20 @@ public class SQFTests extends AbstractXtextTests
     }    
     
     @Test
+    public void forVar() throws Exception
+    {
+        Model model = parser_.parse("for \"_i\" from 0 to 3 do {hint _i};");
+        tester.validate(model).assertOK();
+    }
+    
+    @Test
+    public void percentage() throws Exception
+    {
+        Model model = parser_.parse("_ok = 30 % 2;");
+        tester.validate(model).assertOK();
+    }
+    
+    @Test
     public void IfExitWithSimple() throws Exception
     {
         Model model = parser_.parse(
@@ -192,6 +206,13 @@ public class SQFTests extends AbstractXtextTests
     {
         Model model = parser_.parse("[1,[2,[3,4],5],6] select 1 hint 1 select 0");
         tester.validate(model).assertError(0);
+    }
+    
+    @Test
+    public void arrayCode() throws Exception
+    {
+        Model model = parser_.parse("_ok = [1+1];");
+        tester.validate(model).assertOK();
     }
     
     @Test

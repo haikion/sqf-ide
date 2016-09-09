@@ -12,7 +12,6 @@ public class ImportModPage extends WizardPage
     protected ImportModPage(String pageName)
     {
         super(pageName);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

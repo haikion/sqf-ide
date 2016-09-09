@@ -77,10 +77,11 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
     {    	
     	IScopeContext projectScope = new ProjectScope(project);
     	IEclipsePreferences prefs = projectScope.getNode(PREF_CONST);
-    	try {
+    	try 
+    	{
 			prefs.sync();
-		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
+		} catch (BackingStoreException e) 
+    	{
 			e.printStackTrace();
 		}
 

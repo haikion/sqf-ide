@@ -70,10 +70,11 @@ public class ModifyListener implements IResourceChangeListener
     	IScopeContext projectScope = new ProjectScope(project);
     	IEclipsePreferences prefs = projectScope.getNode(PREF_CONST);
     	prefs.put(PREF_CONST, funcs.toString());
-    	try {
+    	try 
+    	{
 			prefs.flush();
-		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
+		} catch (BackingStoreException e) 
+    	{
 			e.printStackTrace();
 		}
     	

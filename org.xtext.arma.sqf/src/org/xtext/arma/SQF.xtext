@@ -151,7 +151,7 @@ LocalVariable:
 ;
 
 IntV:
-	name=INT
+	INT
 ;
 
 FloatV:
@@ -169,7 +169,7 @@ Include:
 terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
 	('a'..'z'|'A'..'Z'|'0'..'9')+'_fnc_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
 ;
-terminal SPECIAL_VARIABLE: '_this'|'_x';
+terminal SPECIAL_VARIABLE: '_this'|'_x'|'this';
 terminal LOCAL_VARIABLE : '_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+;
 
 //Non character cases of command middle
@@ -180,8 +180,9 @@ terminal COMMAND_MIDDLE_SPECIAL: '>>'|'=='|'!='|'<'|'>'|'>='|'<='|'+'|'-'
 terminal COMMAND_LEFT_SPECIAL: '!';
 
 //Variable definitons
-terminal FLOAT: INT '.' INT;
-terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal FLOAT: INT '.' UNSIGNED;
+terminal INT: '-'? UNSIGNED;
+terminal UNSIGNED: ('0'..'9')+;
 terminal DOUBLE_QUETO: '""';
 terminal STRING_TERMINAL	: 
 			'"' (DOUBLE_QUETO | !'"')* '"' 
@@ -479,7 +480,6 @@ CommandParameterless:
     |'shownUAVFeed'
     |'shownWarrant'
     |'shownWatch'
-    |'side location'
     |'sideEnemy'
     |'sideFriendly'
     |'sideLogic'

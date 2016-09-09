@@ -26,6 +26,18 @@ public class XtextUtilsTests extends XtextTest
     }
     
     @Test
+    public void negativeFloat()
+    {
+        testTerminal("-1.0", "FLOAT");
+    }
+    
+    @Test
+    public void negativeInt()
+    {
+        testTerminal("-1", "INT");
+    }
+    
+    @Test
     public void testUnrecognizedString()
     {
         testTerminal("ddsadsad", "UNRECOGNIZED_STRING");
