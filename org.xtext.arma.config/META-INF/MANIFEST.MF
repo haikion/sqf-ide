@@ -3,27 +3,27 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.xtext.arma.config
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: org.xtext.arma.config;singleton:=true
+Bundle-SymbolicName: org.xtext.arma.config; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
  org.eclipse.equinox.common;bundle-version="3.5.0",
- org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
- org.eclipse.emf.common,
- org.antlr.runtime,
  org.eclipse.xtext.xbase.lib,
- org.eclipse.xtext.common.types,
- org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
-Export-Package: org.xtext.arma,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.arma.generator,
  org.xtext.arma.services,
+ org.xtext.arma.parser.antlr.internal,
+ org.xtext.arma,
+ org.xtext.arma.scoping,
+ org.xtext.arma.config.util,
  org.xtext.arma.config,
  org.xtext.arma.config.impl,
- org.xtext.arma.config.util,
  org.xtext.arma.serializer,
  org.xtext.arma.parser.antlr,
- org.xtext.arma.parser.antlr.internal,
- org.xtext.arma.validation,
- org.xtext.arma.scoping,
- org.xtext.arma.generator,
- org.xtext.arma.formatting
+ org.xtext.arma.validation
 Import-Package: org.apache.log4j
