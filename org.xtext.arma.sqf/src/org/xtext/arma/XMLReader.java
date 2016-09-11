@@ -24,8 +24,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -137,7 +135,6 @@ public class XMLReader
     	Long cacheSize = cache_.get(sourceFile.getAbsolutePath());
         if (size.equals(cacheSize))
         {
-        	System.out.println("Using cached " + sourceFile.getAbsolutePath());
             return;
         }
         if (builder_ == null)

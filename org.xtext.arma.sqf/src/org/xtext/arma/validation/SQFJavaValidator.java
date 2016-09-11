@@ -36,7 +36,8 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
     {
         populateValidCommands();
     }
-
+    
+    /*
     @Check
     public void checkGlobalVariableReference(GlobalVariableReference object)
     {
@@ -47,6 +48,7 @@ public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaV
             System.out.println("Error: " + error.getMessage());
         }
     }
+    */
     
     @Check
     public void checkLeftName(CommandLeft command) 

@@ -17,13 +17,6 @@
    </license>
 
    <plugin
-         id="org.xtext.arma.config.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.xtext.arma.config"
          download-size="0"
          install-size="0"
@@ -155,6 +148,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
    <plugin
          id="org.eclipse.xsd"
          download-size="0"
@@ -212,6 +206,13 @@
 
    <plugin
          id="org.eclipse.emf.mwe2.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xbase"
          download-size="0"
          install-size="0"
          version="0.0.0"

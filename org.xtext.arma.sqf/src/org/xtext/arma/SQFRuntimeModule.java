@@ -3,7 +3,7 @@
  */
 package org.xtext.arma;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
-import org.xtext.arma.scoping.NullGlobalScopeProvider;
+import org.xtext.arma.scoping.SqfGlobalScopeProvider;
 import org.xtext.arma.scoping.SQFJavaScopeProvider;
 
 /**
@@ -20,6 +20,6 @@ public class SQFRuntimeModule extends org.xtext.arma.AbstractSQFRuntimeModule
     @Override
     public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider()
     {
-        return NullGlobalScopeProvider.class;
+        return SqfGlobalScopeProvider.class;
     }
 }
