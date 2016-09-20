@@ -10,7 +10,7 @@ import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.xtext.arma.config.Model
+import org.arma.xtext.config.Model
 
 @RunWith(XtextRunner)
 @InjectWith(ConfigInjectorProvider)
