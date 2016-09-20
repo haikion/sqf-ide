@@ -1,2 +1,4 @@
 .metadata
 .project
+.recommenders
+*.xtendbin
