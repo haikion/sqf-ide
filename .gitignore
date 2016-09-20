@@ -1,5 +1,8 @@
 .metadata
 .project
 .recommenders
+.settings
 *.xtendbin
 *.xml_gen
+*.ecore
+*.genmodel
