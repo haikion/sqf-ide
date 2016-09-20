@@ -2,3 +2,4 @@
 .project
 .recommenders
 *.xtendbin
+*.xml_gen
