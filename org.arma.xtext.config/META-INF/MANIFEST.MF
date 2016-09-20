@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.xtext.arma.config
+Bundle-Name: org.arma.xtext.config
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.arma.xtext.config;singleton:=true
@@ -15,17 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.arma.generator,
- org.xtext.arma.services,
- org.xtext.arma.parser.antlr.internal,
- org.xtext.arma,
- org.xtext.arma.scoping,
- org.xtext.arma.config.util,
- org.xtext.arma.config,
- org.xtext.arma.config.impl,
- org.xtext.arma.serializer,
- org.xtext.arma.parser.antlr,
- org.xtext.arma.validation,
+Export-Package: org.arma.xtext.generator,
+ org.arma.xtext.services,
+ org.arma.xtext.parser.antlr.internal,
+ org.arma.xtext,
+ org.arma.xtext.scoping,
+ org.arma.xtext.config.util,
+ org.arma.xtext.config,
+ org.arma.xtext.config.impl,
+ org.arma.xtext.serializer,
+ org.arma.xtext.parser.antlr,
+ org.arma.xtext.validation,
  org.arma.xtext.serializer,
  org.arma.xtext.validation,
  org.arma.xtext.parser.antlr.internal,
