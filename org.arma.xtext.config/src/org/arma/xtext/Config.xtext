@@ -1,0 +1,46 @@
+grammar org.arma.xtext.Config hidden(WS, ML_COMMENT, SL_COMMENT) 
+
+generate config "http://www.xtext.org/arma/Config"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Model: {Model}
+	(lines+=LineOfCode ';')*
+;
+
+LineOfCode: CfgFunctions|Class|ParameterDefinition;
+
+Class:
+	{Class} ('class' name=UNRECOGNIZED_STRING '{'
+		model=Model
+	'}')
+;
+
+CfgFunctions:
+	'class' 'CfgFunctions' '{'
+		model=Model
+	'}'
+;
+
+ParameterDefinition:
+	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=String|INT))
+;
+
+String: 
+	name=STRING_TERMINAL
+;
+
+//terminal CFG_FUNCTIONS: "CfgFunctions";
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal ML_COMMENT	: '/*' -> '*/';
+terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
+terminal WS			: (' '|'\t'|'\r'|'\n')+;
+terminal DOUBLE_QUETO: '""';
+//terminal SINGLE_QUETO: '"';
+terminal STRING_TERMINAL	: 
+			'"' ( '\\' . | DOUBLE_QUETO | !('\\'|'"'))* '"' 
+			| "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;
+//Confusing name. Generally means a sequence of chars that can be: command, 
+//global variable or public variable. More specific checking is done at validation. 
+terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;

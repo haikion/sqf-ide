@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="Side" uid="side" id="org.arma.side.ui.side" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgsWin>-cssTheme org.eclipse.e4.ui.css.theme.e4_dark
+      </programArgsWin>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <launcher>
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="org.arma.side.ui.feature" version="1.0.0.qualifier"/>
+      <feature id="org.xtext.arma.config.feature" version="1.0.0.qualifier"/>
+      <feature id="org.xtext.sqf.feature" version="1.0.0.qualifier"/>
+   </features>
+
+
+   <preferencesInfo>
+      <targetfile overwrite="true" path="/org.arma.side.ui/plugin_customization.ini"/>
+   </preferencesInfo>
+
+</product>
