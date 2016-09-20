@@ -2,6 +2,7 @@
 .project
 .recommenders
 .settings
+.launch
 *.xtendbin
 *.xml_gen
 *.ecore
