@@ -1,7 +1,0 @@
-///'cba_common.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\common
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: 'D17AC4E1BE4107B778107F8281AAAFD146A2DA83'
-//////</HEADER>//////

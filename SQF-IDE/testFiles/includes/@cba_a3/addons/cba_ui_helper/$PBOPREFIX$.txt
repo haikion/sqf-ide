@@ -1,7 +1,0 @@
-///'cba_ui_helper.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\ui_helper
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: 'EB84B7C3AFFCE40EBE7AFD40AB1FBF3D4A4627B7'
-//////</HEADER>//////

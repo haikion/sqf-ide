@@ -1,7 +1,0 @@
-///'cba_events.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\events
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: 'E9871C217010D256645C1DF15F1094B7FA9A7DE2'
-//////</HEADER>//////

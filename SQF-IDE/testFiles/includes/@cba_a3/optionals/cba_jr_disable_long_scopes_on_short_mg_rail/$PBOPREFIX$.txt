@@ -1,7 +1,0 @@
-///'cba_jr_disable_long_scopes_on_short_mg_rail.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\jr_disable_long_scopes_on_short_mg_rail
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: 'C5AF91EB5D7A51DCBC29BEA02AE05C9897DA41F5'
-//////</HEADER>//////

@@ -1,7 +1,0 @@
-///'cba_keybinding.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\keybinding
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: '7625B399B210DFB038C50AFBE4CE9A5850AAFFAF'
-//////</HEADER>//////

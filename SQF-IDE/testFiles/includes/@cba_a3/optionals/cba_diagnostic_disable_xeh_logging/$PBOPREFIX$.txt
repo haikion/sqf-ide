@@ -1,7 +1,0 @@
-///'cba_diagnostic_disable_xeh_logging.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\diagnostic_disable_xeh_logging
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: '77A2DADD86196FCCC4CC6456120B54739B022FE5'
-//////</HEADER>//////

@@ -1,7 +1,0 @@
-///'cba_network.pbo' from Mikero's dos tools, dll version 5.52///
-prefix=x\cba\addons\network
-Mikero=DePbo.dll
-version=7b37670b
-Pbo Type is: Arma Addon
-Sha: '6949D8BCF879278DAD3EC9D03AEA7C29EDFD0397'
-//////</HEADER>//////
