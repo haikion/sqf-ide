@@ -30,8 +30,8 @@
 
    <features>
       <feature id="org.arma.side.ui.feature" version="1.0.0.qualifier"/>
-      <feature id="org.xtext.arma.config.feature" version="1.0.0.qualifier"/>
-      <feature id="org.xtext.sqf.feature" version="1.0.0.qualifier"/>
+      <feature id="org.arma.xtext.config.feature" version="1.0.0.qualifier"/>
+      <feature id="org.arma.xtext.sqf.feature" version="1.0.0.qualifier"/>
    </features>
 
 

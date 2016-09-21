@@ -161,12 +161,12 @@ public class XMLReader
     
     private static void readCoreXml()
     {
-        File sourceFile  = new File("..\\org.xtext.arma.sqf\\" + XML_FILE_PATH);
+        File sourceFile  = new File("..\\org.arma.xtext.sqf\\" + XML_FILE_PATH);
         //Installation path
         if (!sourceFile.isFile())
         {
         	System.out.println("Using installation path");
-        	URL url = FileLocator.find(Platform.getBundle("org.xtext.arma.sqf"), new Path(XML_FILE_PATH), null);
+        	URL url = FileLocator.find(Platform.getBundle("org.arma.xtext.sqf"), new Path(XML_FILE_PATH), null);
 			try {
 				String jarPath = FileLocator.resolve(url).getPath();
 	            sourceFile = new File(jarPath);

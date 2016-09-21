@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.xtext.sqf.feature"
+      id="org.arma.xtext.sqf.feature"
       label="Feature"
       version="1.0.0.qualifier">
 
@@ -186,7 +186,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.xtext.arma.sqf"
+         id="org.arma.xtext.sqf"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -384,7 +384,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.xtext.arma.sqf.ui"
+         id="org.arma.xtext.sqf.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

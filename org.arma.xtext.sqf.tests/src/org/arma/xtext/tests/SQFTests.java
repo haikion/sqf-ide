@@ -17,14 +17,14 @@ import org.eclipse.xtext.parser.antlr.TokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xtext.arma.sQF.Model;
-import org.xtext.arma.validation.SQFJavaValidator;
+import org.arma.xtext.sQF.Model;
+import org.arma.xtext.validation.SQFJavaValidator;
 
 //TODO: Move to XtextUtils?
 //import org.eclipselabs.xtext.utils.unittesting.XtextRunner2;
 
 @RunWith(XtextRunner.class)
-@InjectWith(org.xtext.arma.SQFInjectorProvider.class)
+@InjectWith(org.arma.xtext.SQFInjectorProvider.class)
 
 public class SQFTests extends AbstractXtextTests
 {

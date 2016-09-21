@@ -5,8 +5,8 @@ package org.arma.xtext.tests;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2;
 import org.eclipselabs.xtext.utils.unittesting.XtextTest;
-import org.xtext.arma.SQFInjectorProvider;
-import org.xtext.arma.sQF.Model;
+import org.arma.xtext.SQFInjectorProvider;
+import org.arma.xtext.sQF.Model;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

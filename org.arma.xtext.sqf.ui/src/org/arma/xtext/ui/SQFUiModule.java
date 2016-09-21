@@ -15,7 +15,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class SQFUiModule extends org.xtext.arma.ui.AbstractSQFUiModule 
+public class SQFUiModule extends org.arma.xtext.ui.AbstractSQFUiModule 
 {
 	public SQFUiModule(AbstractUIPlugin plugin) 
 	{

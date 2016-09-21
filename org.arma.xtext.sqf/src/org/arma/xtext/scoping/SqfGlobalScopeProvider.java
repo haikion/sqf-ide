@@ -1,7 +1,7 @@
 package org.arma.xtext.scoping;
 
 import org.eclipse.emf.ecore.EReference;
-import org.xtext.arma.sQF.GlobalVariableReference;
+import org.arma.xtext.sQF.GlobalVariableReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.common.types.xtext.TypesAwareDefaultGlobalScopeProvider;
 import org.eclipse.xtext.resource.IEObjectDescription;

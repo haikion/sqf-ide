@@ -3,7 +3,7 @@
  */
 package org.arma.xtext;
 
-import org.xtext.arma.SQFStandaloneSetupGenerated;
+import org.arma.xtext.SQFStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 

@@ -6,7 +6,7 @@ package org.arma.xtext.formatting;
 import com.google.inject.Inject;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
-import org.xtext.arma.services.SQFGrammarAccess;
+import org.arma.xtext.services.SQFGrammarAccess;
 
 /**
  * This class contains custom formatting declarations.

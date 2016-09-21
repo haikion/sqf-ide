@@ -15,17 +15,17 @@ import org.arma.xtext.XMLReader;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.xtext.validation.Check;
-import org.xtext.arma.sQF.CommandLeft;
-import org.xtext.arma.sQF.GlobalVariableReference;
-import org.xtext.arma.sQF.LineMiddle;
-import org.xtext.arma.sQF.SQFPackage;
+import org.arma.xtext.sQF.CommandLeft;
+import org.arma.xtext.sQF.GlobalVariableReference;
+import org.arma.xtext.sQF.LineMiddle;
+import org.arma.xtext.sQF.SQFPackage;
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-public class SQFJavaValidator extends org.xtext.arma.validation.AbstractSQFJavaValidator
+public class SQFJavaValidator extends org.arma.xtext.validation.AbstractSQFJavaValidator
 {
     HashSet<String> validMiddleCommands_ = new HashSet<String>();
     HashSet<String> validLeftCommands_ = new HashSet<String>();

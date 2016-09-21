@@ -35,8 +35,8 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.osgi.service.prefs.BackingStoreException;
-import org.xtext.arma.ui.contentassist.AbstractSQFProposalProvider;
-import org.xtext.arma.sQF.*;
+import org.arma.xtext.ui.contentassist.AbstractSQFProposalProvider;
+import org.arma.xtext.sQF.*;
 
 /**
  * See https:www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist

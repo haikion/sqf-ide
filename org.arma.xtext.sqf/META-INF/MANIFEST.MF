@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.xtext.arma.sqf
+Bundle-Name: org.arma.xtext.sqf
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.arma.xtext.sqf;singleton:=true
@@ -25,16 +25,16 @@ Export-Package: org.arma.xtext,
  org.arma.xtext.generator,
  org.arma.xtext.scoping,
  org.arma.xtext.validation,
- org.xtext.arma.parser.antlr,
- org.xtext.arma.parser.antlr.internal,
- org.xtext.arma.parser.antlr.lexer,
- org.xtext.arma.sQF,
- org.xtext.arma.sQF.impl,
- org.xtext.arma.sQF.util,
- org.xtext.arma.serializer,
- org.xtext.arma.services,
- org.xtext.arma,
- org.xtext.arma.validation,
- org.xtext.arma.scoping,
- org.xtext.arma.generator,
- org.xtext.arma.formatting
+ org.arma.xtext.parser.antlr,
+ org.arma.xtext.parser.antlr.internal,
+ org.arma.xtext.parser.antlr.lexer,
+ org.arma.xtext.sQF,
+ org.arma.xtext.sQF.impl,
+ org.arma.xtext.sQF.util,
+ org.arma.xtext.serializer,
+ org.arma.xtext.services,
+ org.arma.xtext,
+ org.arma.xtext.validation,
+ org.arma.xtext.scoping,
+ org.arma.xtext.generator,
+ org.arma.xtext.formatting

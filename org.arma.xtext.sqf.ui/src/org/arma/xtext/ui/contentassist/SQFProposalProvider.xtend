@@ -4,7 +4,7 @@
  */
 package org.arma.xtext.ui.contentassist
 
-import org.xtext.arma.ui.contentassist.AbstractSQFProposalProvider
+import org.arma.xtext.ui.contentassist.AbstractSQFProposalProvider
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
