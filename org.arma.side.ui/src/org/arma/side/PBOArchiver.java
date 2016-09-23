@@ -138,7 +138,7 @@ public class PBOArchiver
         factory.setNamespaceAware(true);
         try 
         {
-        	URL url = FileLocator.find(Platform.getBundle("SQF-IDE"), new Path(executable), null);
+        	URL url = FileLocator.find(Platform.getBundle("org.arma.side.ui"), new Path(executable), null);
             String path = FileLocator.resolve(url).getPath();
             pathCache_.put(executable, path);
             System.out.println("Returning " + path);
