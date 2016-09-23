@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.arma.xtext.sQF.LocalVariableReference;
+import org.arma.xtext.sqf.LocalVariableReference;
 
 /**
  * This class contains custom scoping description.

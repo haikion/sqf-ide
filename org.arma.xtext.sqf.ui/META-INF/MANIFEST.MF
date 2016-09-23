@@ -13,7 +13,6 @@ Require-Bundle: org.arma.xtext.sqf;visibility:=reexport,
  org.eclipse.ui,
  org.eclipse.xtext.builder,
  org.eclipse.xtext.xbase.lib,
- org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
  org.antlr.runtime,
@@ -27,9 +26,7 @@ Export-Package: org.arma.xtext.ui.contentassist,
  org.arma.xtext.ui.quickfix,
  org.arma.xtext.ui.contentassist.antlr,
  org.arma.xtext.ui.contentassist.antlr.internal,
- org.arma.xtext.ui.internal,
- org.arma.xtext.ui.quickfix,
- org.arma.xtext.ui.contentassist
+ org.arma.xtext.ui.internal
 Bundle-Activator: org.arma.xtext.ui.internal.SQFActivator
 Bundle-ClassPath: .,lib/commons-collections4-4.1-javadoc.jar,lib/commons-collections4-4.1.jar
 Import-Package: org.apache.log4j;version="1.2.15"

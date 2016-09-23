@@ -8,10 +8,10 @@ package org.arma.xtext.ui;
 import org.arma.xtext.XMLReader;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
-import org.arma.xtext.sQF.CommandLeft;
-import org.arma.xtext.sQF.CommandParameterless;
-import org.arma.xtext.sQF.GlobalFunction;
-import org.arma.xtext.sQF.LineMiddle;
+import org.arma.xtext.sqf.CommandLeft;
+import org.arma.xtext.sqf.CommandParameterless;
+import org.arma.xtext.sqf.GlobalFunction;
+import org.arma.xtext.sqf.LineMiddle;
 
 public class SQFEObjectDocumentationProvider implements IEObjectDocumentationProvider
 {

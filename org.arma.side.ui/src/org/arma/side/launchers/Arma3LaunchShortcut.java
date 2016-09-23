@@ -10,33 +10,18 @@
  *******************************************************************************/
 package org.arma.side.launchers;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.arma.side.Activator;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.ILaunchShortcut;
-import org.eclipse.debug.ui.ILaunchShortcut2;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -79,23 +64,9 @@ public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implem
      */
     protected ILaunchConfigurationType getConfigurationType() {
         ILaunchManager lm = DebugPlugin.getDefault().getLaunchManager();
-        return lm.getLaunchConfigurationType(IJavaLaunchConfigurationConstants.ID_JAVA_APPLET);     
+        return lm.getLaunchConfigurationType("org.eclipse.jdt.launching.javaApplet");     
     }
     
-    /*
-    /* (non-Javadoc)
-     * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#findTypes(java.lang.Object[], org.eclipse.jface.operation.IRunnableContext)
-     */
-    /*
-    protected IType[] findTypes(Object[] elements, IRunnableContext context) 
-            throws InterruptedException, CoreException {
-        try {
-            return AppletLaunchConfigurationUtils.findApplets(context, elements);
-        } catch (InvocationTargetException e) {
-            throw (CoreException)e.getTargetException();
-        }
-    }   
-    */
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#getTypeSelectionTitle()
      */

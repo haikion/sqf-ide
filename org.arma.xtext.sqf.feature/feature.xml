@@ -123,13 +123,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.e4.core.services"
          download-size="0"
          install-size="0"
@@ -229,13 +222,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.xtext.common.types.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.core.expressions"
          download-size="0"
          install-size="0"
@@ -301,13 +287,6 @@
 
    <plugin
          id="org.eclipse.e4.core.contexts"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.core.manipulation"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -419,14 +398,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.compiler.tool"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="com.ibm.icu"
          download-size="0"
          install-size="0"
@@ -526,13 +497,6 @@
 
    <plugin
          id="org.eclipse.equinox.p2.metadata.repository"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.launching"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -750,12 +714,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.jdt.debug"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.eclipse.core.contenttype"
          download-size="0"
          install-size="0"
@@ -791,13 +749,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.xtext.common.types"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.debug.core"
          download-size="0"
          install-size="0"
@@ -806,21 +757,6 @@
 
    <plugin
          id="org.eclipse.jface.databinding"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.compiler.apt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

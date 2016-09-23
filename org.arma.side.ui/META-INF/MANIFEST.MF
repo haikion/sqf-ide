@@ -13,9 +13,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.debug.core,
  org.eclipse.debug.ui,
  org.eclipse.jdt.core,
- org.eclipse.jdt.launching,
  org.eclipse.core.expressions,
- org.eclipse.equinox.registry
+ org.eclipse.equinox.registry,
+ org.eclipse.core.variables
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/commons-io-2.4-javadoc.jar,

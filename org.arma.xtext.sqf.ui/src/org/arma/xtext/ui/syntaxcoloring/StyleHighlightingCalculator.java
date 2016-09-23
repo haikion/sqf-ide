@@ -6,8 +6,8 @@ import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculat
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
-import org.arma.xtext.sQF.CommandLeft;
-import org.arma.xtext.sQF.LineMiddle;
+import org.arma.xtext.sqf.CommandLeft;
+import org.arma.xtext.sqf.LineMiddle;
 
 public class StyleHighlightingCalculator
         implements ISemanticHighlightingCalculator

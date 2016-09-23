@@ -12,13 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.arma.xtext.XMLReader;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.xtext.validation.Check;
-import org.arma.xtext.sQF.CommandLeft;
-import org.arma.xtext.sQF.GlobalVariableReference;
-import org.arma.xtext.sQF.LineMiddle;
-import org.arma.xtext.sQF.SQFPackage;
+import org.arma.xtext.sqf.CommandLeft;
+import org.arma.xtext.sqf.LineMiddle;
+import org.arma.xtext.sqf.SqfPackage;;
 
 /**
  * This class contains custom validation rules. 
@@ -56,7 +53,7 @@ public class SQFJavaValidator extends org.arma.xtext.validation.AbstractSQFJavaV
         if (!validLeftCommands_.contains(command.getName().toUpperCase())) 
         {
             error("Invalid left command.", 
-                    SQFPackage.Literals.COMMAND_LEFT__NAME);
+                    SqfPackage.Literals.COMMAND_LEFT__NAME);
         }
     }
     
@@ -66,7 +63,7 @@ public class SQFJavaValidator extends org.arma.xtext.validation.AbstractSQFJavaV
         if (!validMiddleCommands_.contains(line.getName().toUpperCase())) 
         {
             error("Invalid middle command.",
-                    SQFPackage.Literals.LINE_MIDDLE__NAME);
+            		SqfPackage.Literals.LINE_MIDDLE__NAME);
         }
     }
     

@@ -14,21 +14,13 @@ import org.apache.commons.collections4.trie.PatriciaTrie;
 import org.arma.xtext.XMLReader;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Preferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.GlobalBuildAction;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -36,7 +28,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.osgi.service.prefs.BackingStoreException;
 import org.arma.xtext.ui.contentassist.AbstractSQFProposalProvider;
-import org.arma.xtext.sQF.*;
+import org.arma.xtext.sqf.*;
 
 /**
  * See https:www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist

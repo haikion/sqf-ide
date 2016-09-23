@@ -17,7 +17,7 @@ import org.eclipse.xtext.parser.antlr.TokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.arma.xtext.sQF.Model;
+import org.arma.xtext.sqf.Model;
 import org.arma.xtext.validation.SQFJavaValidator;
 
 //TODO: Move to XtextUtils?
