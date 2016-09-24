@@ -22,8 +22,16 @@ CfgFunctions:
 	'}'
 ;
 
+intV:
+	INT
+;
+
+floatV:
+	FLOAT
+;
+
 ParameterDefinition:
-	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=String|INT))
+	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=String|intV|floatV))
 ;
 
 String: 
@@ -31,7 +39,9 @@ String:
 ;
 
 //terminal CFG_FUNCTIONS: "CfgFunctions";
-terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal FLOAT: INT '.' UNSIGNED;
+terminal INT: '-'? UNSIGNED;
+terminal UNSIGNED: ('0'..'9')+;
 terminal ML_COMMENT	: '/*' -> '*/';
 terminal SL_COMMENT 	: '//' !('\n'|'\r')* ('\r'? '\n')?;
 terminal WS			: (' '|'\t'|'\r'|'\n')+;

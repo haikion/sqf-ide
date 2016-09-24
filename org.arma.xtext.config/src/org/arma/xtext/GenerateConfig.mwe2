@@ -15,6 +15,12 @@ Workflow {
 				runtimeTest = {
 					enabled = true
 				}
+				eclipsePlugin = {
+					enabled = true
+				}
+				eclipsePluginTest = {
+					enabled = true
+				}
 				createEclipseMetaData = true
 			}
 			code = {
@@ -24,7 +30,7 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "org.arma.xtext.Config"
-			fileExtensions = "ext, hpp, h, cpp"
+			fileExtensions = "cpp,ext,hpp,h,sqm"
 
 			serializer = {
 				generateStub = false
