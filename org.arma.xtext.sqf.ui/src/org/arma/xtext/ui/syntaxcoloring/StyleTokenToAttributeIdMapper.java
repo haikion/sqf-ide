@@ -57,6 +57,10 @@ public class StyleTokenToAttributeIdMapper extends DefaultAntlrTokenToAttributeI
         {
             return DefaultHighlightingConfiguration.COMMENT_ID;
         }
+        else if ("RULE_COMMAND_MIDDLE_SPECIAL".equals(tokenName))
+        {
+        	return DefaultHighlightingConfiguration.KEYWORD_ID;
+        }
         return super.calculateId(tokenName, tokenType);
     }
 
