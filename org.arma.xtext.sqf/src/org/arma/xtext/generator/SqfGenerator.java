@@ -12,7 +12,7 @@ import org.eclipse.xtext.generator.IGenerator;
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
-public class SQFGenerator implements IGenerator {
+public class SqfGenerator implements IGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
   }

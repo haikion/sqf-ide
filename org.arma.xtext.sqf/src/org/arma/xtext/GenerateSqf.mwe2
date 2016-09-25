@@ -1,11 +1,11 @@
-module org.arma.xtext.GenerateSQF
+module org.arma.xtext.GenerateSqf
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/arma/xtext/SQF.xtext"
-var fileExtensions = "sqf,sqf2"
+var grammarURI = "classpath:/org/arma/xtext/sqf.xtext"
+var fileExtensions = "sqf"
 var projectName = "org.arma.xtext.sqf"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = false

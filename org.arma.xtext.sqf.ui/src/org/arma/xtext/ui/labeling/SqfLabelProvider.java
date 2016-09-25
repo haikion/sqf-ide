@@ -10,10 +10,10 @@ import com.google.inject.Inject;
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-public class SQFLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
+public class SqfLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
 
 	@Inject
-	public SQFLabelProvider(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
+	public SqfLabelProvider(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 

@@ -27,14 +27,14 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.osgi.service.prefs.BackingStoreException;
-import org.arma.xtext.ui.contentassist.AbstractSQFProposalProvider;
+import org.arma.xtext.ui.contentassist.AbstractSqfProposalProvider;
 import org.arma.xtext.sqf.*;
 
 /**
  * See https:www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
-public class SQFJavaProposalProvider extends AbstractSQFProposalProvider 
+public class SqfJavaProposalProvider extends AbstractSqfProposalProvider 
 {
 	private final static String PREF_CONST = "functions";
 	private final static String CUSTOM_FUNCTIONS_PATH = "/includes/customFunctions.xml";
@@ -43,10 +43,10 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
     private PatriciaTrie<String> lefts_;
     private PatriciaTrie<String> functions_;
     
-    SQFJavaProposalProvider()
+    SqfJavaProposalProvider()
     {
         super();
-        System.out.println("SQFJavaProposalProvider: Constructing SQFProposalProvider.");
+        System.out.println("SqfJavaProposalProvider: Constructing SqfProposalProvider.");
         lefts_ = setListToTrie(XMLReader.getCommandLefts());
         middles_ = setListToTrie(XMLReader.getCommandMiddles());
         functions_ = setListToTrie(XMLReader.getFunctions());
@@ -103,7 +103,7 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
     {
         IProject project = getCurrentProject();
     	
-    	System.out.println("SQFJavaProposalProvider: Proposing global function. "
+    	System.out.println("SqfJavaProposalProvider: Proposing global function. "
                 + "Model class = " + model.getClass().getName() + " project=" + project.getFullPath());
         if (!(model instanceof LineMiddle))
         {
@@ -121,7 +121,7 @@ public class SQFJavaProposalProvider extends AbstractSQFProposalProvider
     public void completeLineMiddle_Name(EObject model, Assignment assignment, ContentAssistContext context, 
             ICompletionProposalAcceptor acceptor)
     {        
-        System.out.println("SQFJavaProposalProvider: Proposing line middle... "
+        System.out.println("SqfJavaProposalProvider: Proposing line middle... "
                 + "Model class = " + model.getClass().getName());
         if (!(model instanceof AssignableLineOfCode))
         {

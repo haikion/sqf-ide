@@ -15,9 +15,9 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class SQFUiModule extends org.arma.xtext.ui.AbstractSQFUiModule 
+public class SqfUiModule extends org.arma.xtext.ui.AbstractSqfUiModule 
 {
-	public SQFUiModule(AbstractUIPlugin plugin) 
+	public SqfUiModule(AbstractUIPlugin plugin) 
 	{
 		super(plugin);
 	}
@@ -41,11 +41,11 @@ public class SQFUiModule extends org.arma.xtext.ui.AbstractSQFUiModule
     @Override
 	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider> bindIContentProposalProvider()
     {
-        return org.arma.xtext.ui.contentassist.SQFJavaProposalProvider.class;
+        return org.arma.xtext.ui.contentassist.SqfJavaProposalProvider.class;
     }
 
     public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider()
     {
-        return org.arma.xtext.ui.SQFEObjectDocumentationProvider.class;
+        return org.arma.xtext.ui.SqfEObjectDocumentationProvider.class;
     }
 }

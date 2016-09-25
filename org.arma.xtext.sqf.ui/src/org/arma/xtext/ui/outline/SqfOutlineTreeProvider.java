@@ -8,6 +8,6 @@ package org.arma.xtext.ui.outline;
  *
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
-public class SQFOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
+public class SqfOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
 	
 }

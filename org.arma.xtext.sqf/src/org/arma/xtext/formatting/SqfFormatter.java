@@ -6,7 +6,7 @@ package org.arma.xtext.formatting;
 import com.google.inject.Inject;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
-import org.arma.xtext.services.SQFGrammarAccess;
+import org.arma.xtext.services.SqfGrammarAccess;
 
 /**
  * This class contains custom formatting declarations.
@@ -16,10 +16,10 @@ import org.arma.xtext.services.SQFGrammarAccess;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class SQFFormatter extends AbstractDeclarativeFormatter {
+public class SqfFormatter extends AbstractDeclarativeFormatter {
 	
 	@Inject
-	private SQFGrammarAccess grammarAccess; 
+	private SqfGrammarAccess grammarAccess; 
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {

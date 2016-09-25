@@ -18,7 +18,7 @@ import org.arma.xtext.sqf.LocalVariableReference;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
  * on how and when to use it.
  */
-public class SQFJavaScopeProvider extends AbstractDeclarativeScopeProvider
+public class SqfJavaScopeProvider extends AbstractDeclarativeScopeProvider
 {
     public IScope scope_LocalVariableReference_name(final LocalVariableReference ref, 
             final EReference eReference) 

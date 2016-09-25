@@ -13,7 +13,7 @@ import org.arma.xtext.sqf.CommandParameterless;
 import org.arma.xtext.sqf.GlobalFunction;
 import org.arma.xtext.sqf.LineMiddle;
 
-public class SQFEObjectDocumentationProvider implements IEObjectDocumentationProvider
+public class SqfEObjectDocumentationProvider implements IEObjectDocumentationProvider
 {
     @Override
     public String getDocumentation(EObject o)

@@ -6,3 +6,4 @@
 *.xml_gen
 *.ecore
 *.genmodel
+*.class

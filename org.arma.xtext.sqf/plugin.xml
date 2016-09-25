@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.xtext.org/arma/SQF" 
-       class = "org.arma.xtext.sqf.SQFPackage"
-       genModel = "model/generated/SQF.genmodel" /> 
+       uri = "http://www.xtext.org/arma/sqf" 
+       class = "org.arma.xtext.sqf.SqfPackage"
+       genModel = "model/generated/Sqf.genmodel" /> 
 	
   </extension>
 

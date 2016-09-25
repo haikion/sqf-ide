@@ -8,7 +8,7 @@ package org.arma.xtext.ui.labeling;
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-public class SQFDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider {
+public class SqfDescriptionLabelProvider extends org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider {
 
 	// Labels and icons can be computed like this:
 	

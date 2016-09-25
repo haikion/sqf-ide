@@ -3,17 +3,17 @@
  */
 package org.arma.xtext;
 
-import org.arma.xtext.SQFStandaloneSetupGenerated;
+import org.arma.xtext.SqfStandaloneSetupGenerated;
 
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
-public class SQFStandaloneSetup extends SQFStandaloneSetupGenerated 
+public class SqfStandaloneSetup extends SqfStandaloneSetupGenerated 
 {
 
     public static void doSetup() {
-    	new SQFStandaloneSetup().createInjectorAndDoEMFRegistration();
+    	new SqfStandaloneSetup().createInjectorAndDoEMFRegistration();
     }
 }
 

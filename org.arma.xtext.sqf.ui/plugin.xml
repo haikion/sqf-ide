@@ -6,48 +6,48 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="sqf"
-            id="org.arma.xtext.SQF"
+            id="org.arma.xtext.sqf"
             name="SQF Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="org.arma.xtext.SQF.Editor.opened">
+                    definitionId="org.arma.xtext.sqf.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.arma.xtext.SQF.validate">
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="org.arma.xtext.sqf.validate">
          <activeWhen>
             <reference
-                    definitionId="org.arma.xtext.SQF.Editor.opened">
+                    definitionId="org.arma.xtext.sqf.Editor.opened">
             </reference>
          </activeWhen>
       	</handler>
       	<!-- copy qualified name -->
         <handler
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
             <activeWhen>
-				<reference definitionId="org.arma.xtext.SQF.Editor.opened" />
+				<reference definitionId="org.arma.xtext.sqf.Editor.opened" />
             </activeWhen>
         </handler>
         <handler
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
             	<and>
-            		<reference definitionId="org.arma.xtext.SQF.XtextEditor.opened" />
+            		<reference definitionId="org.arma.xtext.sqf.XtextEditor.opened" />
 	                <iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -56,7 +56,7 @@
         </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.arma.xtext.SQF.Editor.opened">
+        <definition id="org.arma.xtext.sqf.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
@@ -66,7 +66,7 @@
                 </with>        
             </and>
         </definition>
-        <definition id="org.arma.xtext.SQF.XtextEditor.opened">
+        <definition id="org.arma.xtext.sqf.XtextEditor.opened">
             <and>
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
@@ -80,22 +80,22 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.arma.xtext.SQF"
             name="SQF">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
         <page
             category="org.arma.xtext.SQF"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.arma.xtext.SQF.coloring"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="org.arma.xtext.sqf.coloring"
             name="Syntax Coloring">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
         <page
             category="org.arma.xtext.SQF"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.arma.xtext.SQF.templates"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="org.arma.xtext.sqf.templates"
             name="Templates">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
@@ -103,7 +103,7 @@
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.arma.xtext.SQF"
             name="SQF">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
@@ -123,7 +123,7 @@
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="org.arma.xtext.SQF.validate"
+            id="org.arma.xtext.sqf.validate"
             name="Validate">
       </command>
       <!-- copy qualified name -->
@@ -144,12 +144,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="org.arma.xtext.SQF.validate"
+                 commandId="org.arma.xtext.sqf.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="org.arma.xtext.SQF.Editor.opened">
+                    definitionId="org.arma.xtext.sqf.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -159,7 +159,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
          		style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.arma.xtext.SQF.Editor.opened" />
+                	<reference definitionId="org.arma.xtext.sqf.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -167,7 +167,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
             	style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.arma.xtext.SQF.Editor.opened" />
+                	<reference definitionId="org.arma.xtext.sqf.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -176,7 +176,7 @@
 				style="push" tooltip="Copy Qualified Name">
          		<visibleWhen checkEnabled="false">
 	            	<and>
-	            		<reference definitionId="org.arma.xtext.SQF.XtextEditor.opened" />
+	            		<reference definitionId="org.arma.xtext.sqf.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -189,7 +189,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.arma.xtext.SQF.Editor.opened">
+                	<reference definitionId="org.arma.xtext.sqf.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -197,11 +197,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="org.arma.xtext.SQF.Editor.opened">
+                    definitionId="org.arma.xtext.sqf.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -212,13 +212,13 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.resource.IResourceFactory"
 			type="sqf">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="sqf">
         </resourceServiceProvider>
     </extension>
@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.builder.IXtextBuilderParticipant"
             fileExtensions="sqf"
             >
       </participant>
@@ -259,8 +259,8 @@
             point="org.eclipse.ui.preferencePages">
         <page
             category="org.arma.xtext.SQF"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.arma.xtext.SQF.compiler.preferencePage"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.arma.xtext.sqf.compiler.preferencePage"
             name="Compiler">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
@@ -269,8 +269,8 @@
             point="org.eclipse.ui.propertyPages">
         <page
             category="org.arma.xtext.SQF"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="org.arma.xtext.SQF.compiler.propertyPage"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="org.arma.xtext.sqf.compiler.propertyPage"
             name="Compiler">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
             <enabledWhen>
@@ -283,20 +283,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.arma.xtext.SQF.OpenGeneratedCode"
+				id="org.arma.xtext.sqf.OpenGeneratedCode"
 				style="push">
 					<visibleWhen checkEnabled="false">
-						<reference definitionId="org.arma.xtext.SQF.Editor.opened" />
+						<reference definitionId="org.arma.xtext.sqf.Editor.opened" />
 					</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 				<activeWhen>
-					<reference definitionId="org.arma.xtext.SQF.Editor.opened" />
+					<reference definitionId="org.arma.xtext.sqf.Editor.opened" />
 				</activeWhen>
 		</handler>
 	</extension>
@@ -305,11 +305,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.arma.xtext.SQF.Editor.opened">
+					definitionId="org.arma.xtext.sqf.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -329,7 +329,7 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.arma.xtext.SQF.Editor.opened"/>
+					<reference definitionId="org.arma.xtext.sqf.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -338,7 +338,7 @@
     <extension
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
             markerType="org.arma.xtext.ui.sqf.check.fast">
             <attribute
                 name="FIXABLE_KEY"
@@ -346,7 +346,7 @@
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
             markerType="org.arma.xtext.ui.sqf.check.normal">
             <attribute
                 name="FIXABLE_KEY"
@@ -354,7 +354,7 @@
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
             markerType="org.arma.xtext.ui.sqf.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
@@ -365,11 +365,11 @@
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.arma.xtext.SQF.Editor.opened">
+					definitionId="org.arma.xtext.sqf.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -381,7 +381,7 @@
                style="push">
             <visibleWhen checkEnabled="false">
                <reference
-                     definitionId="org.arma.xtext.SQF.Editor.opened">
+                     definitionId="org.arma.xtext.sqf.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -390,28 +390,28 @@
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
 	        category="org.arma.xtext.SQF"
-	        class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="org.arma.xtext.SQF.refactoring"
+	        class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="org.arma.xtext.sqf.refactoring"
 	        name="Refactoring">
 	        <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
 	    </page>
 	</extension>
 
   <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="org.arma.xtext.SQF.compare.contentViewers"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.arma.xtext.sqf.compare.contentViewers"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="sqf">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="org.arma.xtext.SQF.compare.contentMergeViewers"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="org.arma.xtext.sqf.compare.contentMergeViewers"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="sqf" label="SQF Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="org.arma.xtext.SQF.editors.documentProviders"
-            class="org.arma.xtext.ui.SQFExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+    <provider id="org.arma.xtext.sqf.editors.documentProviders"
+            class="org.arma.xtext.ui.SqfExecutableExtensionFactory.:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="sqf">
     </provider>
   </extension>

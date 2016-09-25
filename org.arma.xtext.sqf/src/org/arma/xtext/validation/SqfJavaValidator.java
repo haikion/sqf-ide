@@ -22,14 +22,14 @@ import org.arma.xtext.sqf.SqfPackage;;
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-public class SQFJavaValidator extends org.arma.xtext.validation.AbstractSQFJavaValidator
+public class SqfJavaValidator extends org.arma.xtext.validation.AbstractSqfJavaValidator
 {
     HashSet<String> validMiddleCommands_ = new HashSet<String>();
     HashSet<String> validLeftCommands_ = new HashSet<String>();
     HashSet<String> validParentlessCommands_ = new HashSet<String>();
 
     
-    SQFJavaValidator() 
+    SqfJavaValidator() 
     {
         populateValidCommands();
     }
