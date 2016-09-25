@@ -5,12 +5,12 @@ package org.arma.xtext.tests;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipselabs.xtext.utils.unittesting.XtextRunner2;
 import org.eclipselabs.xtext.utils.unittesting.XtextTest;
-import org.arma.xtext.SQFInjectorProvider;
+import org.arma.xtext.SqfInjectorProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(XtextRunner2.class)
-@InjectWith(SQFInjectorProvider.class)
+@InjectWith(SqfInjectorProvider.class)
 public class XtextUtilsTests extends XtextTest
 {
     public XtextUtilsTests()
@@ -100,6 +100,12 @@ public class XtextUtilsTests extends XtextTest
     public void execVM()
     {
         testParserRule("[] execVM \"A3L_Stuff\\jailsystem.sqf\"", "LineOfCode");
+    }
+    
+    @Test
+    public void leftCommandGlobalVarMiddleCmd()
+    {
+    	testParserRule("GLOBAL_VAR hint test_fnc_ok", "LineOfCode");
     }
     
     @Test

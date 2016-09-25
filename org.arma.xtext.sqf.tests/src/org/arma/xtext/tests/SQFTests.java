@@ -18,19 +18,19 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.arma.xtext.sqf.Model;
-import org.arma.xtext.validation.SQFJavaValidator;
+import org.arma.xtext.validation.SqfJavaValidator;
 
 //TODO: Move to XtextUtils?
 //import org.eclipselabs.xtext.utils.unittesting.XtextRunner2;
 
 @RunWith(XtextRunner.class)
-@InjectWith(org.arma.xtext.SQFInjectorProvider.class)
+@InjectWith(org.arma.xtext.SqfInjectorProvider.class)
 
 public class SQFTests extends AbstractXtextTests
 {
 
     @Inject
-    SQFJavaValidator validator;
+    SqfJavaValidator validator;
     
     @Inject
     Injector injector;
@@ -38,7 +38,7 @@ public class SQFTests extends AbstractXtextTests
     @Inject
     ParseHelper<Model> parser_;
     
-    private ValidatorTester<SQFJavaValidator> tester;
+    private ValidatorTester<SqfJavaValidator> tester;
     private Lexer lexer_;
     private TokenDefProvider tokenDefProvider_;
     
@@ -46,7 +46,7 @@ public class SQFTests extends AbstractXtextTests
     public void setUp() throws Exception
     {
         super.setUp();
-        tester = new ValidatorTester<SQFJavaValidator>(validator, injector);
+        tester = new ValidatorTester<SqfJavaValidator>(validator, injector);
     }
 
     /**
