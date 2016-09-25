@@ -14,14 +14,10 @@ import java.io.File;
 import org.arma.side.Activator;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
-import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.ILaunchShortcut;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -37,28 +33,6 @@ import org.eclipse.ui.IEditorPart;
  */
 public class Arma3LaunchShortcut extends Arma3LaunchConfigurationDelegate implements ILaunchShortcut  
 {
-    
-    /*
-    /* (non-Javadoc)
-     * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#createConfiguration(org.eclipse.jdt.core.IType)
-     */
-    
-    protected ILaunchConfiguration createConfiguration(IType type) {
-        ILaunchConfiguration config = null;
-        ILaunchConfigurationType configType = getConfigurationType();
-        try
-        {
-            ILaunchConfigurationWorkingCopy wc = configType.newInstance(null, 
-                    DebugPlugin.getDefault().getLaunchManager().generateUniqueLaunchConfigurationNameFrom(
-                            type.getElementName()));
-            config = wc.doSave();
-        } catch (CoreException e)
-        {
-            e.printStackTrace();
-        }
-        return config;
-    }
-    
     /* (non-Javadoc)
      * @see org.eclipse.jdt.debug.ui.launchConfigurations.JavaLaunchShortcut#getConfigurationType()
      */

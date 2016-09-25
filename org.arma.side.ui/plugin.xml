@@ -261,6 +261,10 @@
                name="appName"
                value="Side">
          </property>
+         <property
+               name="preferenceCustomization"
+               value="platform:/plugin/org.arma.side.ui/plugin_customization.ini">
+         </property>
       </product>
    </extension>
 </plugin>
