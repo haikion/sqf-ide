@@ -8,7 +8,7 @@ Model: {Model}
 	(lines+=LineOfCode ';')*
 ;
 
-LineOfCode: CfgFunctions|Class|ParameterDefinition;
+LineOfCode: CfgFunctions|Class|ParameterDefinition|ArrayDefinition;
 
 Class:
 	{Class} ('class' name=UNRECOGNIZED_STRING '{'
@@ -22,16 +22,29 @@ CfgFunctions:
 	'}'
 ;
 
-intV:
+IntV:
 	INT
 ;
 
-floatV:
+FloatV:
 	FLOAT
 ;
 
+NonArray:
+	value=(IntV|FloatV)|name=String
+;
+
+//pos[]={7250.9863,32.882957,7876.2173};
+Array:
+	{Array} '{'(member += NonArray (',' member += NonArray)*)?'}'
+;
+
 ParameterDefinition:
-	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=String|intV|floatV))
+	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=NonArray))
+;
+
+ArrayDefinition:
+	name=ARRAY_NAME '=' value=Array
 ;
 
 String: 
@@ -39,7 +52,8 @@ String:
 ;
 
 //terminal CFG_FUNCTIONS: "CfgFunctions";
-terminal FLOAT: INT '.' UNSIGNED;
+
+terminal FLOAT: INT '.' UNSIGNED ('e' ('+'|'-') UNSIGNED)?;
 terminal INT: '-'? UNSIGNED;
 terminal UNSIGNED: ('0'..'9')+;
 terminal ML_COMMENT	: '/*' -> '*/';
@@ -54,3 +68,4 @@ terminal STRING_TERMINAL	:
 //Confusing name. Generally means a sequence of chars that can be: command, 
 //global variable or public variable. More specific checking is done at validation. 
 terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
+terminal ARRAY_NAME: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'[]';

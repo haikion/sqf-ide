@@ -175,6 +175,7 @@ terminal LOCAL_VARIABLE : '_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+;
 //Non character cases of command middle
 terminal COMMAND_MIDDLE_SPECIAL: '>>'|'=='|'!='|'<'|'>'|'>='|'<='|'+'|'-'
 	|'*'|'/'|'^'|'||'|'&&'|'%'
+	|'call' //Solves the problem with global variable reference being identified as a left command...
 ;
 //Non character cases of command left
 terminal COMMAND_LEFT_SPECIAL: '!';
