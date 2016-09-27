@@ -76,4 +76,34 @@ public class XtextUtilsTests extends XtextTest
     {
     	testTerminal("8.4581253e+034", "FLOAT");
     }
+    
+    @Test
+    public void include()
+    {
+    	testParserRule("#include \"include\\defines.hpp\"", "Include");
+    }
+    
+    @Test
+    public void hex()
+    {
+    	testTerminal("0x20", "HEX");
+    }
+    
+    @Test
+    public void unrecstr()
+    {
+    	testTerminal("x", "UNRECOGNIZED_STRING");
+    }
+    
+    @Test
+    public void gameVar()
+    {
+    	testParserRule("coop", "GameVar");
+    }
+    
+    @Test
+    public void gameVarCapital()
+    {
+    	testParserRule("Coop", "GameVar");
+    }
 }

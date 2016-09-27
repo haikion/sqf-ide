@@ -25,5 +25,6 @@ Export-Package: org.arma.xtext.serializer,
  org.arma.xtext.services,
  org.arma.xtext.config.impl,
  org.arma.xtext,
- org.arma.xtext.config
+ org.arma.xtext.config,
+ org.arma.xtext.parser.antlr.lexer
 Import-Package: org.apache.log4j

@@ -5,13 +5,13 @@ generate config "http://www.xtext.org/arma/Config"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Model: {Model}
-	(lines+=LineOfCode ';')*
+	lines+=(LineOfCode|Include|Define)*
 ;
 
-LineOfCode: CfgFunctions|Class|ParameterDefinition|ArrayDefinition;
+LineOfCode: name=(CfgFunctions|ParameterDefinition|Class|ArrayDefinition) ';';
 
-Class:
-	{Class} ('class' name=UNRECOGNIZED_STRING '{'
+Class returns Variable :
+	{Class} ('class' name=ID '{'
 		model=Model
 	'}')
 ;
@@ -30,8 +30,16 @@ FloatV:
 	FLOAT
 ;
 
+HexV:
+	HEX
+;
+
+GameVar:
+	'false'|'Coop'
+;
+
 NonArray:
-	value=(IntV|FloatV)|name=String
+	value=(IntV|FloatV|HexV|GameVar)|(String|Reference)
 ;
 
 //pos[]={7250.9863,32.882957,7876.2173};
@@ -39,8 +47,8 @@ Array:
 	{Array} '{'(member += NonArray (',' member += NonArray)*)?'}'
 ;
 
-ParameterDefinition:
-	{Parameter} ( name=UNRECOGNIZED_STRING '=' (value=NonArray))
+ParameterDefinition returns Variable:
+	 name=ID '=' val=(NonArray)
 ;
 
 ArrayDefinition:
@@ -51,8 +59,29 @@ String:
 	name=STRING_TERMINAL
 ;
 
+Include:
+	'#include' importURI=String
+;
+
+Define returns Variable:
+	'#define' name=ID value=(Array|NonArray)
+;
+
+Reference:
+	definiton=[Variable]
+;
+/*
+DefineReference:
+	definition=[Define|UNRECOGNIZED_STRING]
+;
+
+ClassReference:
+	definition2=[Class|UNRECOGNIZED_STRING]
+;
+*/
 //terminal CFG_FUNCTIONS: "CfgFunctions";
 
+terminal HEX: '0x' UNSIGNED;
 terminal FLOAT: INT '.' UNSIGNED ('e' ('+'|'-') UNSIGNED)?;
 terminal INT: '-'? UNSIGNED;
 terminal UNSIGNED: ('0'..'9')+;
@@ -67,5 +96,5 @@ terminal STRING_TERMINAL	:
 		;
 //Confusing name. Generally means a sequence of chars that can be: command, 
 //global variable or public variable. More specific checking is done at validation. 
-terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
+terminal ID: ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
 terminal ARRAY_NAME: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+'[]';
