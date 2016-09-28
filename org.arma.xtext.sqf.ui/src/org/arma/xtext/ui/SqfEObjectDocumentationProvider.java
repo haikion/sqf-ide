@@ -21,7 +21,7 @@ public class SqfEObjectDocumentationProvider implements IEObjectDocumentationPro
         String command = "";
         if (o instanceof CommandLeft)
         {
-            command = ((CommandLeft) o).getName();
+            command = ((CommandLeft) o).getName().getName().getName();
         }
         else if (o instanceof LineMiddle)
         {

@@ -10,7 +10,7 @@
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="sqf"
-            id="org.arma.xtext.sqf"
+            id="org.arma.xtext.Sqf"
             name="SQF Editor">
         </editor>
     </extension>
@@ -61,7 +61,7 @@
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.arma.xtext.SQF" 
+                        value="org.arma.xtext.Sqf" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -71,7 +71,7 @@
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.arma.xtext.SQF" 
+                        value="org.arma.xtext.Sqf" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -81,19 +81,19 @@
             point="org.eclipse.ui.preferencePages">
         <page
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.arma.xtext.SQF"
+            id="org.arma.xtext.Sqf"
             name="SQF">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
         <page
-            category="org.arma.xtext.SQF"
+            category="org.arma.xtext.Sqf"
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="org.arma.xtext.sqf.coloring"
             name="Syntax Coloring">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
         </page>
         <page
-            category="org.arma.xtext.SQF"
+            category="org.arma.xtext.Sqf"
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.arma.xtext.sqf.templates"
             name="Templates">
@@ -104,7 +104,7 @@
             point="org.eclipse.ui.propertyPages">
         <page
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.arma.xtext.SQF"
+            id="org.arma.xtext.Sqf"
             name="SQF">
             <keywordReference id="org.arma.xtext.ui.keyword_SQF"/>
             <enabledWhen>
@@ -258,7 +258,7 @@
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="org.arma.xtext.SQF"
+            category="org.arma.xtext.Sqf"
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
             id="org.arma.xtext.sqf.compiler.preferencePage"
             name="Compiler">
@@ -268,7 +268,7 @@
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="org.arma.xtext.SQF"
+            category="org.arma.xtext.Sqf"
             class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
             id="org.arma.xtext.sqf.compiler.propertyPage"
             name="Compiler">
@@ -389,7 +389,7 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
-	        category="org.arma.xtext.SQF"
+	        category="org.arma.xtext.Sqf"
 	        class="org.arma.xtext.ui.SqfExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
 	        id="org.arma.xtext.sqf.refactoring"
 	        name="Refactoring">
