@@ -9,6 +9,9 @@ import org.arma.xtext.ui.syntaxcoloring.StyleTokenToAttributeIdMapper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
+import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHover;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
@@ -44,6 +47,17 @@ public class SqfUiModule extends org.arma.xtext.ui.AbstractSqfUiModule
         return org.arma.xtext.ui.contentassist.SqfJavaProposalProvider.class;
     }
 
+    @Override
+	public Class<? extends IEObjectHover> bindIEObjectHover()
+    {
+		return SqfEObjectHover.class;
+	}
+    
+    public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
+        return SqfEObjectHoverProvider.class;
+    }
+ 
+    
     public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider()
     {
         return org.arma.xtext.ui.SqfEObjectDocumentationProvider.class;

@@ -29,4 +29,5 @@ Export-Package: org.arma.xtext.ui.contentassist,
  org.arma.xtext.ui.internal
 Bundle-Activator: org.arma.xtext.ui.internal.SqfActivator
 Bundle-ClassPath: .,lib/commons-collections4-4.1-javadoc.jar,lib/commons-collections4-4.1.jar
-Import-Package: org.apache.log4j;version="1.2.15"
+Import-Package: org.apache.log4j;version="1.2.15",
+ org.arma.xtext.config

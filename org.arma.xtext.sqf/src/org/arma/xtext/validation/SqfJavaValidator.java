@@ -1,5 +1,4 @@
 /*
- * @Author Niko Häikiö
  * SQF syntax validator. Check commands with parameters.
  * Parameterless commands are checked through grammar definitions.
  * FIXME: NullPointerException during Eclipse startup due to not being defined. Works never the less.
@@ -50,7 +49,8 @@ public class SqfJavaValidator extends org.arma.xtext.validation.AbstractSqfJavaV
     @Check
     public void checkLeftName(CommandLeft command) 
     {
-        if (!validLeftCommands_.contains(command.getName().toUpperCase())) 
+    	String name = command.getName().getName().getName();
+        if (!validLeftCommands_.contains(name.toUpperCase())) 
         {
             error("Invalid left command.", 
                     SqfPackage.Literals.COMMAND_LEFT__NAME);

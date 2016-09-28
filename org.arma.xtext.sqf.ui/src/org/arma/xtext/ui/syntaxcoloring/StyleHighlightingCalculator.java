@@ -6,8 +6,11 @@ import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculat
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
+import org.arma.xtext.KeywordHandler;
 import org.arma.xtext.sqf.CommandLeft;
+import org.arma.xtext.sqf.GlobalVariableReference;
 import org.arma.xtext.sqf.LineMiddle;
+import org.eclipse.xtext.ui.editor.hover.AbstractEObjectHover;
 
 public class StyleHighlightingCalculator
         implements ISemanticHighlightingCalculator
@@ -37,9 +40,26 @@ public class StyleHighlightingCalculator
                 {
                     return; //Happens when the word isn't complete
                 }
-                acceptor.addPosition(node.getOffset(), cmd.getName().length(),
-                        DefaultHighlightingConfiguration.KEYWORD_ID);
+                try 
+                {
+                    acceptor.addPosition(node.getOffset(), cmd.getName().getName().getName().length(),
+                            DefaultHighlightingConfiguration.KEYWORD_ID);
+                }
+                catch (NullPointerException e)
+                {
+                }
+
             }
+            
+            if (semanticElement instanceof GlobalVariableReference)
+            {
+            	String name = ((GlobalVariableReference) semanticElement).getName().getName();
+            	if (name != null && KeywordHandler.getKeywordsUpper().contains(name.toUpperCase()))
+            	{
+            		acceptor.addPosition(node.getOffset(), name.length(), DefaultHighlightingConfiguration.KEYWORD_ID);
+            	}
+            }
+            
             //Middle Command
             else if (! (node.getParent() != null && 
                     node.getParent().getSemanticElement() instanceof LineMiddle)

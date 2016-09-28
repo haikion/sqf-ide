@@ -3,7 +3,10 @@
  */
 package org.arma.xtext;
 import org.arma.xtext.scoping.SqfJavaScopeProvider;
+import org.arma.xtext.linking.SqfLinkingService;
 import org.arma.xtext.scoping.SqfGlobalScopeProvider;
+import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 /**
@@ -22,4 +25,16 @@ public class SqfRuntimeModule extends org.arma.xtext.AbstractSqfRuntimeModule
     {
         return SqfGlobalScopeProvider.class;
     }
+    
+    @Override
+	public Class<? extends ILinkingService> bindILinkingService()
+    {
+		return SqfLinkingService.class;
+	}
+    
+    @Override
+	public Class<? extends org.eclipse.xtext.linking.ILinker> bindILinker()
+    {
+		return LazyLinker.class;
+	}
 }

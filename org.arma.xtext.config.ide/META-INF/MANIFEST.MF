@@ -10,5 +10,6 @@ Require-Bundle: org.arma.xtext.config,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.arma.xtext.ide.contentassist.antlr,
- org.arma.xtext.ide.contentassist.antlr.internal
+ org.arma.xtext.ide.contentassist.antlr.internal,
+ org.arma.xtext.ide.contentassist.antlr.lexer
 
