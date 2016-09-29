@@ -11,9 +11,9 @@ Model: {Model}
 LineOfCode: name=(CfgFunctions|ParameterDefinition|Class|ArrayDefinition) ';';
 
 Class returns Variable :
-	{Class} ('class' name=ID '{'
+	'class' name=ID '{'
 		model=Model
-	'}')
+	'}'
 ;
 
 CfgFunctions:
