@@ -100,7 +100,7 @@ LocalVariableDefinition:
 ;
 
 GlobalVariableDefinition returns Config::Variable :
-	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR value=LineOfCode
+	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR LineOfCode
 ;
 
 //TODO: 
@@ -132,7 +132,7 @@ SwitchBlock: {SwitchBlock}
 ;
 
 Switch:
-	'switch' '(' name=LineOfCode ')' 'do' block=SwitchBlock
+	'switch' '(' var=LineOfCode ')' 'do' block=SwitchBlock
 ;
 
 //Dummy rules for terminal->Parser rule conversion.
@@ -143,7 +143,7 @@ SpecialVariable:
 ;
 
 GlobalFunction:
-	name=GLOBAL_FUNCTION
+    name=GLOBAL_FUNCTION
 ;
 
 LocalVariable:
@@ -166,10 +166,10 @@ Include:
 	'#include' importURI=STRING_TERMINAL
 ;
 
-terminal GLOBAL_FUNCTION : //TODO: Cross reference from introduction. (config files)
-	('a'..'z'|'A'..'Z'|'0'..'9')+'_fnc_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
+terminal GLOBAL_FUNCTION :
+	('a'..'z'|'A'..'Z'|'0'..'9')+'_'('f'|'F')('n'|'N')('c'|'C')'_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
 ;
-terminal SPECIAL_VARIABLE: '_this'|'_x'|'this';
+terminal SPECIAL_VARIABLE: '_this'|'_x'|'this'|'p1';
 terminal LOCAL_VARIABLE : '_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+;
 
 //Non character cases of command middle
@@ -268,7 +268,6 @@ CommandParameterless:
     |'commandingMenu'
     |'commitOverlay'
     |'configFile'
-    |'configName'
     |'controlNull'
     |'copyFromClipboard'
     |'createDiaryLink'
@@ -343,7 +342,6 @@ CommandParameterless:
     |'fromEditor'
     |'gearSlotAmmoCount'
     |'gearSlotData'
-    |'getArray'
     |'getArtilleryComputerSettings'
     |'getClientState'
     |'getEditorCamera'
@@ -352,7 +350,6 @@ CommandParameterless:
     |'getResolution'
     |'getShadowDistance'
     |'getTerrainHeightASL'
-    |'getText'
     |'getWorld'
     |'groupIconSelectable'
     |'groupIconsVisible'
@@ -372,7 +369,6 @@ CommandParameterless:
     |'isAgent'
     |'isArray'
     |'isAutotest'
-    |'isClass'
     |'isDedicated'
     |'isEqualTo'
     |'isInstructorFigureEnabled'
@@ -493,7 +489,6 @@ CommandParameterless:
     |'size'
     |'slingLoadAssistantShown'
     |'soundVolume'
-    |'str'
     |'sunOrMoon'
     |'switchableUnits'
     |'synchronizedTriggers'

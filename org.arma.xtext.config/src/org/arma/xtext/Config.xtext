@@ -63,8 +63,20 @@ Include:
 	'#include' importURI=String
 ;
 
+Calculation:
+	vals+=NonArray (CALC_OPERATOR vals+=NonArray)+
+;
+
+ActualValue:
+	val=(NonArray|Array|Calculation)
+;
+
+NestedValue:
+    '(' NestedValue|ActualValue ')'
+;
+
 Define returns Variable:
-	'#define' name=ID value=(Array|NonArray)
+	'#define' name=ID val=(NestedValue|ActualValue)
 ;
 
 Reference:
@@ -81,8 +93,9 @@ ClassReference:
 */
 //terminal CFG_FUNCTIONS: "CfgFunctions";
 
-terminal HEX: '0x' UNSIGNED;
+terminal HEX: '0x' ('0'..'F')+;
 terminal FLOAT: INT '.' UNSIGNED ('e' ('+'|'-') UNSIGNED)?;
+terminal CALC_OPERATOR: '+'|'-'|'*';
 terminal INT: '-'? UNSIGNED;
 terminal UNSIGNED: ('0'..'9')+;
 terminal ML_COMMENT	: '/*' -> '*/';
