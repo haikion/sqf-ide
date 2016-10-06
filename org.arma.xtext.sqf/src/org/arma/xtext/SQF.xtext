@@ -117,8 +117,8 @@ For:
 	'do' loopCode=Code
 ;
 
-If:
-	'if' '(' condition=LineOfCode ')' ('then'|'exitWith') thenCode=Code 
+If: //COMMAND_LEFT_SPECIAL == !
+	'if' COMMAND_LEFT_SPECIAL? '(' condition=LineOfCode ')' ('then'|'exitWith') thenCode=Code 
 	('else' elseCode=Code)?
 ;
 
