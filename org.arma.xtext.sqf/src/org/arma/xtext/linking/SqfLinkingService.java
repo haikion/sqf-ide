@@ -25,14 +25,14 @@ public class SqfLinkingService extends DefaultLinkingService
     public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException
     {
 		//Check if keyword is being cross referenced.
-		//If ref is keyword, ignore it and provide dummy target in order to avoid errors.
+
 		final String crossRefString = getCrossRefNodeAsString(node);	
 		if (KeywordHandler.getKeywordsUpper().contains(crossRefString.toUpperCase()))
 		{
+			//If reference is keyword, ignore it and provide dummy target in order to avoid errors.
             Variable newVariable = ConfigFactoryImpl.eINSTANCE.createVariable();
             newVariable.setName(crossRefString);
-            
-            
+
             URI uri = URI.createURI("dummy.projectionsatisfier");
             Resource r = context.eResource().getResourceSet().getResource(uri, false);
             if (r == null)
@@ -44,7 +44,6 @@ public class SqfLinkingService extends DefaultLinkingService
             List<EObject> list = Collections.singletonList((EObject)newVariable);
             return list;
 		}
-		
 		//Not keyword, has to be real reference.
 		return super.getLinkedObjects(context, ref, node);
     }

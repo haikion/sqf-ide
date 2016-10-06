@@ -35,7 +35,7 @@ AssignableLineOfCode:
 LineOfCode:
 	AssignableLineOfCode
 	|LocalVariableDefinition
-	|ok=GlobalVariableDefinition
+	|valu=GlobalVariableDefinition
 	|Include
 	|If|While|For|ForVariable|Switch
 ;
@@ -100,7 +100,7 @@ LocalVariableDefinition:
 ;
 
 GlobalVariableDefinition returns Config::Variable :
-	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR LineOfCode
+	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR val=LineOfCode
 ;
 
 //TODO: 

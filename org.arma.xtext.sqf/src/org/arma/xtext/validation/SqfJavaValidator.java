@@ -32,31 +32,7 @@ public class SqfJavaValidator extends org.arma.xtext.validation.AbstractSqfJavaV
     {
         populateValidCommands();
     }
-    
-    /*
-    @Check
-    public void checkGlobalVariableReference(GlobalVariableReference object)
-    {
-        System.out.println("Executing GlobalVarCheck");
-        EList<Diagnostic> errors = object.eResource().getErrors();
-        for (Diagnostic error : errors)
-        {
-            System.out.println("Error: " + error.getMessage());
-        }
-    }
-    */
-    
-    @Check
-    public void checkLeftName(CommandLeft command) 
-    {
-    	String name = command.getName().getName().getName();
-        if (!validLeftCommands_.contains(name.toUpperCase())) 
-        {
-            error("Invalid left command.", 
-                    SqfPackage.Literals.COMMAND_LEFT__NAME);
-        }
-    }
-    
+
     @Check
     public void checkMiddleName(LineMiddle line) 
     {

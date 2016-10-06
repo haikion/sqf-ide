@@ -34,8 +34,7 @@ public class SqfEObjectHover extends DispatchingEObjectTextHover
 		{
 			Variable var = (Variable) o;
 			String name = var.getName();
-			System.out.println(name);
-			if (KeywordHandler.getKeywordsUpper().contains(name.toUpperCase()))
+			if (name != null && KeywordHandler.getKeywordsUpper().contains(name.toUpperCase()))
 			{
 				EObject o2 = internalResolveElementAt(resource, offset);
 				
@@ -45,7 +44,6 @@ public class SqfEObjectHover extends DispatchingEObjectTextHover
 			}
 			
 		}
-		// TODO Auto-generated method stub
 		return super.getXtextElementAt(resource, offset);
 	}
 	
