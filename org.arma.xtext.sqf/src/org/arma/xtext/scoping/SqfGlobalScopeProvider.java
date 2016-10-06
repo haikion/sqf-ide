@@ -9,7 +9,6 @@ import org.eclipse.xtext.scoping.IScope;
 
 import com.google.common.base.Predicate;
 
-@SuppressWarnings("restriction")
 public class SqfGlobalScopeProvider extends DefaultGlobalScopeProvider
 {
     @Override

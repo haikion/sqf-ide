@@ -99,7 +99,7 @@ LocalVariableDefinition:
 	name=LOCAL_VARIABLE ASSIGMENT_OPERATOR value=LineOfCode
 ;
 
-GlobalVariableDefinition returns Config::Variable :
+GlobalVariableDefinition returns Config::Variable:
 	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR val=LineOfCode
 ;
 
