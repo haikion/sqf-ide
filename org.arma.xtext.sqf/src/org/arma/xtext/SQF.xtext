@@ -206,7 +206,7 @@ terminal WS	: (' '|'\t'|'\r'|'\n')+;
 terminal ASSIGMENT_OPERATOR: '='; //Single =, rules out: ==,!=,>=,<=
 //Confusing name. Generally means a sequence of chars that can be: command, global variable or 
 //public variable. More specific checking is done at validation. 
-terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
+terminal UNRECOGNIZED_STRING: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 
 /*
  * Contains automatically generated list of commands without parameters.
