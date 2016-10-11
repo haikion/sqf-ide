@@ -148,9 +148,9 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.arma.side.SQFPerspective"
+            class="org.arma.side.SqfPerspective"
             icon="icons/Arma3Logo.gif"
-            id="sqfide.SQFPerspective"
+            id="side.SqfPerspective"
             name="SQF">
       </perspective>
    </extension>
@@ -220,7 +220,7 @@
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="sqfide.SQFPerspective">
+            targetID="side.SqfPerspective">
          <actionSet
                id="org.eclipse.debug.ui.launchActionSet">
          </actionSet>

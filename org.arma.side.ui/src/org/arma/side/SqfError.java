@@ -4,7 +4,7 @@
 
 package org.arma.side;
 
-public class SQFError
+public class SqfError
 {
 	private int line;
 	
@@ -12,7 +12,7 @@ public class SQFError
 	
 	private String message;
 	
-	public SQFError( String errorString, int line, int column )
+	public SqfError( String errorString, int line, int column )
 	{
 		
 	}

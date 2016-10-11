@@ -1,5 +1,5 @@
 /**
- * @(#) SQFPerspective.java
+ * @(#) SqfPerspective.java
  */
 
 package org.arma.side;
@@ -10,7 +10,7 @@ import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 import org.eclipse.ui.wizards.newresource.BasicNewFolderResourceWizard;
 
-public class SQFPerspective implements IPerspectiveFactory
+public class SqfPerspective implements IPerspectiveFactory
 {
 
     @Override

@@ -13,7 +13,7 @@ public class LogFile extends File
      * 
      */
     private static final long serialVersionUID = 1L;
-    private ArrayList<SQFError> errors_;
+    private ArrayList<SqfError> errors_;
 	
 	public LogFile( String logString )
 	{
