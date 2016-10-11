@@ -7,22 +7,22 @@ package org.arma.side.wizards;
 import java.net.URI;
 
 import org.arma.side.CustomFunctionsXml;
-import org.arma.side.PBOArchiver;
+import org.arma.side.PboArchiver;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
-public class ImportPBOWizard extends ImportMissionWizard implements IImportWizard
+public class ImportPboWizard extends ImportMissionWizard implements IImportWizard
 {
-    private ImportPBOPage page_;
+    private ImportPboPage page_;
     
     @Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) 
 	{
 		setWindowTitle("Import ArmA 3 PBO Mission"); //NON-NLS-1
 		setNeedsProgressMonitor(true);
-		page_ = new ImportPBOPage("Import ArmA 3 Mission", selection);
+		page_ = new ImportPboPage("Import ArmA 3 Mission", selection);
 	}
     
     @Override
@@ -40,7 +40,7 @@ public class ImportPBOWizard extends ImportMissionWizard implements IImportWizar
         String missionName = page_.getMissionName();
         URI location = page_.getMissionDIR().toURI();
         
-        PBOArchiver.extract(page_.getPboFile(), page_.getMissionDIR().getParentFile());;        
+        PboArchiver.extract(page_.getPboFile(), page_.getMissionDIR().getParentFile());;        
         IProject project = createProject(missionName, location);
         CustomFunctionsXml.createEmptyXml(project);
         

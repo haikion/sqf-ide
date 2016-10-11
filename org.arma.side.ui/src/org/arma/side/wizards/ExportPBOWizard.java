@@ -4,7 +4,7 @@
 
 package org.arma.side.wizards;
 
-import org.arma.side.PBOArchiver;
+import org.arma.side.PboArchiver;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,7 +25,7 @@ public class ExportPBOWizard extends Wizard implements IExportWizard
     		System.out.println("ERROR: project path is null...");
     		return false;
     	}
-        PBOArchiver.pack(projectPath_.toFile(), page_.getMissionLocation());
+        PboArchiver.pack(projectPath_.toFile(), page_.getMissionLocation());
         return true;
     }
 

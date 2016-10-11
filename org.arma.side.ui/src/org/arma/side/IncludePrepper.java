@@ -43,7 +43,7 @@ public class IncludePrepper
 			else if ("pbo".equals(getExtensions(name)))
 			{
 				outputDir.mkdirs();
-				PBOArchiver.extract(file2, outputDir);
+				PboArchiver.extract(file2, outputDir);
 			}
 			else
 			{

@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 
-public class PBOArchiver
+public class PboArchiver
 {
 	static final String CPBO_EXUCTABLE = "tools/cpbo.exe";
 	static final String MAKE_PBO_EXECUTABLE = "tools/MakePbo.exe";

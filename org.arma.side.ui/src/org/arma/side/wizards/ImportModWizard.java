@@ -4,7 +4,7 @@
 
 package org.arma.side.wizards;
 
-import org.arma.side.PBOArchiver;
+import org.arma.side.PboArchiver;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardContainer;
@@ -18,7 +18,7 @@ import org.eclipse.ui.IWorkbench;
 
 public class ImportModWizard extends Wizard implements IImportWizard
 {
-    private PBOArchiver archiver_;
+    private PboArchiver archiver_;
     
     private ImportModPage page_;
 

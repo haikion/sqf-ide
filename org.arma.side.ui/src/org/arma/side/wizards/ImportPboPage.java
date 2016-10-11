@@ -8,12 +8,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.arma.side.PBOArchiver;
+import org.arma.side.PboArchiver;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.FileDialog;
 
-public class ImportPBOPage extends ImportMissionPage
+public class ImportPboPage extends ImportMissionPage
 {
 	static final String CPBO_EXUCTABLE = "tools\\cpbo.exe";
 	private File testDir_;
@@ -21,7 +21,7 @@ public class ImportPBOPage extends ImportMissionPage
 	private File missionLocation_;
 	List<String> cpboParams_ = new ArrayList<String>();
 	
-    public ImportPBOPage(String pageName, IStructuredSelection selection)
+    public ImportPboPage(String pageName, IStructuredSelection selection)
     {
         super(pageName, selection);
         setDescription("Open existing ArmA 3 PBO mission.");
@@ -98,7 +98,7 @@ public class ImportPBOPage extends ImportMissionPage
             System.out.println("missionLocation set to: " + missionLocation_.getAbsolutePath());
             //Test extract
             testDir_ = new File(System.getProperty("java.io.tmpdir") + "\\" + missionName);
-            PBOArchiver.extract(pboFile_, testDir_.getParentFile());;
+            PboArchiver.extract(pboFile_, testDir_.getParentFile());;
             checkPageComplete();
         }
     }

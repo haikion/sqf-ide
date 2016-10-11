@@ -34,7 +34,7 @@
       </wizard>
       <wizard
             category="sqfide.wizards.importWizards"
-            class="org.arma.side.wizards.ImportPBOWizard"
+            class="org.arma.side.wizards.ImportPboWizard"
             icon="icons/openPboYellow.gif"
             id="sqfide.wizards.ImportPBOWizard"
             name="Import PBO">
