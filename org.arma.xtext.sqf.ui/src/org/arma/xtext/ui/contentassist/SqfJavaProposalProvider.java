@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.collections4.trie.PatriciaTrie;
-import org.arma.xtext.XMLReader;
+import org.arma.xtext.XmlReader;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
@@ -47,9 +47,9 @@ public class SqfJavaProposalProvider extends AbstractSqfProposalProvider
     {
         super();
         System.out.println("SqfJavaProposalProvider: Constructing SqfProposalProvider.");
-        lefts_ = setListToTrie(XMLReader.getCommandLefts());
-        middles_ = setListToTrie(XMLReader.getCommandMiddles());
-        functions_ = setListToTrie(XMLReader.getFunctions());
+        lefts_ = setListToTrie(XmlReader.getCommandLefts());
+        middles_ = setListToTrie(XmlReader.getCommandMiddles());
+        functions_ = setListToTrie(XmlReader.getFunctions());
         System.out.println("functions_ size: " + functions_.size());
     }
     
@@ -110,7 +110,7 @@ public class SqfJavaProposalProvider extends AbstractSqfProposalProvider
             return;
         }
 
-        Set<String> funcs = XMLReader.getFunctions(new File(project.getLocation().toOSString() + CUSTOM_FUNCTIONS_PATH));
+        Set<String> funcs = XmlReader.getFunctions(new File(project.getLocation().toOSString() + CUSTOM_FUNCTIONS_PATH));
     	List<String> missionFunctions = getMissionFunctions(project);
         funcs.addAll(missionFunctions);
         setToProposal(funcs, context, acceptor);

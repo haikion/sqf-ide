@@ -4,7 +4,7 @@
 
 package org.arma.xtext.ui;
 
-import org.arma.xtext.XMLReader;
+import org.arma.xtext.XmlReader;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.arma.xtext.sqf.CommandLeft;
@@ -18,29 +18,29 @@ public class SqfEObjectDocumentationProvider implements IEObjectDocumentationPro
     @Override
     public String getDocumentation(EObject o)
     {
-        String callable = "";
+        String name = "";
         if (o instanceof CommandLeft)
         {
-            callable = ((CommandLeft) o).getName().getName().getName();
+            name = ((CommandLeft) o).getName().getName().getName();
         }
         else if (o instanceof LineMiddle)
         {
-            callable = ((LineMiddle) o).getName();
+            name = ((LineMiddle) o).getName();
         }
         else if (o instanceof CommandParameterless)
         {
-            callable = ((CommandParameterless) o).getName();
+            name = ((CommandParameterless) o).getName();
         }
         else if (o instanceof GlobalFunction)
         {
-            callable = ((GlobalFunction) o).getName();
+            name = ((GlobalFunction) o).getName();
         }
         else if (o instanceof GlobalVariableReference)
         {
-        	callable = ((GlobalVariableReference) o).getName().getName();
+        	name = ((GlobalVariableReference) o).getName().getName();
         }
-        System.out.println("callable = " + callable);
-        String doc = XMLReader.getCommandDoc(callable);
+        System.out.println("callable = " + name);
+        String doc = XmlReader.getCallableDoc(name);
         
         return doc;
     }

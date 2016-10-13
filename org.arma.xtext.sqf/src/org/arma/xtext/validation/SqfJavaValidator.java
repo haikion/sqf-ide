@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.arma.xtext.XMLReader;
+import org.arma.xtext.XmlReader;
 import org.eclipse.xtext.validation.Check;
 import org.arma.xtext.sqf.CommandLeft;
 import org.arma.xtext.sqf.LineMiddle;
@@ -56,9 +56,9 @@ public class SqfJavaValidator extends org.arma.xtext.validation.AbstractSqfJavaV
     
     private void populateValidCommands()
     {
-        Set<String> validMiddles = XMLReader.getCommandMiddlesUpper();
-        Set<String> validLefts = XMLReader.getCommandLeftsUpper();
-        Set<String> validParentlesses = XMLReader.getCommandParentlessesUpper();
+        Set<String> validMiddles = XmlReader.getCommandMiddlesUpper();
+        Set<String> validLefts = XmlReader.getCommandLeftsUpper();
+        Set<String> validParentlesses = XmlReader.getCommandParentlessesUpper();
         
         validMiddleCommands_.addAll(validMiddles);
         validLeftCommands_.addAll(validLefts);

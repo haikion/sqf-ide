@@ -32,7 +32,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XMLReader
+public class XmlReader
 {
     static final String XML_FILE_PATH = "commands.xml";
 
@@ -47,7 +47,7 @@ public class XMLReader
     private static XPathExpression nameText_;
     private static XPathExpression docText_;
     
-    public static String getCommandDoc(String command)
+    public static String getCallableDoc(String command)
     {
         readCoreXml();
         String key = command.toUpperCase();

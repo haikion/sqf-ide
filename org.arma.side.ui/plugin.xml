@@ -271,4 +271,14 @@
          </property>
       </product>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.arma.side.RptView"
+            icon="icons/rpt.png"
+            id="org.arma.side.ui.rptView"
+            name="RPT View"
+            restorable="true">
+      </view>
+   </extension>
 </plugin>

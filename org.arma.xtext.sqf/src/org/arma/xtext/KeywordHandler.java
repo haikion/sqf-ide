@@ -17,9 +17,9 @@ public class KeywordHandler
     
     static private void readKeywords()
     {
-        Set<String> validMiddles = XMLReader.getCommandMiddlesUpper();
-        Set<String> validLefts = XMLReader.getCommandLeftsUpper();
-        Set<String> validParentlesses = XMLReader.getCommandParentlessesUpper();
+        Set<String> validMiddles = XmlReader.getCommandMiddlesUpper();
+        Set<String> validLefts = XmlReader.getCommandLeftsUpper();
+        Set<String> validParentlesses = XmlReader.getCommandParentlessesUpper();
         
         keywords_.addAll(validMiddles);
         keywords_.addAll(validLefts);
