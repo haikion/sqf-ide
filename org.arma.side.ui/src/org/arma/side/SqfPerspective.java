@@ -40,5 +40,6 @@ public class SqfPerspective implements IPerspectiveFactory
         IFolderLayout bottomRight = layout.createFolder(
                 "bottomRight", IPageLayout.BOTTOM, (float) 0.66,//$NON-NLS-1$
                 editorArea);
+        bottomRight.addView(RptView.ID);
     }
 }

@@ -27,7 +27,7 @@ import org.eclipse.ui.part.ViewPart;
 
 public class RptView extends ViewPart
 {
-    public static final String ID = "org.arma.side.ui.rptView";
+    public static final String ID = "org.arma.side.ui.RptView";
     
     private StyledText logText_;
     //TODO: Find out the dir from regs

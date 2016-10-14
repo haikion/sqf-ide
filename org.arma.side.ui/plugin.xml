@@ -276,7 +276,7 @@
       <view
             class="org.arma.side.RptView"
             icon="icons/rpt.png"
-            id="org.arma.side.ui.rptView"
+            id="org.arma.side.ui.RptView"
             name="RPT View"
             restorable="true">
       </view>
