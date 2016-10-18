@@ -166,6 +166,8 @@ Include:
 	'#include' importURI=STRING_TERMINAL
 ;
 
+//FIXME: Allow underscored tags. Difficulty: Very hard due to lack of look-a-head in the Lexer.
+//Work-a-round atm: Global Variable References containing _fnc_ are by-passed.
 terminal GLOBAL_FUNCTION :
 	('a'..'z'|'A'..'Z'|'0'..'9')+'_'('f'|'F')('n'|'N')('c'|'C')'_'('a'..'z'|'A'..'Z'|'_'|'0'..'9')+
 ;
