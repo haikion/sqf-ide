@@ -112,6 +112,7 @@ LocalVariableReference:
 	name=[LocalVariableDefinition|LOCAL_VARIABLE]
 ;
 
+//FIXME: For "_i" do... Difficulty: Medium, STRING_TERMINAL needs to be converted to parser rule.
 For:
 	'for' Array
 	'do' loopCode=Code
