@@ -26,8 +26,9 @@ public class SqfLinkingService extends DefaultLinkingService
     {
 		//Check if keyword is being cross referenced.
 
-		final String crossRefString = getCrossRefNodeAsString(node);	
-		if (KeywordHandler.getKeywordsUpper().contains(crossRefString.toUpperCase()))
+		final String crossRefString = getCrossRefNodeAsString(node);
+		final String capitals = crossRefString.toUpperCase();
+		if (KeywordHandler.getKeywordsUpper().contains(capitals) || capitals.contains("_FNC_"))
 		{
 			//If reference is keyword, ignore it and provide dummy target in order to avoid errors.
             Variable newVariable = ConfigFactoryImpl.eINSTANCE.createVariable();

@@ -1,5 +1,7 @@
 package org.arma.side;
 
+//TODO: Set fault charset to UTF-8
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
