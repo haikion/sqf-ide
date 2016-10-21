@@ -104,11 +104,8 @@ GlobalVariableDefinition returns Config::Variable:
 	name=(UNRECOGNIZED_STRING|GLOBAL_FUNCTION) ASSIGMENT_OPERATOR val=LineOfCode
 ;
 
-//TODO: 
-//1) Separate so that global applies to whole project
-//   and local applies to open file
-//2) Figure out how to handle blocks so that local only effects
-//   current code block
+//TODO: Figure out how to handle blocks so that local only effects
+//current code block (Priority: LOW)
 LocalVariableReference:
 	name=[LocalVariableDefinition|LOCAL_VARIABLE]
 ;
