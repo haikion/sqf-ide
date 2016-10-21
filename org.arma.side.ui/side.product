@@ -7,7 +7,7 @@
    </configIni>
 
    <launcherArgs>
-      <programArgsWin>-cssTheme org.eclipse.e4.ui.css.theme.e4_dark
+      <programArgsWin>-cssTheme org.eclipse.e4.ui.css.theme.e4_dark -console -consoleLog
       </programArgsWin>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>

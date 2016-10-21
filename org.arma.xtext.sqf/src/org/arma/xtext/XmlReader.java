@@ -7,6 +7,7 @@ package org.arma.xtext;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,6 +129,38 @@ public class XmlReader
         }
 	}
 	
+    private static void readXMLStream(final InputStream  sourceStream) throws IOException
+    {
+        final String PATH = "stream";
+        //Run only once.
+        Long size = new Long(sourceStream.available());
+        Long cacheSize = cache_.get(PATH);
+        if (size.equals(cacheSize))
+        {
+            return;
+        }
+        if (builder_ == null)
+            createBuilder();
+            
+        Document document;
+        try
+        {
+            //Unit testing path
+            document = builder_.parse(sourceStream);
+
+        }
+        catch (SAXException | IOException e) 
+        {
+            e.printStackTrace();
+            return;
+        }
+        commandLefts_.addAll(getCommandsByType("commandLefts", document));
+        commandMiddles_.addAll(getCommandsByType("commandMiddles", document));
+        commandParentlesses_.addAll(getCommandsByType("commandParentlesses", document));
+        functions_.addAll(getCommandsByType("functions", document));
+        cache_.put(PATH, size);
+    }
+	
     private static void readXMLFile(final File sourceFile)
     {
         //Run only once.
@@ -159,20 +192,38 @@ public class XmlReader
         cache_.put(sourceFile.getAbsolutePath(), sourceFile.length());
     }
     
+    //Reads commands.xml from valid source.
+    //Supports run as product, local file and jar included file.
     private static void readCoreXml()
     {
         File sourceFile  = new File("..\\org.arma.xtext.sqf\\" + XML_FILE_PATH);
         //Installation path
         if (!sourceFile.isFile())
         {
-        	System.out.println("Using installation path");
+        	System.out.println("Using 'run as' path");
         	URL url = FileLocator.find(Platform.getBundle("org.arma.xtext.sqf"), new Path(XML_FILE_PATH), null);
+        	Boolean fail = false;
 			try {
 				String jarPath = FileLocator.resolve(url).getPath();
+				System.out.println("jarPath = " + jarPath);
 	            sourceFile = new File(jarPath);
-			} catch (IOException e) {
+			} catch (IOException e) 
+			{		
+			    fail = true;
 				e.printStackTrace();
-				return;
+			}
+			if (!sourceFile.isFile() || fail)
+			{
+			    System.out.print("Using Product (jar) path");
+			    InputStream in = XmlReader.class.getResourceAsStream("/" + XML_FILE_PATH);
+			    try
+                {
+                    readXMLStream(in);
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                    return;
+                }
 			}
         }
         System.out.println("sourceFile = " + sourceFile.getAbsolutePath());
