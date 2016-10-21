@@ -89,6 +89,7 @@ Array:
 	{Array} '['(member += LineOfCode (',' member += LineOfCode)*)?']'
 ;
 
+//FIXME: Get variable def from StringV
 ForVariable:
 	'for' StringV 'from' from=Countable 'to' to=Countable ('step' step=Countable)?
 	'do' loopCode=Code
@@ -112,7 +113,6 @@ LocalVariableReference:
 	name=[LocalVariableDefinition|LOCAL_VARIABLE]
 ;
 
-//FIXME: For "_i" do... Difficulty: Medium, STRING_TERMINAL needs to be converted to parser rule.
 For:
 	'for' Array
 	'do' loopCode=Code
