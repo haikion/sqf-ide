@@ -28,13 +28,15 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 
-public class ImportMissionPage extends WizardPage {
+public class ImportMissionPage extends WizardPage
+{
     
     private File missionLocation_;
     private Text missionText_;
     private String pathLabel_ = "&Mission Path:";
     
-    public ImportMissionPage(String pageName, IStructuredSelection selection) {
+    public ImportMissionPage(String pageName, IStructuredSelection selection)
+    {
         super("wizardPage");
         setTitle(pageName);
         setDescription("Open existing ArmA 3 mission.");
@@ -67,14 +69,17 @@ public class ImportMissionPage extends WizardPage {
     
     public File getMissionDIR()
     {
-    return missionLocation_;
+        return missionLocation_;
     }
     
     /**
      * @see IDialogPage#createControl(Composite)
      */
-    public void createControl(Composite parent) {
+    public void createControl(Composite parent)
+    {
+
         Composite container = new Composite(parent, SWT.NULL);
+
         GridLayout layout = new GridLayout();
         layout.numColumns = 3;
         layout.verticalSpacing = 9;

@@ -30,12 +30,12 @@ public class ExportPboWizard extends Wizard implements IExportWizard
     }
 
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		// TODO Auto-generated method stub
+	public void init(IWorkbench workbench, IStructuredSelection selection)
+	{
 	    Object obj = selection.getFirstElement();
 	    if (obj instanceof IProject)
 	    {
-	    	IProject project = (IProject)obj;
+	    	IProject project = (IProject) obj;
 	    	projectPath_ = project.getLocation();
 	    	System.out.println("projectPath_ = " + projectPath_);
 	    }

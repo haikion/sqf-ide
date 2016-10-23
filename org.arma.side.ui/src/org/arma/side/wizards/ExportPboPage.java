@@ -17,8 +17,6 @@ import org.eclipse.ui.IWorkbench;
 
 public class ExportPboPage extends ImportMissionPage
 {
-	private Text outputPath_;
-	
 	public ExportPboPage(String pageName, IStructuredSelection selection) 
 	{
 		super(pageName, selection);
