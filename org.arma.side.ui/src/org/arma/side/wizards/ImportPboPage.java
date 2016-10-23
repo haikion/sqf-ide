@@ -103,7 +103,7 @@ public class ImportPboPage extends ImportMissionPage
         }
     }
     /*
-    public Boolean extractPBO(String pboPath, File extractDir)
+    public Boolean extractPbO(String pboPath, File extractDir)
     {
     	List<String> params = new ArrayList<String>(cpboParams_);
     	File pboFile = new File(pboPath);

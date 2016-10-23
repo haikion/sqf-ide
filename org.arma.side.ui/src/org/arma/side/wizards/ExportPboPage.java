@@ -1,5 +1,5 @@
 /**
- * @(#) ExportPBOPage.java
+ * @(#) ExportPboPage.java
  */
 
 package org.arma.side.wizards;
@@ -15,11 +15,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 
-public class ExportPBOPage extends ImportMissionPage
+public class ExportPboPage extends ImportMissionPage
 {
 	private Text outputPath_;
 	
-	public ExportPBOPage(String pageName, IStructuredSelection selection) 
+	public ExportPboPage(String pageName, IStructuredSelection selection) 
 	{
 		super(pageName, selection);
         setDescription("Export ArmA 3 mission as pbo archive.");

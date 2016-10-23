@@ -1,5 +1,5 @@
 /**
- * @(#) PBOArchiver.java
+ * @(#) PboArchiver.java
  * 
  * Wrapper for kegetys cpbo
  */

@@ -1,5 +1,5 @@
 /**
- * @(#) ImportPBOWizard.java
+ * @(#) ImportPboWizard.java
  */
 
 package org.arma.side.wizards;

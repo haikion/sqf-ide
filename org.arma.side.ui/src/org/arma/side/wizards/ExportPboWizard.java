@@ -1,5 +1,5 @@
 /**
- * @(#) ExportPBOWizard.java
+ * @(#) ExportPboWizard.java
  */
 
 package org.arma.side.wizards;
@@ -12,9 +12,9 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
-public class ExportPBOWizard extends Wizard implements IExportWizard
+public class ExportPboWizard extends Wizard implements IExportWizard
 {
-    private ExportPBOPage page_;
+    private ExportPboPage page_;
     private IPath projectPath_;
 
     @Override
@@ -39,7 +39,7 @@ public class ExportPBOWizard extends Wizard implements IExportWizard
 	    	projectPath_ = project.getLocation();
 	    	System.out.println("projectPath_ = " + projectPath_);
 	    }
-	    page_ = new ExportPBOPage("Export as PBO", selection);
+	    page_ = new ExportPboPage("Export as PBO", selection);
 	}
 	
     @Override

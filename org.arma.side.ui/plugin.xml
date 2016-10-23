@@ -36,7 +36,7 @@
             category="sqfide.wizards.importWizards"
             class="org.arma.side.wizards.ImportPboWizard"
             icon="icons/openPboYellow.gif"
-            id="sqfide.wizards.ImportPBOWizard"
+            id="sqfide.wizards.ImportPboWizard"
             name="Import PBO">
       </wizard>
    </extension>
@@ -47,7 +47,7 @@
             name="Side">
       </category>
       <wizard
-            class="org.arma.side.wizards.ExportPBOWizard"
+            class="org.arma.side.wizards.ExportPboWizard"
             icon="icons/pbo.gif"
             id="sqfide.wizards.exportpbowizard"
             name="PBO archive">
@@ -178,7 +178,7 @@
                   tooltip="Open Arma 3 mission">
                <parameter
                      name="importWizardId"
-                     value="sqfide.wizards.ImportPBOWizard">
+                     value="sqfide.wizards.ImportPboWizard">
                </parameter>
             </command>
       </menuContribution>

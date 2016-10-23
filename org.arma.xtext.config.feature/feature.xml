@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="org.arma.xtext.config.feature"
-	label="Arma Config definitions in Xtext"
-	version="1.0.0.qualifier">
-	<plugin
-			id="org.arma.xtext.config"
-			download-size="0"
-			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
-	<plugin
-			id="org.arma.xtext.config.ide"
-			download-size="0"
-			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
-	<plugin
-			id="org.arma.xtext.config.ui"
-			download-size="0"
-			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
+<feature
+      id="org.arma.xtext.config.feature"
+      label="Arma Config definitions in Xtext"
+      version="1.0.0.qualifier">
+
+   <plugin
+         id="org.arma.xtext.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.arma.xtext.config.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.arma.xtext.config.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xbase.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
