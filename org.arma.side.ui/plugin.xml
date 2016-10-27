@@ -135,8 +135,8 @@
          point="org.eclipse.ui.preferencePages">
       <page
             class="org.arma.side.preferences.PreferencePage"
-            id="sqfide.preferencePage"
-            name="SQF-IDE">
+            id="side.preferencePage"
+            name="Side">
       </page>
    </extension>
    <extension

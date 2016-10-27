@@ -20,7 +20,7 @@ public class PreferencePage
     {
         super(FieldEditorPreferencePage.GRID);
         setPreferenceStore(Activator.getDefault().getPreferenceStore());
-        setDescription("General Settings for SQF-IDE.");
+        setDescription("General Settings for Side.");
     }
   
     public void init(IWorkbench workbench) 
