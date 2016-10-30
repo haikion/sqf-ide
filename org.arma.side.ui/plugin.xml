@@ -244,14 +244,6 @@
       </scope>
    </extension>
    <extension
-         point="org.eclipse.ui.propertyPages">
-      <page
-            class="org.arma.side.preferences.IncludesPage"
-            id="side.includes"
-            name="includes">
-      </page>
-   </extension>
-   <extension
          id="side"
          point="org.eclipse.core.runtime.products">
       <product
