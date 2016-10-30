@@ -4,7 +4,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 
-public class SQFIDETester extends PropertyTester
+public class SqfIdeTester extends PropertyTester
 {
     private static final String IS_ARMA_MISSION = "isArmaMission";
     private static final String IS_SQF_FILE = "isSQFFile";

@@ -25,7 +25,7 @@ public abstract class Element
 	private final static Pattern STATEMENT_REGEX = Pattern.compile(ARRAY_REGEX+"|"+PARAMETER_REGEX+"|"+WORD_REGEX); //Pattern.compile(".+=.+\";|\\S+"); 
 	private ArrayList<Parameter> parameters_ = new ArrayList<Parameter>();
 	private ArrayList<ClassNode> children_ = new ArrayList<ClassNode>();
-	private ArrayList<SQMArray> sQMArrays_ = new ArrayList<SQMArray>();
+	private ArrayList<SqmArray> sQMArrays_ = new ArrayList<SqmArray>();
 	
 	private String text_;
 	private static Logger logger = Logger.getLogger(Element.class);
@@ -61,7 +61,7 @@ public abstract class Element
 		//State machine to go through the text word by word.
 		states state = states.IN_ROOT;
 		int beginIdx = 0, endIdx = 0, indent = 0;
-		SQMArray newArray = null;
+		SqmArray newArray = null;
 		Matcher matcher = STATEMENT_REGEX.matcher(text);
 		while (matcher.find())
 		{
@@ -95,7 +95,7 @@ public abstract class Element
 				}
 				else if (statement.matches(ARRAY_REGEX))
 				{
-					newArray = new SQMArray(statement);
+					newArray = new SqmArray(statement);
 					sQMArrays_.add(newArray);
 				}
 				else if (statement.matches(PARAMETER_REGEX)) 
@@ -177,9 +177,9 @@ public abstract class Element
 		return null;
 	}
 	
-	public SQMArray getArray(String name) 
+	public SqmArray getArray(String name) 
 	{
-		for ( SQMArray parameter : getArrays() )
+		for ( SqmArray parameter : getArrays() )
 		{
 			String parameterName = parameter.getName();
 			if (name.equals(parameterName))
@@ -224,7 +224,7 @@ public abstract class Element
 		return parameters_;
 	}
 	
-	public ArrayList<SQMArray> getArrays( )
+	public ArrayList<SqmArray> getArrays( )
 	{
 		return sQMArrays_;
 	}
@@ -268,7 +268,7 @@ public abstract class Element
 	{
 		for (ClassNode child : children_)
 		{
-			SQMArray parameter = child.getArray(name);
+			SqmArray parameter = child.getArray(name);
 			ClassNode grandChild;
 
 			if (parameter != null && parameter.getValues().equals(values))
@@ -321,7 +321,7 @@ public abstract class Element
 		//Write array parameters
 		for ( int i = 0 ; i < getArrays().size(); ++i )
 		{
-			SQMArray array = getArrays().get(i);
+			SqmArray array = getArrays().get(i);
 			text_ += array.getText();
 			text_ += "\n";
 		}

@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-public class includeModHandler extends AbstractHandler implements IHandler
+public class IncludeModHandler extends AbstractHandler implements IHandler
 {
 
     @Override

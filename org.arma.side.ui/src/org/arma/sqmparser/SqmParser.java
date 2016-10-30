@@ -1,5 +1,5 @@
 /**
- * @(#) SQMParser.java
+ * @(#) SqmParser.java
  * SQM Parser class. Allows easy editing of SQM files through Java application.
  * Supports: deletion of classes, parameter adding, parameter removal, parameter editing
  * Does most of the parsing.
@@ -20,7 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class SQMParser
+public class SqmParser
 {
 	private MissionRoot missionRoot_;
 	

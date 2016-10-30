@@ -124,7 +124,7 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.arma.side.launchers.SQFIDETester"
+            class="org.arma.side.launchers.SqfIdeTester"
             id="org.sqfide.propertyTester1"
             namespace="org.sqfide"
             properties="isArmaMission, isSQFFile"
@@ -211,7 +211,7 @@
             name="Open Mission">
       </command>
       <command
-            defaultHandler="org.arma.side.includeModHandler"
+            defaultHandler="org.arma.side.IncludeModHandler"
             description="Include Functions from Mod"
             id="sqfide.commands.includeMod"
             name="Include Functions from Mod">

@@ -4,7 +4,7 @@
 
 package org.arma.side;
 
-import org.arma.sqmparser.SQMParser;
+import org.arma.sqmparser.SqmParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.apache.commons.io.FileUtils;
@@ -93,7 +93,7 @@ public class FunctionParser
 			return rVal;
 		}
 		content = combineIncludes(content, file);
-		SQMParser parser = new SQMParser();
+		SqmParser parser = new SqmParser();
 		parser.parseString(content);
 		ArrayList<ClassNode> cfgfuncs = parser.getClassesByName("CfgFunctions");
 		for (ClassNode node : cfgfuncs)

@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SQMArray {
+public class SqmArray {
 	ArrayList<String> values_ = new ArrayList<String>();
 	String name_ = "";
-	//private static Logger logger = Logger.getLogger(SQMArray.class);
+	//private static Logger logger = Logger.getLogger(SqmArray.class);
 	private static final List<String> DISALLOWED_VALUES = 
 		    Collections.unmodifiableList(Arrays.asList("{", "};", "}"));
 	private static final String NOT_NAME_REGEX = "\\[\\][\\s|\\S]*=[\\s|\\S]*";
@@ -31,7 +31,7 @@ public class SQMArray {
 		values_.add(value);
 	};
 	
-	public SQMArray(String text) 
+	public SqmArray(String text) 
 	{
 		text = text.trim();
 		parseValues(text);
