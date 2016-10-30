@@ -224,13 +224,6 @@
       </factory>
    </extension>
    <extension
-         point="org.eclipse.core.runtime.preferences">
-      <scope
-            class="org.arma.side.preferences.ProjectPreferences"
-            name="project">
-      </scope>
-   </extension>
-   <extension
          id="side"
          point="org.eclipse.core.runtime.products">
       <product
