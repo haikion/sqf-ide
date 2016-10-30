@@ -206,11 +206,6 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.arma.side.OpenMissionHandler"
-            id="side.commands.openMission"
-            name="Open Mission">
-      </command>
-      <command
             defaultHandler="org.arma.side.IncludeModHandler"
             description="Include Functions from Mod"
             id="side.commands.includeMod"
