@@ -57,7 +57,7 @@
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
             delegate="org.arma.side.launchers.Arma3LaunchConfigurationDelegate"
-            id="SQF-IDE.launchConfigurationType1"
+            id="side.launchConfigurationType1"
             modes="run"
             name="ArmA 3">
       </launchConfigurationType>
@@ -65,17 +65,17 @@
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
       <launchConfigurationTypeImage
-            configTypeID="SQF-IDE.launchConfigurationTypeImage1"
+            configTypeID="side.launchConfigurationTypeImage1"
             icon="icons/Arma3Logo.gif"
-            id="SQF-IDE.launchConfigurationTypeImage1">
+            id="side.launchConfigurationTypeImage1">
       </launchConfigurationTypeImage>
    </extension>
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
             class="org.arma.side.launchers.Arma3TabGroup"
-            id="SQF-IDE.launchConfigurationTabGroup1"
-            type="SQF-IDE.launchConfigurationType1">
+            id="side.launchConfigurationTabGroup1"
+            type="side.launchConfigurationType1">
       </launchConfigurationTabGroup>
    </extension>
    <extension
@@ -83,7 +83,7 @@
       <shortcut
             class="org.arma.side.launchers.Arma3LaunchShortcut"
             icon="icons/Arma3Logo.gif"
-            id="SQF-IDE.shortcut1"
+            id="side.shortcut1"
             label="Arma 3 Mission"
             modes="run">
          <contextualLaunch>
@@ -103,7 +103,7 @@
       <shortcut
             class="org.arma.side.launchers.Arma3RunScriptShortcut"
             icon="icons/Arma3Logo.gif"
-            id="SQF-IDE.shortcut2"
+            id="side.shortcut2"
             label="Arma 3 Script"
             modes="run">
          <contextualLaunch>
