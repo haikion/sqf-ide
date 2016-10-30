@@ -71,14 +71,6 @@
       </launchConfigurationTypeImage>
    </extension>
    <extension
-         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
-      <launchConfigurationTabGroup
-            class="org.arma.side.launchers.Arma3TabGroup"
-            id="side.launchConfigurationTabGroup1"
-            type="side.launchConfigurationType1">
-      </launchConfigurationTabGroup>
-   </extension>
-   <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             class="org.arma.side.launchers.Arma3LaunchShortcut"
