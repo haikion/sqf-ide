@@ -1,10 +1,9 @@
 /*
- * @author Niko Häikiö
- * 
  * Implements run configuration settings for ArmA 3 launch.
  */
 package org.arma.side.launchers;
 
+import org.arma.side.Constants;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;

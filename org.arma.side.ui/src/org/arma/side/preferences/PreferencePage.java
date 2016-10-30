@@ -1,16 +1,11 @@
 package org.arma.side.preferences;
 
 import org.arma.side.Activator;
-import org.arma.side.launchers.Constants;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.FileFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-
-import com.sun.jna.platform.win32.Advapi32Util;
-
-import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
 
 public class PreferencePage
   extends FieldEditorPreferencePage

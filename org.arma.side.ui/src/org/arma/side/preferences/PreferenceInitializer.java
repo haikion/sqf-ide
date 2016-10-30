@@ -3,7 +3,7 @@ package org.arma.side.preferences;
 import static com.sun.jna.platform.win32.WinReg.HKEY_LOCAL_MACHINE;
 
 import org.arma.side.Activator;
-import org.arma.side.launchers.Constants;
+import org.arma.side.Constants;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
