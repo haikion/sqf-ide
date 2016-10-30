@@ -26,14 +26,18 @@ import org.eclipse.ui.ide.IDE;
  * be able to open it.
  */
 
-public class NewMissionWizard extends Wizard implements INewWizard {
-	private NewMissionPage page;
+public class NewMissionWizard extends Wizard implements INewWizard
+{
+	public static final String ID = "side.wizards.NewMissionWizard";
+	
+    private NewMissionPage page;
 	private ISelection selection;
 
 	/**
 	 * Constructor for NewMissionWizard.
 	 */
-	public NewMissionWizard() {
+	public NewMissionWizard()
+	{
 		super();
 		setNeedsProgressMonitor(true);
 	}
@@ -42,7 +46,8 @@ public class NewMissionWizard extends Wizard implements INewWizard {
 	 * Adding the page to the wizard.
 	 */
 
-	public void addPages() {
+	public void addPages()
+	{
 		page = new NewMissionPage(selection);
 		addPage(page);
 	}
@@ -52,7 +57,8 @@ public class NewMissionWizard extends Wizard implements INewWizard {
 	 * the wizard. We will create an operation and run it
 	 * using wizard as execution context.
 	 */
-	public boolean performFinish() {
+	public boolean performFinish()
+	{
 		final String containerName = "UNDEFINED"; //page.getContainerName();
 		final String fileName = page.getMissionName();
 		IRunnableWithProgress op = new IRunnableWithProgress() {
@@ -127,13 +133,15 @@ public class NewMissionWizard extends Wizard implements INewWizard {
 	 * We will initialize file contents with a sample text.
 	 */
 
-	private InputStream openContentStream() {
+	private InputStream openContentStream()
+	{
 		String contents =
 			"This is the initial file contents for *.mpe file that should be word-sorted in the Preview page of the multi-page editor";
 		return new ByteArrayInputStream(contents.getBytes());
 	}
 
-	private void throwCoreException(String message) throws CoreException {
+	private void throwCoreException(String message) throws CoreException
+	{
 		IStatus status =
 			new Status(IStatus.ERROR, "SQF-IDE", IStatus.OK, message, null);
 		throw new CoreException(status);
@@ -144,7 +152,8 @@ public class NewMissionWizard extends Wizard implements INewWizard {
 	 * we can initialize from it.
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	public void init(IWorkbench workbench, IStructuredSelection selection)
+	{
 		this.selection = selection;
 	}
 }

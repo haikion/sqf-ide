@@ -4,6 +4,7 @@
 
 package org.arma.side;
 
+import org.arma.side.wizards.NewMissionWizard;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -18,7 +19,7 @@ public class SqfPerspective implements IPerspectiveFactory
     {
        layout.addNewWizardShortcut(BasicNewFolderResourceWizard.WIZARD_ID);
        layout.addNewWizardShortcut(BasicNewFileResourceWizard.WIZARD_ID);
-       layout.addNewWizardShortcut("sqfide.wizards.NewMissionWizard");
+       layout.addNewWizardShortcut(NewMissionWizard.ID);
 
        defineLayout(layout);
     }

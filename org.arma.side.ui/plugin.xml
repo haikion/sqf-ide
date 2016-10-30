@@ -5,51 +5,51 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            id="sqfide.wizards.newWizards"
+            id="side.wizards.newWizards"
             name="SQF-IDE">
       </category>
       <wizard
-            category="sqfide.wizards.newWizards"
+            category="side.wizards.newWizards"
             class="org.arma.side.wizards.NewMissionWizard"
             icon="icons/Arma3Logo.gif"
-            id="sqfide.wizards.NewMissionWizard"
+            id="side.wizards.NewMissionWizard"
             name="New ArmA 3 Mission">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.importWizards">
       <category
-            id="sqfide.wizards.importWizards"
+            id="side.wizards.importWizards"
             name="Side">
       </category>
       <wizard
-            category="sqfide.wizards.importWizards"
+            category="side.wizards.importWizards"
             class="org.arma.side.wizards.ImportMissionWizard"
             icon="icons/openFolderYellow.png"
-            id="sqfide.wizards.ImportMissionWizard"
+            id="side.wizards.ImportMissionWizard"
             name="Import ArmA 3 Mission">
          <description>
             Import (a.k.a open) an Arma 3 mission folder from the local file system into the workspace.
          </description>
       </wizard>
       <wizard
-            category="sqfide.wizards.importWizards"
+            category="side.wizards.importWizards"
             class="org.arma.side.wizards.ImportPboWizard"
             icon="icons/openPboYellow.gif"
-            id="sqfide.wizards.ImportPboWizard"
+            id="side.wizards.ImportPboWizard"
             name="Import PBO">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">
       <category
-            id="sqfide.wizards.exportwizards"
+            id="side.wizards.exportwizards"
             name="Side">
       </category>
       <wizard
             class="org.arma.side.wizards.ExportPboWizard"
             icon="icons/pbo.gif"
-            id="sqfide.wizards.exportpbowizard"
+            id="side.wizards.exportpbowizard"
             name="PBO archive">
       </wizard>
    </extension>
@@ -92,7 +92,7 @@
             		<count value="1"/>
             		<iterate>
                 		<adapt type="org.eclipse.core.resources.IResource">
-                       		<test property="org.sqfide.isArmaMission"  
+                       		<test property="org.side.isArmaMission"  
                         		forcePluginActivation="true"/> 
              	 		</adapt> 
           			 </iterate>
@@ -112,7 +112,7 @@
             		<count value="1"/>
             		<iterate>
                 		<adapt type="org.eclipse.core.resources.IResource">
-                       		<test property="org.sqfide.isSQFFile"  
+                       		<test property="org.side.isSQFFile"  
                         		forcePluginActivation="true"/> 
              	 		</adapt> 
           			 </iterate>
@@ -125,7 +125,7 @@
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
             class="org.arma.side.launchers.SqfIdeTester"
-            id="org.sqfide.propertyTester1"
+            id="org.side.propertyTester1"
             namespace="org.sqfide"
             properties="isArmaMission, isSQFFile"
             type="org.eclipse.core.resources.IResource">
@@ -167,7 +167,7 @@
                   tooltip="Open Arma 3 mission">
                <parameter
                      name="importWizardId"
-                     value="sqfide.wizards.ImportMissionWizard">
+                     value="side.wizards.ImportMissionWizard">
                </parameter>
             </command>
             <command
@@ -178,7 +178,7 @@
                   tooltip="Open Arma 3 mission">
                <parameter
                      name="importWizardId"
-                     value="sqfide.wizards.ImportPboWizard">
+                     value="side.wizards.ImportPboWizard">
                </parameter>
             </command>
       </menuContribution>
@@ -186,7 +186,7 @@
          locationURI=
          "popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
          <command
-               commandId="sqfide.commands.includeMod"
+               commandId="side.commands.includeMod"
                icon="icons/Arma3Logo.gif"
                label="Include Functions from Mod"
                mnemonic="M1+P"
@@ -207,13 +207,13 @@
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="org.arma.side.OpenMissionHandler"
-            id="sqfide.commands.openMission"
+            id="side.commands.openMission"
             name="Open Mission">
       </command>
       <command
             defaultHandler="org.arma.side.IncludeModHandler"
             description="Include Functions from Mod"
-            id="sqfide.commands.includeMod"
+            id="side.commands.includeMod"
             name="Include Functions from Mod">
       </command>
    </extension>
@@ -247,7 +247,7 @@
          point="org.eclipse.ui.propertyPages">
       <page
             class="org.arma.side.preferences.IncludesPage"
-            id="sqfide.includes"
+            id="side.includes"
             name="includes">
       </page>
    </extension>
