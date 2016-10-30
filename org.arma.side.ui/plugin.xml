@@ -206,7 +206,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.arma.side.openMissionHandler"
+            defaultHandler="org.arma.side.OpenMissionHandler"
             id="sqfide.commands.openMission"
             name="Open Mission">
       </command>

@@ -5,7 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 
-public class openMissionHandler extends AbstractHandler implements IHandler
+public class OpenMissionHandler extends AbstractHandler implements IHandler
 {
 
     @Override
