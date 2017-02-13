@@ -84,7 +84,7 @@
             		<count value="1"/>
             		<iterate>
                 		<adapt type="org.eclipse.core.resources.IResource">
-                       		<test property="org.side.isArmaMission"  
+                       		<test property="org.arma.side.isArmaMission"  
                         		forcePluginActivation="true"/> 
              	 		</adapt> 
           			 </iterate>
@@ -104,7 +104,7 @@
             		<count value="1"/>
             		<iterate>
                 		<adapt type="org.eclipse.core.resources.IResource">
-                       		<test property="org.side.isSQFFile"  
+                       		<test property="org.arma.side.isSqfFile"  
                         		forcePluginActivation="true"/> 
              	 		</adapt> 
           			 </iterate>
@@ -116,10 +116,10 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.arma.side.launchers.SqfIdeTester"
-            id="org.side.propertyTester1"
-            namespace="org.sqfide"
-            properties="isArmaMission, isSQFFile"
+            class="org.arma.side.launchers.SideTester"
+            id="org.arma.side.sideTester"
+            namespace="org.arma.side"
+            properties="isArmaMission, isSqfFile"
             type="org.eclipse.core.resources.IResource">
       </propertyTester>
    </extension>
